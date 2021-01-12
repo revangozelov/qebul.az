@@ -185,7 +185,7 @@ button:focus {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: #fff;
+	background: #1E6CC7;
 }
 
 .loader {
@@ -380,9 +380,7 @@ a.navbar-brand img {
 	color: #d4a81e;
 }
 
-.search_icon.nav-link img {
-	width: 25px;
-}
+
 
 .top-header .navbar .navbar-collapse ul li {
 	margin: 0 2px;
@@ -455,9 +453,9 @@ a.navbar-brand img {
 .blog_img_popular {
     margin-bottom: 30px;
 }
-/* search bar */
+/* login bar */
 
-.search-box {
+.login-box {
 	position: absolute;
 	top: 0;
 	right: 50px;
@@ -466,27 +464,27 @@ a.navbar-brand img {
 	margin-top: 17px;
 }
 
-.search-box:hover .search-txt {
-	width: 240px;
-	padding: 0 10px;
-}
 
 .top-header #navbar-wd {
 	padding-right: 100px;
 }
 
-.search-btn {
+.login-btn {
 	float: right;
-	width: 41px;
+	width: 70px;
 	height: 41px;
 	background: transparent;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: #111;
+	background: #10449A;
+	border-radius: 6px;
+	color:  white;
 }
-
-.search-txt {
+.login-box a:hover{
+	color: #d4a81e !important;
+}
+.login-txt {
 	border: none;
 	outline: none;
 	float: left;
@@ -870,7 +868,7 @@ span.icon img {
     box-shadow: 0 0 1px rgba(0, 0, 0, 0);
     position: relative;
     overflow: hidden;
-    background: #095a83;
+    background: #10449A;
     -webkit-transition-property: color;
     transition-property: color;
     -webkit-transition-duration: 0.3s;
@@ -1842,7 +1840,7 @@ p {
 }
 
 .heading_main h2 span {
-	color: #095a83;
+	color: #10449A;
 }
 
 .heading_main p.large {
@@ -1995,7 +1993,7 @@ ul.social_icon li {
 }
 
 .footer_bottom {
-    background: #095a83;
+    background: #10449A;
     padding: 15px 0;
 }
 
@@ -2145,20 +2143,14 @@ section.inner_banner h3 {
 	width: 100%;
 }
 
-.top-header.fixed-menu .search-btn {
-	background: #111;
+.top-header.fixed-menu .login-btn {
+	background: #10449A;
+
 }
 
-.top-header.fixed-menu .search-btn img {
-    width: 25px;
-}
 
-.top-header.fixed-menu .search-box:hover .search-txt {
-	width: 240px;
-	padding: 0 10px;
-	border: solid #000 1px;
-	height: 41px;
-}
+
+
 
 .top-header.fixed-menu ul li:hover a,
 .top-header.fixed-menu ul li:focus a {
@@ -2170,7 +2162,7 @@ section.inner_banner h3 {
     background: #fff;
     margin: 0 7%;
     padding: 0;
-    color: #095a83;
+    color: #10449A;
     text-align: center;
     font-size: 20px;
     min-height: 70px;
