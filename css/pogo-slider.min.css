@@ -4,11 +4,16 @@
 }
 
 .pogoSlider {
-	width: 100%;
-	height: 0;
-	padding-bottom: 50% !important;
-	position: relative;
-	overflow: hidden
+	width: 89.9%;
+    height: 0;
+    padding-bottom: 36% !important;
+    position: relative;
+    overflow: hidden;
+    margin: auto;
+	margin-top: 90px;
+	border-radius: 6px;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
 }
 
 #column-left .pogoSlider,
@@ -89,7 +94,7 @@
 	background: #fff;
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
 	filter: alpha(opacity=40);
-	background: rgba(255, 255, 255, .4)
+	background: #10459ab7;
 }
 
 .pogoSlider-dir-btn {

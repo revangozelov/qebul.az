@@ -29,8 +29,10 @@
 	$(window).on('scroll', function () {
 		if ($(window).scrollTop() > 50) {
 			$('.top-header').addClass('fixed-menu');
+			$('.top-header').css('top','0');
 		} else {
 			$('.top-header').removeClass('fixed-menu');
+			$('.top-header').css('top','10px');
 		}
 	});
 
@@ -79,22 +81,11 @@
 		  
 		$(document).on('click','.data-newssend',function(){
 			   
-			 
-			   localStorage.setItem('img',$(this).parent().find('img').attr('src'));
-			   localStorage.setItem('txt',$(this).parent().find('p').text());
-			   localStorage.setItem('head',$(this).text());
 			   window.open ("news.html","Xəbərlər");
 
 			   
 		})
 		
-		
-		let img = localStorage.getItem("img");
-		let txt = localStorage.getItem("txt");
-		let head = localStorage.getItem("head");
-		 $('.data_newsTxt').text(txt);
-		 $('.data_newsImg').attr('src',img);  
-		 $('.data_newsHead').text(head);  
         
 
 	});
