@@ -75,6 +75,28 @@
 				}
 			}
 		});
+		  
+		  
+		$(document).on('click','.data-newssend',function(){
+			   
+			 
+			   localStorage.setItem('img',$(this).parent().find('img').attr('src'));
+			   localStorage.setItem('txt',$(this).parent().find('p').text());
+			   localStorage.setItem('head',$(this).text());
+			   window.open ("news.html","Xəbərlər");
+
+			   
+		})
+		
+		
+		let img = localStorage.getItem("img");
+		let txt = localStorage.getItem("txt");
+		let head = localStorage.getItem("head");
+		 $('.data_newsTxt').text(txt);
+		 $('.data_newsImg').attr('src',img);  
+		 $('.data_newsHead').text(head);  
+        
+
 	});
 	
 	/* ..............................................

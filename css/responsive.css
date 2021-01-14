@@ -34,7 +34,7 @@ a.navbar-brand img {
     height: 33px;
 }
 
-.search-box {
+.login-box {
     position: absolute;
     top: 0;
     right: 30px;
@@ -86,14 +86,14 @@ a.navbar-brand img {
          background-image: none;
          background-color: #fff;
     }
-     .search-box {
+     .login-box {
          top: 1px;
          right: 75px;
     }
-     .search-btn {
+     .login-btn {
          background: #111;
     }
-     .search-box:hover .search-txt {
+     .login-box:hover .search-txt {
          width: 240px;
          padding: 0 10px;
          border: solid #000 1px;
@@ -158,8 +158,8 @@ a.navbar-brand img {
          font-size: 13px;
     }
 	.tab_menu {
-    overflow-y: hidden !important;
-    padding: 0 30px;
+    overflow-x: scroll !important;
+    
 }
 
 .blog_img_popular h4 {
@@ -291,14 +291,14 @@ a.navbar-brand img {
          height: auto;
          margin-bottom: 20px;
     }
-     .search-box {
+     .login-box {
          position: absolute;
          top: 0;
-         right: 50px;
+         right: 60px;
          height: auto;
          padding: 0;
          margin-top: 29px;
-         display: none;
+         
     }
      a.navbar-brand {
          left: 0;

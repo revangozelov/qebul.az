@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <!-- Site Metas -->
-    <title>Perfect - Responsive HTML5 Template</title>
+    <title>Xəbərlər</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -18,7 +18,8 @@
     <!-- Site Icons -->
     <link rel="shortcut icon" href="#" type="image/x-icon" />
     <link rel="apple-touch-icon" href="#" />
-
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="aos/aos.css" />
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <!-- Pogo Slider CSS -->
@@ -48,36 +49,37 @@
     <!-- end loader -->
     <!-- END LOADER -->
 
-    <!-- Start header -->
-    <header class="top-header">
-        <nav class="navbar header-nav navbar-expand-lg">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="image"></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-wd" aria-controls="navbar-wd" aria-expanded="false" aria-label="Toggle navigation">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbar-wd">
-                    <ul class="navbar-nav">
-                        <li><a class="nav-link active" href="index.html">Home</a></li>
-                        <li><a class="nav-link" href="about.html">About</a></li>
-                        <li><a class="nav-link" href="courses.html">Courses</a></li>
-                        <li><a class="nav-link" href="reaserch.html">Reaserch</a></li>
-						<li><a class="nav-link" href="news.html">News</a></li>
-						<li><a class="nav-link" href="contact.html">Contact us</a></li>
-                    </ul>
-                </div>
-                <div class="search-box">
-                    <input type="text" class="search-txt" placeholder="Search">
-                    <a class="search-btn">
-                        <img src="images/search_icon.png" alt="#" />
-                    </a>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <!-- End header -->
+  <!-- Start header -->
+  <header class="top-header" data-aos="fade-up" data-aos-delay="200">
+	<nav class="navbar header-nav navbar-expand-lg">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="index.html"><img src="images/logo.jfif" alt="image"></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-wd" aria-controls="navbar-wd" aria-expanded="false" aria-label="Toggle navigation">
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+			<div class="collapse navbar-collapse justify-content-end" id="navbar-wd">
+				<ul class="navbar-nav">
+					<li><a class="nav-link active" href="index.html">Əsas Səhifə</a></li>
+					
+					<li data-toggle="collapse"  data-target=".navbar-collapse.show"><a class="nav-link" href="#exams">İmtahanlar</a></li>
+				
+					<li><a class="nav-link" href="#news">Xəbərlər</a></li>
+					<li data-toggle="collapse"  data-target=".navbar-collapse.show" ><a class="nav-link" href="#contact">Əlaqə</a></li>
+					<li><a class="nav-link" href="">Yeniliklər</a></li>
+					<li><a class="nav-link" href="">Haqqinda</a></li>
+				</ul>
+			</div>
+			<div class="login-box">
+				<a href="" data-toggle="modal" data-target="#exampleModal" class="login-btn">
+				   Giriş
+				</a>
+			</div>
+		</div>
+	</nav>
+</header>
+<!-- End header -->
 
 	<!-- section -->
 	
@@ -86,7 +88,7 @@
 	      <div class="row">
 		      <div class="col-12">
 			     <div class="full">
-				     <h3>Contact us</h3>
+				     <h3 class="data_newsHead">Xəbərlər</h3>
 				 </div>
 			  </div>
 		  </div>
@@ -98,116 +100,99 @@
 	<!-- section -->
     <div class="section layout_padding contact_section" style="background:#f6f6f6;">
         <div class="container">
-               <div class="row">
-                 <div class="col-lg-8 col-md-8 col-sm-12">
+               <div class="row ">
+                 <div class="col-lg-4 col-md-4 col-sm-12">
 				    <div class="full float-right_img">
-                        <img src="images/img10.png" alt="#">
+                        <img class="data_newsImg" src="images/img10.png" alt="#">
                     </div>
-                 </div>
-				 <div class="col-lg-4 col-md-4 col-sm-12">
-				    <div class="contact_form">
-					    <form action="contact.html">
-						   <fieldset>
-						       <div class="full field">
-							      <input type="text" placeholder="Your Name" name="your name" />
-							   </div>
-							   <div class="full field">
-							      <input type="email" placeholder="Email Address" name="Email" />
-							   </div>
-							   <div class="full field">
-							      <input type="phn" placeholder="Phone Number" name="Phone number" />
-							   </div>
-							   <div class="full field">
-							      <textarea placeholder="Massage"></textarea>
-							   </div>
-							   <div class="full field">
-							      <div class="center"><button>Send</button></div>
-							   </div>
-						   </fieldset>
-						</form>
-					</div>
-                 </div>
+				 </div>
+                 <div class="data_newsTxt col-lg-8 col-md-8 col-sm-12">
+				    
+				 </div>
+				
+				
                </div>			  
            </div>
         </div>
 	<!-- end section -->
-    <!-- Start Footer -->
-    <footer class="footer-box">
-        <div class="container">
-		
-		   <div class="row">
-		   
-		      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-			     <div class="footer_blog">
-				    <div class="full margin-bottom_30">
-					   <img src="images/footer_logo.png" alt="#" />
-					 </div>
-					 <div class="full white_fonts">
-					    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-						Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
-					 </div>
+  <!-- Start Footer -->
+  <footer class="footer-box" data-aos="fade-up" data-aos-delay="200">
+	<div class="container">
+	
+	   <div class="row">
+	   
+		  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+			 <div class="footer_blog">
+				<div class="full margin-bottom_30">
+				   <img src="images/logo.jfif" alt="#" style="border-radius: 9px;" />
 				 </div>
-			  </div>
-			  
-			  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-			       <div class="footer_blog footer_menu white_fonts">
-						    <h3>Quick links</h3>
-						    <ul> 
-							  <li><a href="#">> Join Us</a></li>
-							  <li><a href="#">> Maintenance</a></li>
-							  <li><a href="#">> Language Packs</a></li>
-							  <li><a href="#">> LearnPress</a></li>
-							  <li><a href="#">> Release Status</a></li>
-							</ul>
-						 </div>
+				 <div class="full white_fonts">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+					Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
 				 </div>
-				 
-				 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-				 <div class="footer_blog full white_fonts">
-						     <h3>Newsletter</h3>
-							 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
-							 <div class="newsletter_form">
-							    <form action="index.html">
-								   <input type="email" placeholder="Your Email" name="#" required />
-								   <button>Submit</button>
-								</form>
-							 </div>
+			 </div>
+		  </div>
+		  
+		  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+			   <div class="footer_blog footer_menu white_fonts">
+						<h3>Quick links</h3>
+						<ul> 
+						  <li><a href="#">> Giriş</a></li>
+						  <li><a href="login.html">> Qeydiyyat</a></li>
+						  <li><a href="#exams">> İmtahanlar</a></li>
+						  <li><a href="#news">> Xəbərlər</a></li>
+						  <li><a href="#contact">> Haqqinda</a></li>
+						</ul>
+					 </div>
+			 </div>
+			 
+			 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+			 <div class="footer_blog full white_fonts">
+						 <h3>Newsletter</h3>
+						 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
+						 <div class="newsletter_form">
+							<form action="index.html">
+							   <input type="email" placeholder="Your Email" name="#" required />
+							   <button>Submit</button>
+							</form>
 						 </div>
-					</div>	 
-			  
-			  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-				 <div class="footer_blog full white_fonts">
-						     <h3>Contact us</h3>
-							 <ul class="full">
-							   <li><img src="images/i5.png"><span>London 145<br>United Kingdom</span></li>
-							   <li><img src="images/i6.png"><span>demo@gmail.com</span></li>
-							   <li><img src="images/i7.png"><span>+12586954775</span></li>
-							 </ul>
-						 </div>
-					</div>	 
-			  
-		   </div>
-		
-        </div>
-    </footer>
-    <!-- End Footer -->
+					 </div>
+				</div>	 
+		  
+		  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+			 <div class="footer_blog full white_fonts">
+						 <h3>Əlaqə</h3>
+						 <ul class="full">
+						   <li><img src="images/i5.png"><span>Bakhtiyar Vahabzadeh, 5, 3rd floor, Baku AZ1141<br>Azerbaijan.</span></li>
+						   <li><img src="images/i4.png"><span>office@barattson.com</span></li>
+						   <li><img src="images/i6.png"><span>+994 12 510 44 98</span></li>
+						 </ul>
+					 </div>
+				</div>	 
+		  
+	   </div>
+	
+	</div>
+</footer>
+<!-- End Footer -->
 
-    <div class="footer_bottom">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <p class="crp">© Copyrights 2019 design by html.design</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <a href="#" id="scroll-to-top" class="hvr-radial-out"><i class="fa fa-angle-up"></i></a>
+<div class="footer_bottom" >
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<p class="crp">© Copyrights 2021 design by SourcedAgile</p>
+			</div>
+		</div>
+	</div>
+</div>
+<a href="#" id="scroll-to-top" class="hvr-radial-out"><i class="fa fa-angle-up"></i></a>
 
     <!-- ALL JS FILES -->
     <script src="js/jquery.min.js"></script>
 	<script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="aos/aos.js"></script>
+
     <!-- ALL PLUGINS -->
     <script src="js/jquery.magnific-popup.min.js"></script>
     <script src="js/jquery.pogo-slider.min.js"></script>

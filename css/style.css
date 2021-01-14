@@ -351,7 +351,8 @@ button:focus {
     background-color: #fff;
     background-size: auto 100%;
     width: 90%;
-    margin: 0 5%;
+	margin: 0 5%;
+	border-radius: 6px;
 }
 
 .top-header .navbar .navbar-collapse ul li a {
@@ -457,6 +458,12 @@ a.navbar-brand img {
 .blog_img_popular {
     margin-bottom: 30px;
 }
+.blog_img_popular p {
+    display: none;
+}
+.blog_img_popular .data-newssend {
+    cursor: pointer;
+}
 /* login bar */
 
 .login-box {
@@ -483,7 +490,7 @@ a.navbar-brand img {
 	align-items: center;
 	background: #10449A;
 	border-radius: 6px;
-	color:  white;
+	color:  white !important;
 }
 .login-box a:hover{
 	color: #d4a81e !important;
@@ -677,7 +684,7 @@ a.navbar-brand img {
 }
 
 .tab_menu {
-    width: 100%;
+    width: 85%;
     height: 110px;
     background: #fff;
     float: left;
@@ -2149,7 +2156,7 @@ section.inner_banner h3 {
 	color: #fff;
 }
 .customModal {
-	background: #002147;
+	
 	border-bottom: none;
 	color: white !important;
 }
@@ -2162,7 +2169,7 @@ section.inner_banner h3 {
     text-align: center;
     line-height: 25px !important;
     padding: 0;
-	color: #fff;
+	color: #10449A;
 }
 
 #demo .img-responsive {
@@ -2187,7 +2194,7 @@ section.inner_banner h3 {
     width: 86%;
     background: #fff;
     margin: 0 7%;
-    padding: 0;
+    padding: 5px;
     color: #10449A;
     text-align: center;
     font-size: 20px;
@@ -2195,6 +2202,7 @@ section.inner_banner h3 {
     line-height: 30px !important;
     box-shadow: 0 0 25px 0 rgba(0,0,0,.2);
     margin-top: -35px;
+    border-radius: 6px;
 }
 
 .blog_img_popular p {
