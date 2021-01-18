@@ -380,7 +380,7 @@ a.navbar-brand img {
 .top-header .navbar .navbar-collapse ul li a:hover,
 .top-header .navbar .navbar-collapse ul li a:focus {
 	background: transparent;
-	color: #d4a81e;
+	color: #e75848;
 }
 
 
@@ -405,7 +405,7 @@ a.navbar-brand img {
 }
 
 .navbar-toggler {
-	border: 2px solid #d4a81e !important;
+	border: 2px solid #e75848 !important;
 	border-radius: 0;
 	margin: 15px 15px;
 	padding: 8px 8px;
@@ -416,7 +416,7 @@ a.navbar-brand img {
 }
 
 .navbar-toggler span {
-	background: #d4a81e;
+	background: #e75848;
 	display: block;
 	width: 22px;
 	height: 2px;
@@ -437,11 +437,11 @@ a.navbar-brand img {
 }
 
 .navbar-toggler:hover {
-	border: 2px solid #d4a81e;
+	border: 2px solid #e75848;
 }
 
 .navbar-toggler:hover span {
-	background: #d4a81e;
+	background: #e75848;
 }
 
 .tab_menu {
@@ -493,7 +493,7 @@ a.navbar-brand img {
 	color:  white !important;
 }
 .login-box a:hover{
-	color: #d4a81e !important;
+	color: #e75848 !important;
 }
 .login-txt {
 	border: none;
@@ -511,7 +511,7 @@ a.navbar-brand img {
 }
 
 .theme_color {
-	color: #d4a81e;
+	color: #e75848;
 }
 
 
@@ -608,7 +608,7 @@ a.navbar-brand img {
 }
 
 .pogoSlider-nav-btn--selected {
-	background: #d4a81e !important;
+	background: #e75848 !important;
 }
 
 .pogoSlider--navBottom .pogoSlider-nav {
@@ -647,7 +647,7 @@ a.navbar-brand img {
 }
 
 .slide_text p {
-    color: #d4a81e;
+    color: #e75848;
     font-size: 20px;
     font-weight: 300;
     padding-top: 0;
@@ -658,7 +658,7 @@ a.navbar-brand img {
 .contact_bt {
     width: 180px;
     height: 50px;
-    background: #d4a81e;
+    background: #e75848;
     color: #fff;
     float: left;
     line-height: 50px;
@@ -704,7 +704,7 @@ a.navbar-brand img {
 }
 
 .tab_menu ul li:nth-child(6) {
-    background: #d4a81e;
+    background: #e75848;
     transform: skew(-30deg);
 	color:#fff;
 }
@@ -1604,7 +1604,7 @@ p.count-text {
 	margin-right: 15px;
 	color: #fff;
 	border-radius: 100%;
-	background: #d4a81e;
+	background: #e75848;
 }
 
 .dit-right h4 {
@@ -1647,7 +1647,7 @@ p.count-text {
 }
 
 .submit-button .btn-common {
-	background-color: #d4a81e;
+	background-color: #e75848;
 	height: 45px;
 	line-height: 45px;
 	font-size: 14px;
@@ -1942,7 +1942,7 @@ h3.small_heading {
 }
 
 .carousel a.carousel-control-prev {
-    background: #d4a81e;
+    background: #e75848;
     opacity: 1;
     width: 55px;
     height: 50px;
@@ -1952,7 +1952,7 @@ h3.small_heading {
 }
 
 .carousel a.carousel-control-next {
-	background: #d4a81e;
+	background: #e75848;
 	opacity: 1;
 	width: 50px;
 	height: 50px;
@@ -2056,7 +2056,7 @@ ul.social_icon li {
 }
 
 .newsletter_form button {
-    background: #e0af14;
+    background: #e75848;
     color: #fff;
     border: none;
     font-size: 14px;
@@ -2070,7 +2070,7 @@ ul.social_icon li {
     margin-bottom: 10px;
     font-size: 22px;
     color: #fff;
-    border-bottom: solid #e0af14 2px;
+    border-bottom: solid #e75848 2px;
     font-weight: 600;
     margin-top: 14px;
     float: right;
