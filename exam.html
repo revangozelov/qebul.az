@@ -51,11 +51,29 @@
     <!-- END LOADER -->
 
     <!-- End header -->
-<div class="container">
+<div class="container" style="flex-wrap: wrap; display: flex;">
     <div class="quiz_header">
-        <div class="col-sm-12 col-md-8 col-lg-8" >
+        <div class="col-sm-12 col-md-7 col-lg-7" >
             <div class="quiz_name"> <span><i class="fas fa-book"></i></span> 9 cu Sinif Imtahani</div>
             <div class="quiz_count_head"><span><i class="fas fa-list-ol"></i></span> 1/10 sual</div>
+        </div>
+        <div class="exam_end col-sm-12 col-md-1 col-lg-1" >
+            <div class="notification_btn">
+                <button>
+                  <i class="far fa-bell"></i>
+                  <div class="blip"></div>
+                </button>
+                <div class="notification">
+                  <i class="fas fa-times close"></i>
+                  <div class="content">
+                  
+                    <div class="text">
+                      <h1>Bildiriş</h1>
+                      <p>Göstərilən vaxt tamam olduqdan sonra imtahan səhifəsi bağlanacaq və siz imtahan nəticələri səhifəsinə yönləndiriləcəksiniz. </p>
+                    </div>
+                </div>
+              </div>
+              </div>
         </div>
         <div class="exam_end col-sm-12 col-md-2 col-lg-2" >
            <button class="btn_end_exam">İmatahanı  Sonlandır</button>
@@ -67,7 +85,7 @@
             </div>
      
     </div>
-    <div class="quiz_container ">
+    <div class="quiz_container col-sm-12 col-md-8 col-lg-8  ">
         <div role="tabpanel">
       
         <!-- Nav tabs -->
@@ -80,8 +98,8 @@
           </ul>
       
         <!-- Tab panes -->
-        <div class="tab-content" style="display: flex;">
-          <div role="tabpanel "  class="tab-pane col-sm-12 col-md-8 col-lg-8 active" id="home1">
+        <div class="tab-content custom_tab_content" >
+          <div role="tabpanel "  class="tab-pane  active" id="home1">
             <div class="quizContainer ">
         
                 <div id="quiz1" class="text-center">
@@ -89,151 +107,50 @@
                 </div>
                 
                 <div class="question_content"></div>
+                <hr>
                 <ul class="choiceList"></ul>
-                <div class="quizMessage"></div>
-                <div class="result"></div>
-                <button class="preButton btn_custom_ex btn-outline-secondary btn"><i class="fas fa-long-arrow-alt-left"></i></button>
-                <button class="nextButton btn_custom_ex btn-primary btn"><i class="fas fa-long-arrow-alt-right"></i></button>
-            </div>
+                <!-- <div class="quizMessage"></div>
+                <div class="result"></div> -->
+               </div>
         
           </div>
-          <div role="tabpanel" class="tab-pane col-sm-12 col-md-8 col-lg-8" id="profile1">Fizika Suallari</div>
-          <div class="col-4">
-            <div class="answer_card ">
-                <div class="answer_card_header">
-                    <p>Cavab Kartı</p>
-                    <hr>
-                </div>
-              
-                <div class="answer_card_body">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <th>1</th>
-                                <td><span>A</span></td>
-                                <td><span>B</span></td>
-                                <td><span>C</span></td>
-                                <td><span>D</span></td>
-                            </tr>
-                            <tr>
-                                <th>1</th>
-                                <td><span>A</span></td>
-                                <td><span>B</span></td>
-                                <td><span>C</span></td>
-                                <td><span>D</span></td>
-                            </tr>
-                            <tr>
-                                <th>1</th>
-                                <td><span>A</span></td>
-                                <td><span>B</span></td>
-                                <td><span>C</span></td>
-                                <td><span>D</span></td>
-                            </tr>
-                            <tr>
-                                <th>1</th>
-                                <td><span>A</span></td>
-                                <td><span>B</span></td>
-                                <td><span>C</span></td>
-                                <td><span>D</span></td>
-                            </tr>
-                            <tr>
-                                <th>1</th>
-                                <td><span>A</span></td>
-                                <td><span>B</span></td>
-                                <td><span>C</span></td>
-                                <td><span>D</span></td>
-                            </tr>
-                            <tr>
-                                <th>1</th>
-                                <td><span>A</span></td>
-                                <td><span>B</span></td>
-                                <td><span>C</span></td>
-                                <td><span>D</span></td>
-                            </tr>
-                            <tr>
-                                <th>1</th>
-                                <td><span>A</span></td>
-                                <td><span>B</span></td>
-                                <td><span>C</span></td>
-                                <td><span>D</span></td>
-                            </tr>
-                            <tr>
-                                <th>1</th>
-                                <td><span>A</span></td>
-                                <td><span>B</span></td>
-                                <td><span>C</span></td>
-                                <td><span>D</span></td>
-                            </tr>
-                            <tr>
-                                <th>1</th>
-                                <td><span>A</span></td>
-                                <td><span>B</span></td>
-                                <td><span>C</span></td>
-                                <td><span>D</span></td>
-                            </tr>
-                            <tr>
-                                <th>1</th>
-                                <td><span>A</span></td>
-                                <td><span>B</span></td>
-                                <td><span>C</span></td>
-                                <td><span>D</span></td>
-                            </tr>
-                            <tr>
-                                <th>1</th>
-                                <td><span>A</span></td>
-                                <td><span>B</span></td>
-                                <td><span>C</span></td>
-                                <td><span>D</span></td>
-                            </tr>
-                            <tr>
-                                <th>1</th>
-                                <td><span>A</span></td>
-                                <td><span>B</span></td>
-                                <td><span>C</span></td>
-                                <td><span>D</span></td>
-                            </tr>
-                            <tr>
-                                <th>1</th>
-                                <td><span>A</span></td>
-                                <td><span>B</span></td>
-                                <td><span>C</span></td>
-                                <td><span>D</span></td>
-                            </tr>
-                            <tr>
-                                <th>1</th>
-                                <td><span>A</span></td>
-                                <td><span>B</span></td>
-                                <td><span>C</span></td>
-                                <td><span>D</span></td>
-                            </tr>
-                            <tr>
-                                <th>1</th>
-                                <td><span>A</span></td>
-                                <td><span>B</span></td>
-                                <td><span>C</span></td>
-                                <td><span>D</span></td>
-                            </tr>
-                            <tr>
-                                <th>1</th>
-                                <td><span>A</span></td>
-                                <td><span>B</span></td>
-                                <td><span>C</span></td>
-                                <td><span>D</span></td>
-                            </tr>
-                           
-                        </tbody>
-                    </table>
-                </div>
-                <hr>
-                <div class="answer_card_footer">
+          <div role="tabpanel" class="tab-pane " id="profile1">Fizika Suallari</div>
+       
 
-                </div>
-
-            </div>
+        <div class="col-lg-12">
+            <hr>
+             <span class="error_question_btn"><i class="fas fa-exclamation-circle"></i></span> 
+            <button class="nextButton btn_custom_ex btn-primary btn"><i class="fas fa-long-arrow-alt-right"></i></button>
+            <button class="preButton btn_custom_ex btn-outline-secondary btn"><i class="fas fa-long-arrow-alt-left"></i></button>
+            <button class=" btn_custom_ex btn-outline-warning btn"><i class="far fa-question-circle"></i></button>
+            <button id="un_checked_btn" class=" btn_custom_ex btn-outline-danger btn"><i class="far fa-times-circle"></i></button>
+     
         </div>
+       
         </div>
        </div>
       </div>
+      <div class="col-sm-12 col-md-4 col-lg-4" style="padding-right: 0;">
+        <div class="answer_card ">
+            <div class="answer_card_header">
+                <p>Cavab Kartı</p>
+                <hr>
+            </div>
+          
+            <div class="answer_card_body">
+                <table>
+                   <tbody>
+
+                   </tbody>
+                </table>
+            </div>
+          
+            <div class="answer_card_footer">
+                 
+            </div>
+
+        </div>
+    </div>
 
 
 

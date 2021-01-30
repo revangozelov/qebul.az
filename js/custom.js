@@ -240,12 +240,13 @@ var viewingAns = 0;
 var correctAnswers = 0;
 var quizOver = false;
 var iSelectedAnswer = [];
-	var c=180;
+	var c=5550;
 	var t;
 $(document).ready(function () 
 {
     // Display the first question
-    displayCurrentQuestion();
+	displayCurrentQuestion();
+	answerCardGen()
     $(this).find(".quizMessage").hide();
     $(this).find(".preButton").attr('disabled', 'disabled');
 	
@@ -254,8 +255,7 @@ $(document).ready(function ()
 	$(this).find(".preButton").on("click", function () 
 	{		
 		
-        if (!quizOver) 
-		{
+       
 			if(currentQuestion == 0) { return false; }
 	
 			if(currentQuestion == 1) {
@@ -263,36 +263,25 @@ $(document).ready(function ()
 			}
 			
 				currentQuestion--; // Since we have already displayed the first question on DOM ready
-				if (currentQuestion < questions.length) 
-				{
+
 					displayCurrentQuestion();
 					
-				} 					
-		} else {
-			if(viewingAns == 3) { return false; }
-			currentQuestion = 0; viewingAns = 3;
-			viewResults();		
-		}
+									
+		
     });
 
 	
 	// On clicking next, display the next question
     $(this).find(".nextButton").on("click", function () 
 	{
-        if (!quizOver) 
-		{
+      
 			
             var val = $("input[type='radio']:checked").val();
 
-            if (val == undefined) 
-			{
-                $(document).find(".quizMessage").text("Please select an answer");
-                $(document).find(".quizMessage").show();
-            } 
-			else 
-			{
+          
+			
                 // TODO: Remove any message -> not sure if this is efficient to call this each time....
-                $(document).find(".quizMessage").hide();
+               
 				if (val == questions[currentQuestion].correctAnswer) 
 				{
 					correctAnswers++;
@@ -303,38 +292,21 @@ $(document).ready(function ()
 				if(currentQuestion >= 1) {
 					  $('.preButton').prop("disabled", false);
 				}
-				if (currentQuestion < questions.length) 
-				{
-					displayCurrentQuestion();
+			
+				displayCurrentQuestion();
 					
-				} 
-				else 
-				{
-					displayScore();
-					$('#iTimeShow').html('Quiz Time Completed!');
-				//	$('#timer').html("You scored: " + correctAnswers + " out of: " + questions.length);
-					c=185;
-					$(document).find(".preButton").text("View Answer");
-					$(document).find(".nextButton").html('<i class="fas fa-redo"></i>');
-					quizOver = true;
-					return false;
+				
+			
+			
 					
-				}
-			}
-					
-		}	
-		else 
-		{ // quiz is over and clicked the next button (which now displays 'Play Again?'
-			quizOver = false; $('#iTimeShow').html('Time Remaining:'); iSelectedAnswer = [];
-			$(document).find(".nextButton").html('<i class="fas fa-long-arrow-alt-right"></i>');
-			$(document).find(".preButton").html('<i class="fas fa-long-arrow-alt-left"></i>');
-			 $(".preButton").attr('disabled', 'disabled');
-			resetQuiz();
-			viewingAns = 1;
-			displayCurrentQuestion();
-			hideScore();
-		}
-    });
+			
+	
+	});
+	
+	$(document).on('click','#un_checked_btn', function(){
+		
+		$('.question_answers input').prop('checked', false)
+	})
 });
 
 
@@ -373,6 +345,27 @@ function timedCount()
 		},1000);
 	}
 	
+
+	//answer card generate 
+function  answerCardGen(){
+
+	var numChoices1 = questions.length;
+	var ansCardbdy = $('.answer_card_body tbody');
+	  
+	for (i = 0; i < numChoices1; i++){
+		 var tra = $('<tr>')
+		             .attr('data-numCard',i+1)
+					 .append('<th>'+(i+1)+'</th>')
+					 .append('<td><span>A</span></td>')
+					 .append('<td><span>B</span></td>')
+					 .append('<td><span>C</span></td>')
+					 .append('<td><span>D</span></td>')
+					
+		ansCardbdy.append(tra);
+
+	}
+     
+}
 	
 // This displays the current question AND the choices
 function displayCurrentQuestion() 
@@ -383,7 +376,8 @@ function displayCurrentQuestion()
     var question = questions[currentQuestion].question;
     var questionClass = $(document).find(".quizContainer > .question_content");
     var choiceList = $(document).find(".quizContainer > .choiceList");
-    var numChoices = questions[currentQuestion].choices.length;
+	var numChoices = questions[currentQuestion].choices.length;
+
     // Set the questionClass text to the current question
     $(questionClass).text(question);
     // Remove all current <li> elements (if any)
@@ -473,4 +467,38 @@ $('.nav-tabs-dropdown')
     .on("click", "li:not('.active') a", function(event) {  $(this).closest('ul').removeClass("open");
     })
     .on("click", "li.active a", function(event) {        $(this).closest('ul').toggleClass("open");
-    });
+	});
+	
+
+
+var initialOpen = true;
+var blip = document.querySelector('.blip')
+var button = document.querySelector('button');
+var notification = document.querySelector('.notification');
+var close = document.querySelector('.close');
+
+var text = document.querySelector('.text')
+
+function toggleNotification() {
+  if (initialOpen) {
+    initialOpen = false;
+    blip.classList.add('hide')
+  }
+  
+  if (notification.classList.contains('open')) {
+    text.classList.toggle('show');
+    
+    setTimeout(function() {
+      notification.classList.toggle('open');
+    }, 50)
+  } else {
+    notification.classList.toggle('open');
+
+    setTimeout(function() {
+      text.classList.toggle('show');
+    }, 150)
+  }
+}
+
+button.addEventListener('click', toggleNotification);
+close.addEventListener('click', toggleNotification);
