@@ -471,34 +471,13 @@ $('.nav-tabs-dropdown')
 	
 
 
-var initialOpen = true;
-var blip = document.querySelector('.blip')
-var button = document.querySelector('button');
-var notification = document.querySelector('.notification');
-var close = document.querySelector('.close');
 
-var text = document.querySelector('.text')
 
-function toggleNotification() {
-  if (initialOpen) {
-    initialOpen = false;
-    blip.classList.add('hide')
-  }
-  
-  if (notification.classList.contains('open')) {
-    text.classList.toggle('show');
-    
-    setTimeout(function() {
-      notification.classList.toggle('open');
-    }, 50)
-  } else {
-    notification.classList.toggle('open');
+	$(document).on('click','#notification_btn',function(){
+		$('.notification').toggle('fast');
+		$('.blip').css('display','none');
+	})
+	$(document).on('click','#notification_close',function(){
 
-    setTimeout(function() {
-      text.classList.toggle('show');
-    }, 150)
-  }
-}
-
-button.addEventListener('click', toggleNotification);
-close.addEventListener('click', toggleNotification);
+		$('.notification').toggle('fast')
+	})
