@@ -2338,7 +2338,8 @@ section.inner_banner h3 {
 .section-team .single-person .person-info .full-name {
 	margin-bottom: 10px;
 	font-size: 28px;
-    font-weight: 700;
+	font-weight: 700;
+	text-align: center;
 }
 
 .section-team .single-person .person-info .speciality {
@@ -3065,3 +3066,4 @@ body .notification_btn .notification .content .text p {
 	margin-bottom: 0em;
 	margin-top: 0em;
 }
+

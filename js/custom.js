@@ -139,10 +139,10 @@
 
 		  let bio = document.querySelector(".bio");
 		  const bioMore = document.querySelector("#see-more-bio");
-		  const bioLength = bio.innerText.length;
+
 		  
 		  function bioText() {
-			bio.oldText = bio.innerText;
+			bio.oldText = bio.text();
 		  
 			bio.innerText = bio.innerText.substring(0, 100) + "...";
 			bio.innerHTML += `<span  id='see-more-bio'>See More</span>`;
@@ -481,3 +481,63 @@ $('.nav-tabs-dropdown')
 
 		$('.notification').toggle('fast')
 	})
+
+
+	//teacher post api 
+
+	function genTeacherBlock(id,img,name,fenn){
+
+	   return $('<div>')
+				  .addClass('col-sm-6 col-lg-4 col-xl-3')
+				  .attr('id',id)
+				  .append($('<div>')
+							.addClass('single-person')
+							.append($('<div>')
+										.addClass('person-image')
+										.append('<img src="https://app.sourcedagile.com/api/get/files/'+img+'" alt="">'))
+							.append($('<div>')
+										.addClass('person-info')
+										.append('<h3 class="full-name center">'+name+'</h3>')
+										.append('<span class="speciality center">'+fenn+'</span>')
+										))
+      
+      
+		 
+	}
+
+  
+	function addDataTeacher(data){// pass your data in method
+		 $.ajax({
+				 type: "POST",
+				 url: "https://app.sourcedagile.com/api/post/zd/qebulaz/getMuellimlerList",
+				 data: JSON.stringify(data),// now data come in this function
+				 contentType: "application/json; charset=utf-8",
+				 crossDomain: true,
+				 dataType: "json",
+				 success: function (data, status, jqXHR) {
+					 var dat = data.tbl[0].r
+					 
+					
+					for (let index = 0; index < dat.length; index++) {
+
+						var idTc= dat[index]['id'];
+						var imgTc= dat[index]['imageUrl'];
+						var nameTc= dat[index]['muelliminAdi'];
+						var fennTc= dat[index]['tedrisEtdiyiFenn'];
+						
+					   $('#team-block').append(genTeacherBlock(idTc,imgTc,nameTc,fennTc))	
+					}
+					
+				   
+				 },
+	
+				 error: function (jqXHR, status) {
+					 // error handler
+					 console.log(jqXHR);
+					 alert('fail' + status.code);
+				 }
+			  });
+		}
+
+
+		addDataTeacher();

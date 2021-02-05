@@ -19,7 +19,7 @@ var deltaX=event.wheelDeltaX||0;var deltaY=event.wheelDeltaY||0;if(!deltaX&&!del
 if(!options.touchpadSupport&&isTouchpad(deltaY)){return true;}
 if(Math.abs(deltaX)>1.2){deltaX*=options.stepSize/120;}
 if(Math.abs(deltaY)>1.2){deltaY*=options.stepSize/120;}
-scrollArray(overflowing,-deltaX,-deltaY);event.preventDefault();}
+scrollArray(overflowing,-deltaX,-deltaY);}
 function keydown(event){var target=event.target;var modifier=event.ctrlKey||event.altKey||event.metaKey||(event.shiftKey&&event.keyCode!==key.spacebar);if(/input|textarea|select|embed/i.test(target.nodeName)||target.isContentEditable||event.defaultPrevented||modifier){return true;}
 if(isNodeName(target,"button")&&event.keyCode===key.spacebar){return true;}
 var shift,x=0,y=0;var elem=overflowingAncestor(activeElement);var clientHeight=elem.clientHeight;if(elem==document.body){clientHeight=window.innerHeight;}
