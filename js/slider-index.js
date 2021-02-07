@@ -59,7 +59,7 @@ function addDataSlide(data){// pass your data in method
 			generateButtons: false
 		}
 
-	 }, 3000);
+	 }, 2000);
 	
 
 });

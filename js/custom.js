@@ -39,7 +39,7 @@
 	/* ..............................................
     Properties Filter
     ................................................. */
-	var Container = $('.container');
+/* 	var Container = $('.container');
 	Container.imagesLoaded(function () {
 		var portfolio = $('.properties-menu');
 		portfolio.on('click', 'button', function () {
@@ -53,7 +53,7 @@
 			itemSelector: '.properties-grid'
 		});
 
-	});
+	}); */
 
 	/* ..............................................
     Gallery
@@ -539,5 +539,72 @@ $('.nav-tabs-dropdown')
 			  });
 		}
 
-
 		addDataTeacher();
+	//news  post api 
+	function genNewsBlokMini(id,title,bdy,Date,imgN){
+	   return $('<div>')
+				.addClass('col-lg-3 col-md-3 col-sm-12')
+				.attr('id',id)
+				.append($('<div>')
+							.addClass('full blog_img_popular')
+							.append('<img class="img-responsive" src="https://app.sourcedagile.com/api/get/files/'+imgN+'" alt="#'+title+'" />')
+							.append('<h4 class="data-newssend">'+title+'</h4>')
+							.append('<p>'+bdy+'</p>')
+							.append('<span class="newsDate">'+Date+'</span>'))
+
+	}
+	function genNewsBlokLarge(id,title,bdy,Date,imgN){
+	   return $('<div>')
+				.addClass('row news_block_large')
+				.attr('id',id)
+				.attr('data-aos','fade-up')
+				.attr('data-aos-delay','300')
+				.append($('<div>')
+							.addClass('col-lg-4 col-md-4 col-sm-12')
+							.append('<div class="full float-right_img"><img class="data_newsImg" src="https://app.sourcedagile.com/api/get/files/'+imgN+'" alt="#"></div>'))
+				.append($('<div>')
+							.addClass('data_newsTxt col-lg-8 col-md-8 col-sm-12')
+							.append('<h4>'+title+'</h4>')
+							.append('<span>'+bdy+'</span>')
+							.append('<p>'+Date+'</p>')
+							)
+
+	}
+
+	function addDataNews(data){// pass your data in method
+		$.ajax({
+				type: "POST",
+				url: "https://app.sourcedagile.com/api/post/zd/qebulaz/getNewsList",
+				data: JSON.stringify(data),// now data come in this function
+				contentType: "application/json; charset=utf-8",
+				crossDomain: true,
+				dataType: "json",
+				success: function (data, status, jqXHR) {
+					var dat = data.tbl[0].r
+					
+				   
+				   for (let index = 0; index < dat.length; index++) {
+
+					   var idNw= dat[index]['id'];
+					   var imgNw= dat[index]['thumbImg'];
+					   var titleNw= dat[index]['newsTitle'];
+					   var inDateNw= dat[index]['insertDate'];
+					   
+					   var bodyNw= dat[index]['newsBody'];
+					   
+					  $('#news-mini-block').prepend(genNewsBlokMini(idNw,titleNw,bodyNw,inDateNw,imgNw));	
+					  $('#news-large-block').prepend(genNewsBlokLarge(idNw,titleNw,bodyNw,inDateNw,imgNw));	
+				   }
+				   
+				  
+				},
+   
+				error: function (jqXHR, status) {
+					// error handler
+					console.log(jqXHR);
+					alert('fail' + status.code);
+				}
+			 });
+	   }
+
+	   addDataNews();
