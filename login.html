@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <!-- Basic -->
@@ -18,7 +19,8 @@
     <!-- Site Icons -->
     <link rel="shortcut icon" href="#" type="image/x-icon" />
     <link rel="apple-touch-icon" href="#" />
-
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="aos/aos.css" />
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <!-- Pogo Slider CSS -->
@@ -29,6 +31,7 @@
     <link rel="stylesheet" href="css/responsive.css" />
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css" />
+  
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -37,7 +40,7 @@
 
 </head>
 
-<body id="inner_page" data-spy="scroll" data-target="#navbar-wd" data-offset="98">
+<body id="home" data-spy="scroll" data-target="#navbar-wd" data-offset="98" >
 
     <!-- LOADER -->
     <div id="preloader">
@@ -46,12 +49,40 @@
         </div>
     </div>
     <!-- end loader -->
-    <!-- END LOADER -->
+	  <!-- Start header -->
+	  <header class="top-header" data-aos="fade-up" data-aos-delay="200">
+		<nav class="navbar header-nav navbar-expand-lg">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="image"></a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-wd" aria-controls="navbar-wd" aria-expanded="false" aria-label="Toggle navigation">
+					<span></span>
+					<span></span>
+					<span></span>
+				</button>
+				<div class="collapse navbar-collapse justify-content-end" id="navbar-wd">
+					<ul class="navbar-nav">
+						<li><a class="nav-link active" href="index.html">Əsas Səhifə</a></li>
+						
+						<li data-toggle="collapse"  data-target=".navbar-collapse.show"><a class="nav-link" href="#exams">İmtahanlar</a></li>
+					
+						<li><a class="nav-link" href="news.html">Xəbərlər</a></li>
+						<li data-toggle="collapse"  data-target=".navbar-collapse.show" ><a class="nav-link" href="#contact">Əlaqə</a></li>
+						<li><a class="nav-link" href="">Yeniliklər</a></li>
+						<li><a class="nav-link" href="">Haqqinda</a></li>
+					</ul>
+				</div>
+				<div class="login-box">
+					<a href="" data-toggle="modal" data-target="#exampleModal" class="login-btn">
+					   Giriş
+					</a>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<!-- End header -->
 
-	
-
-		<!-- registr section -->
-	<div class="section registr_section " id="registr" style="background:#12385b; " data-aos="fade-up" data-aos-delay="200">
+   	<!-- registr section -->
+	<div class="section registr_section " id="registr"  data-aos="fade-up" data-aos-delay="200">
 		<section class="inner_banner">
 			<div class="container">
 				<div class="row">
@@ -64,32 +95,33 @@
 			</div>
 		  </section>	
 		
-		<div class="container" >
-				   <div class="row center">
-			
-					 <div class="layout_padding col-lg-6 col-md-6 col-sm-12">
-						<div class="contact_form">
+		<div class="container " style="display: flex;" >
+				   <div class="row contact_form col-lg-6 col-md-6 col-sm-12 ">			
 							<form action="contact.html">
 							   <fieldset>
 								   <div class="full field">
-									  <input   type="text" placeholder="Ad" name="your name" />
-									  <input  type="text" placeholder="Soyad" name="your surname" />
+									  <input  id="name_input_qb"  type="text" placeholder="Ad" name="your name" />
+									  <input  id="surname_input_qb"  type="text" placeholder="Soyad" name="your surname" />
 								   </div>
 								  
 								   <div class="full field">
-									  <input  type="email" placeholder="Email" name="Email" />
-									  <input  type="phn" placeholder="Əlaqə Nömrəsi" name="Phone number" />
+									  <input id="email_input_qb"   type="email" placeholder="Email" name="Email" />
+									  <input id="number_input_qb"  type="phn"  type="tel" 
+									  name="phone" 
+									  value="+994 (__) ___-__-__" 
+									  pattern="^\+994(\s+)?\(?(17|25|29|33|44)\)?(\s+)?[0-9]{3}-?[0-9]{2}-?[0-9]{2}$" 
+									  required placeholder="Əlaqə Nömrəsi" name="Phone number" />
 
 									</div>
 								   <div class="full field">
-									  <input  type="password" placeholder="Şifrə" name="password" />
-									  <input " type="password" placeholder="Təkrar Şifrə" name="repassword" />
+									  <input id="password_input_qb" type="password" placeholder="Şifrə" name="password" />
+									  <input id="repassword_input_qb"  type="password" placeholder="Təkrar Şifrə" name="repassword" />
 
 									</div>
 								   <div class="full field">
 								   </div>
 								   <div class="full field">
-									<select aria-required="true">
+									<select aria-required="true" id="status_select_qb">
 										<option value="">Status</option>
 										<option value="2">Şagird</option>
 										<option value="3">Abituriyent</option>
@@ -99,34 +131,161 @@
 									</select>
 								   </div>
 								   <div class="full field">
-									  <div class="center"><button>Qeydiyyat</button></div>
+									  <div class="center"><button id="submit_regstr_qb">Qeydiyyat</button></div>
 								   </div>
 							   </fieldset>
 							</form>
-						</div>
-					 </div>
-				   </div>			  
+				   </div>	
+				   <div class="row contact_form  col-lg-5 col-md-5 col-sm-12">
+					<form  >
+						<fieldset>
+							<div class="full field">
+							   <input  id="email_input_qb"  type="email" placeholder="Email" name="Email" />
+							</div>
+							<div class="full field">
+							   <input id="password_input_qb" type="password" placeholder="Şifrə" name="password" />
+
+							 </div>
+							
+							
+							<div class="full field">
+							   <div class="center"><button id="login_btn">Daxil Ol</button></div>
+							</div>
+						</fieldset>
+					 </form>
+				   </div>		  
 			   </div>
 			</div>
 		<!-- end section -->
 	
-	<!-- end section -->
-   
+	
 
+    <!-- Start Footer -->
+    <footer class="footer-box" >
+        <div class="container">
+		
+		   <div class="row">
+		   
+		      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+			     <div class="footer_blog">
+				    <div class="full margin-bottom_30">
+					   <img src="images/qebulson-2.png" alt="#" style="border-radius: 9px;" />
+					 </div>
+					 <div class="full white_fonts">
+					    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+						Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
+					 </div>
+				 </div>
+			  </div>
+			  
+			  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+			       <div class="footer_blog footer_menu white_fonts">
+						    <h3>Quick links</h3>
+						    <ul> 
+							  <li><a href="#">> Giriş</a></li>
+							  <li><a href="login.html">> Qeydiyyat</a></li>
+							  <li><a href="#exams">> İmtahanlar</a></li>
+							  <li><a href="#news">> Xəbərlər</a></li>
+							  <li><a href="#contact">> Haqqinda</a></li>
+							</ul>
+						 </div>
+				 </div>
+				 
+				 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+				 <div class="footer_blog full white_fonts">
+						     <h3>Newsletter</h3>
+							 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
+							 <div class="newsletter_form">
+							    <form action="index.html">
+								   <input type="email" placeholder="Your Email" name="#" required />
+								   <button>Submit</button>
+								</form>
+							 </div>
+						 </div>
+					</div>	 
+			  
+			  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+				 <div class="footer_blog full white_fonts">
+						     <h3>Əlaqə</h3>
+							 <ul class="full">
+							   <li><img src="images/i5.png"><span>Bakhtiyar Vahabzadeh, 5, 3rd floor, Baku AZ1141<br>Azerbaijan.</span></li>
+							   <li><img src="images/i4.png"><span>office@barattson.com</span></li>
+							   <li><img src="images/i6.png"><span>+994 12 510 44 98</span></li>
+							 </ul>
+						 </div>
+					</div>	 
+			  
+		   </div>
+		
+        </div>
+    </footer>
+    <!-- End Footer -->
+
+    <div class="footer_bottom" >
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <p class="crp">© Copyrights 2021 design by SourcedAgile</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" id="scroll-to-top" class="hvr-radial-out"><i class="fa fa-angle-up"></i></a>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content" >
+            <div class="modal-header customModal "  >
+              <h5 class="modal-title" id="exampleModalLabel">Giriş</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form>
+            <div class="modal-body ">
+              
+                
+        <div class="form-group contact_form">
+          <label for="exampleInputEmail1">Email </label>
+          <input type="email"  id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        </div>
+        <div class="form-group contact_form ">
+          <label for="exampleInputPassword1">Password</label>
+          <input type="password"  id="exampleInputPassword1" placeholder="Password">
+        </div>
+        <div class="form-group form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Remember Password</label>
+        </div>
+        
+      
+            </div>
+            <div class="modal-footer">
+
+              <button type="button" class="btn btn-secondary" ><a href="login.html">Qeydiyyat</a></button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            
+              </form>
+          </div>
+        </div>
+      </div>
 
     <!-- ALL JS FILES -->
     <script src="js/jquery.min.js"></script>
 	<script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="aos/aos.js"></script>
     <!-- ALL PLUGINS -->
     <script src="js/jquery.magnific-popup.min.js"></script>
     <script src="js/jquery.pogo-slider.min.js"></script>
     <script src="js/slider-index.js"></script>
     <script src="js/smoothscroll.js"></script>
-    <script src="js/form-validator.min.js"></script>
+   <!--  <script src="js/form-validator.min.js"></script> -->
     <script src="js/contact-form-script.js"></script>
-    <script src="js/isotope.min.js"></script>
-    <script src="js/images-loded.min.js"></script>
+    <!-- <script src="js/isotope.min.js"></script> -->
+<!--     <script src="js/images-loded.min.js"></script> -->
     <script src="js/custom.js"></script>
 	<script>
 	/* counter js */

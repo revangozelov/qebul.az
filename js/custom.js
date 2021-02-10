@@ -9,6 +9,14 @@
 		$('.preloader').fadeOut(); 
 		$('#preloader').delay(550).fadeOut('slow'); 
 		$('body').delay(450).css({'overflow':'visible'});
+		
+			MaskedInput({
+			   elm: document.getElementById('number_input_qb'), // select only by id
+			   format: '+994 (__) ___-__-__',
+			   separator: '+375 (   )-'
+			});
+		   
+		
 	});
     	
 	/* ..............................................
@@ -608,3 +616,29 @@ $('.nav-tabs-dropdown')
 	   }
 
 	   addDataNews();
+
+   //user register send api
+   
+   function setUserInfoDataBase(){
+
+       var nm = $('#name_input_qb').val();
+       var surnm = $('#surname_input_qb').val();
+       var eml = $('#email_input_qb').val();
+       var numb = $('#number_input_qb').val();
+       var pass = $('#password_input_qb').val();
+       var repass = $('#repassword_input_qb').val();
+       var stts = $('#status_select_qb').val();
+	   
+		 
+	   console.log(nm,surnm,eml,numb,pass,repass,stts);
+	    
+
+
+
+
+   }
+
+   $(document).on('click','#submit_regstr_qb',function(){
+
+	setUserInfoDataBase()
+   })
