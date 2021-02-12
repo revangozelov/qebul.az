@@ -10,12 +10,7 @@
 		$('#preloader').delay(550).fadeOut('slow'); 
 		$('body').delay(450).css({'overflow':'visible'});
 		
-			MaskedInput({
-			   elm: document.getElementById('number_input_qb'), // select only by id
-			   format: '+994 (__) ___-__-__',
-			   separator: '+375 (   )-'
-			});
-		   
+		
 		
 	});
     	
@@ -44,28 +39,7 @@
 		}
 	});
 
-	/* ..............................................
-    Properties Filter
-    ................................................. */
-/* 	var Container = $('.container');
-	Container.imagesLoaded(function () {
-		var portfolio = $('.properties-menu');
-		portfolio.on('click', 'button', function () {
-			$(this).addClass('active').siblings().removeClass('active');
-			var filterValue = $(this).attr('data-filter');
-			$grid.isotope({
-				filter: filterValue
-			});
-		});
-		var $grid = $('.properties-list').isotope({
-			itemSelector: '.properties-grid'
-		});
 
-	}); */
-
-	/* ..............................................
-    Gallery
-    ................................................. */
 	
 	$(document).ready(function() {
 		$('.popup-gallery').magnificPopup({
@@ -118,6 +92,34 @@
 			}, 600);
 			return false;
 		});
+
+		let bla = true
+
+		$(document).on('click','#link_regstr_login',function(){
+
+			let ths= $(this);
+			let pr= $(this).parent().find('span');
+
+			if(bla){
+				$('#login_page_block').toggle('fast');
+				$('#login_page_block').css('display','flex');
+				$('#registr_page_block').toggle('fast');
+			    bla=false;
+				ths.text('Qeydiyyat');
+				pr.text('Qeydiyyatınız Yoxdur?')
+			} else{
+
+				$('#login_page_block').toggle('fast');
+			    $('#registr_page_block').toggle('fast');
+				ths.text('Giriş');
+				bla=true;
+				pr.text('Qeydiyyatınız var?')
+			}
+		  
+		
+         
+		})
+
 
 	});
 
@@ -629,8 +631,42 @@ $('.nav-tabs-dropdown')
        var repass = $('#repassword_input_qb').val();
        var stts = $('#status_select_qb').val();
 	   
+
+	   let objectUser = {
+		"kv": {
+			"api": "insertNewUser",
+			"name": nm,
+			"surname": surnm,
+			"email": eml,
+			"userStatus": stts,
+			"mobile": numb,
+			"password": pass,
+			
+		}
+	  
+	}
+
+	   $.ajax({
+		type: "POST",
+		url: "https://app.sourcedagile.com/api/post/zd/qebulaz/insertNewUser",
+		data: JSON.stringify(objectUser),// now data come in this function
+		contentType: "application/json; charset=utf-8",
+		crossDomain: true,
+		dataType: "json",
+		success: function (data, status, jqXHR) {
+			
+			console.log('sended');
+		  
+		},
+
+		error: function (jqXHR, status) {
+			// error handler
+			console.log(jqXHR);
+			alert('fail' + status.code);
+		}
+	 });
 		 
-	   console.log(nm,surnm,eml,numb,pass,repass,stts);
+	  
 	    
 
 
