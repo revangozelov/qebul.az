@@ -646,25 +646,44 @@ $('.nav-tabs-dropdown')
 	  
 	}
 
-	   $.ajax({
-		type: "POST",
-		url: "https://app.sourcedagile.com/api/post/zd/qebulaz/insertNewUser",
-		data: JSON.stringify(objectUser),// now data come in this function
-		contentType: "application/json; charset=utf-8",
-		crossDomain: true,
-		dataType: "json",
-		success: function (data, status, jqXHR) {
-			
-			console.log('sended');
-		  
-		},
+	if(nm,surnm,eml,numb,stts.trim().length > 3){
+		if(pass.trim().length > 3){
+			  
+			if(pass==repass){
 
-		error: function (jqXHR, status) {
-			// error handler
-			console.log(jqXHR);
-			alert('fail' + status.code);
+   
+				$.ajax({
+					type: "POST",
+					url: "https://app.sourcedagile.com/api/post/zd/qebulaz/insertNewUser",
+					data: JSON.stringify(objectUser),// now data come in this function
+					contentType: "application/json; charset=utf-8",
+					crossDomain: true,
+					dataType: "json",
+					success: function (data, status, jqXHR) {
+						
+						console.log('sended');
+					  
+					},
+			
+					error: function (jqXHR, status) {
+						// error handler
+						console.log(jqXHR);
+						alert('fail' + status.code);
+					}
+				 });
+			   }else{
+				   alert('Təkrar Parol Düz Qeyd Edilməyib');
+			   }
+			 
+		}else{
+			alert('Parol Qısadır');
 		}
-	 });
+		
+			
+	}else{
+		alert('Zəhmət olmasa bütün xanaları doldurun!!!');
+	}
+  
 		 
 	  
 	    
@@ -678,3 +697,45 @@ $('.nav-tabs-dropdown')
 
 	setUserInfoDataBase()
    })
+
+   $(document).ready(function(){
+	
+	$('#password_input_qb').keyup(function() {
+		var pswd = $(this).val();
+		
+		//validate the length
+		if ( pswd.length < 8 ) {
+			$('#length').removeClass('valid').addClass('invalid');
+		} else {
+			$('#length').removeClass('invalid').addClass('valid');
+		}
+		
+		//validate letter
+		if ( pswd.match(/[A-z]/) ) {
+			$('#letter').removeClass('invalid').addClass('valid');
+		} else {
+			$('#letter').removeClass('valid').addClass('invalid');
+		}
+
+		//validate capital letter
+		if ( pswd.match(/[A-Z]/) ) {
+			$('#capital').removeClass('invalid').addClass('valid');
+		} else {
+			$('#capital').removeClass('valid').addClass('invalid');
+		}
+
+		//validate number
+		if ( pswd.match(/\d/) ) {
+			$('#number').removeClass('invalid').addClass('valid');
+		} else {
+			$('#number').removeClass('valid').addClass('invalid');
+		}
+	
+		
+	}).focus(function() {
+		$('#pswd_info').show();
+	}).blur(function() {
+		$('#pswd_info').hide();
+	});
+	
+});
