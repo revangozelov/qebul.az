@@ -620,6 +620,23 @@ $('.nav-tabs-dropdown')
 	   addDataNews();
 
    //user register send api
+   function resetFlud(email){
+		 
+	$('#name_input_qb').val('');
+	$('#surname_input_qb').val('');    
+	 $('#email_input_qb').val('');
+	$('#number_input_qb').val('');
+	$('#password_input_qb').val('');
+	$('#repassword_input_qb').val('');
+	$('#status_select_qb').val('');
+
+
+	   
+	$('.visible_cts_block').css('visibility','hidden');
+
+   $('.visible_cts_block').before('<div class="alert alert-success" role="alert">Qeydiyyat uğurla başa çatmışdır.Zəhmət olmasa '+email+' adresini yoxlayın</div>');
+
+   }
    
    function setUserInfoDataBase(){
 
@@ -629,9 +646,9 @@ $('.nav-tabs-dropdown')
        var numb = $('#number_input_qb').val();
        var pass = $('#password_input_qb').val();
        var repass = $('#repassword_input_qb').val();
-       var stts = $('#status_select_qb').val();
-	   
-
+	   var stts = $('#status_select_qb').val();
+	      
+	  
 	   let objectUser = {
 		"kv": {
 			"api": "insertNewUser",
@@ -646,7 +663,7 @@ $('.nav-tabs-dropdown')
 	  
 	}
 
-	if(nm,surnm,eml,numb,stts.trim().length > 3){
+	if(nm&&surnm&&eml&&numb.trim().length > 3){
 		if(pass.trim().length > 3){
 			  
 			if(pass==repass){
@@ -661,7 +678,7 @@ $('.nav-tabs-dropdown')
 					dataType: "json",
 					success: function (data, status, jqXHR) {
 						
-						console.log('sended');
+						resetFlud(eml);
 					  
 					},
 			
@@ -684,13 +701,6 @@ $('.nav-tabs-dropdown')
 		alert('Zəhmət olmasa bütün xanaları doldurun!!!');
 	}
   
-		 
-	  
-	    
-
-
-
-
    }
 
    $(document).on('click','#submit_regstr_qb',function(){
