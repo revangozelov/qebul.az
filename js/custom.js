@@ -734,11 +734,52 @@ $('.nav-tabs-dropdown')
 	 var nm= $("#update_user_name").val();
 	 var srnm= $("#update_user_surname").val();
 	 var mail= $("#update_user_mail").val();
+	 var mbl= $("#update_user_mobil").val();
 	 var brthDay= $("#update_user_brthday").val();
 	 var gndr= $("#update_user_gender").val();
 	 var grp= $("#update_user_group").val();
 	 var stts= $("#update_user_status").val();
 
+	 let objectUser1 = {
+		"kv": {
+			"updatedField": 'gender,mobile,name,email,userStatus,birthDate,examGroup,surname',
+			"id": userId,
+			"name": nm,
+			"surname": srnm,
+			"email": mail,
+			"userStatus": stts,
+			"mobile": mbl,
+			"birthDate": brthDay,
+			"gender": gndr,
+			"examGroup": grp,
+			
+		}
+	  
+	}
+
+	if(nm&&srnm&&mbl.trim().length > 3){
+	
+				$.ajax({
+					type: "POST",
+					url: "https://app.sourcedagile.com/api/post/zd/qebulaz/updateUserInfo",
+					data: JSON.stringify(objectUser1),// now data come in this function
+					contentType: "application/json; charset=utf-8",
+					crossDomain: true,
+					dataType: "json",
+					success: function (data, status, jqXHR) {
+								alert('yadda saxlanldi')			  
+					},
+			
+					error: function (jqXHR, status) {
+						// error handler
+						console.log(jqXHR);
+						alert('fail' + status.code);
+					}
+				 });
+			 			
+	}else{
+		alert('Zəhmət olmasa bütün xanaları doldurun!!!');
+	}
 
 	})
 	
@@ -779,6 +820,7 @@ function getUserInfoProfile(data){// pass your data in method
 					  $("#update_user_name").val(nm);
 					  $("#update_user_surname").val(srnm);
 					  $("#update_user_mail").val(eml);
+					  $("#update_user_mobil").val(mbl);
 					  $("#update_user_brthday").val(brthDt);
 					  $("#update_user_gender").val(gendr);
 					  $("#update_user_group").val(exGr);
