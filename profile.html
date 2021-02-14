@@ -18,6 +18,8 @@
     <!-- Site Icons -->
     <link rel="shortcut icon" href="#" type="image/x-icon" />
     <link rel="apple-touch-icon" href="#" />
+    <!-- jquery-ui css -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <!-- AOS CSS -->
     <link rel="stylesheet" href="aos/aos.css" />
     <!-- Bootstrap CSS -->
@@ -85,13 +87,17 @@
     <div class="container profile_container" >
         <div class="profile-header">
           <div class="profile-img">
-            <img src="images/userprofile.png" width="200" alt="Profile Image">
+            <img src="images/userprofile.png" width="200" id="profile_picture_img" alt="Profile Image">
+            <div class="upload-btn-wrapper">
+              <button class="btn">Şəkli Dəyiş</button>
+              <input type="file" id="profile_change" name="myfile" />
+            </div>
           </div>
           <div class="profile-nav-info">
-            <h3 class="user-name">Revan Gozelov</h3>
+            <h3 class="user-name" id="user_name_pr">Revan Gozelov</h3>
             <div class="address">
-              <p id="state" class="state">Baku,</p>
-              <span id="country" class="country">Azerbaijan.</span>
+              <p id="city_user_pr" class="state">Baku,</p>
+              <span id="country_user_pr" class="country">Azerbaijan.</span>
             </div>
       
           </div>
@@ -106,18 +112,17 @@
         <div class="main-bd">
           <div class="left-side">
             <div class="profile-side">
-              <p class="mobile-no"><i class="fa fa-phone"></i> +23470xxxxx700</p>
-              <p class="user-mail"><i class="fa fa-envelope"></i> Brightisaac80@gmail.com</p>
+              <p class="mobile-no"><i class="fa fa-phone"></i> <span id="user_pr_mobile">5747474574</span></p>
+              <p class="user-mail"><i class="fa fa-envelope"></i> <span id="user_pr_mail">Brightisaac80@gmail.com</span> </p>
               <div class="user-bio">
-                <h3>Bio</h3>
+                <h3>Əlavə Məlumat</h3>
                 <p class="bio">
-                  Lorem ipsum dolor sit amet, hello how consectetur adipisicing elit. Sint consectetur
-                   provident magni yohoho consequuntur, voluptatibus ghdfff exercitationem at quis similique. Optio, amet!
-                </p>
+                  Heç Bir Məlumat Əlavə Edilməyib
+                  </p>
               </div>
               <div class="profile-btn">
-                <button class="chatbtn" id="chatBtn"><i class="fa fa-comment"></i> Chat</button>
-                <button class="createbtn" id="Create-post"><i class="fa fa-plus"></i> Create</button>
+                <!-- <button class="chatbtn" id="chatBtn"><i class="fa fa-comment"></i> Chat</button> -->
+                <button class="createbtn" data-toggle="modal" data-target="#changePasswordModal"  > Şifrəni Dəyiş</button>
               </div>
               <div class="user-rating">
                 <h3 class="rating">4.5</h3>
@@ -138,7 +143,7 @@
             </div>
       
           </div>
-          <div class="right-side col-md-9 col-sm-12 col-lg-9">
+          <div class="cstmtab right-side col-md-9 col-sm-12 col-lg-9">
       
             <div class="nav nav_custom_profile">
               <ul>
@@ -156,17 +161,17 @@
                      
                       <div class="row">
                         <div class="col-md-6">
-                          <div class="form-group">
+                          <div >
                             <label for="first">Ad</label>
-                            <input type="text" class="form-control" placeholder="" id="first">
+                            <input type="text" class="form-control" placeholder="" id="update_user_name">
                           </div>
                         </div>
                         <!--  col-md-6   -->
                   
                         <div class="col-md-6">
-                          <div class="form-group">
+                          <div >
                             <label for="last">Soyad</label>
-                            <input type="text" class="form-control" placeholder="" id="last">
+                            <input type="text" class="form-control" placeholder="" id="update_user_surname">
                           </div>
                         </div>
                         <!--  col-md-6   -->
@@ -176,18 +181,18 @@
                       <div class="row">
                         <div class="col-md-6">
                   
-                            <div class="form-group">
+                            <div >
                               <label for="email">Email</label>
-                              <input type="email" class="form-control" id="email" placeholder="email">
+                              <input type="email" class="form-control" id="update_user_mail" placeholder="email">
                             </div>
                           </div>
                         <!--  col-md-6   -->
                   
                         <div class="col-md-6">
                   
-                          <div class="form-group">
+                          <div >
                             <label for="phone">Mobil Telefon</label>
-                            <input type="tel" class="form-control" id="phone" placeholder="phone">
+                            <input type="tel" class="form-control" id="update_user_mobil" placeholder="phone">
                           </div>
                         </div>
                         <!--  col-md-6   -->
@@ -200,39 +205,86 @@
                         <!--  col-md-6   -->
                   
                         <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="url">Your Website <small>Please include http://</small></label>
-                            <input type="url" class="form-control" id="url" placeholder="url">
+                          <div >
+                            <label for="url">Doğum Tarixi</label>
+                            <input type="tel" class="form-control data_picker" id="update_user_brthday" placeholder="Doğum tarixi" >
+                          </div>
+                  
+                        </div>
+
+                        <div class="col-md-6">
+                          <div >
+                            <label for="female_male">Cinsiyyət</label>
+                            <select name="" class="form-control" id="update_user_gender">
+                              <option value="choose">Seçin</option>
+                              <option value="Kişi">Kişi</option>
+
+                              <option value="Qadın">Qadın</option>
+                            </select>
+                           
                           </div>
                   
                         </div>
                         <!--  col-md-6   -->
                       </div>
                       <!--  row   -->
+                      <div class="row">
+                       
+                        <!--  col-md-6   -->
                   
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="status_select">Status</label>
+                            <select class="form-control" name="" id="update_user_status">
+                              <option disabled value="">Status</option>
+                              <option value="A">Şagird</option>
+                              <option value="B">Abituriyent</option>
+                              <option value="C">Magistr</option>
+                              <option value="D">Məktəb/Kurs</option>
+                              <option value="E">Dövlət Qulluğuna Hazırlıq</option>
+                            </select>
+                          </div>
                   
-                     <!--  <label for="contact-preference">When is the best time of day to reach you?</label>
-                      <div class="radio">
-                        <label>
-                          <input type="radio" name="contact-preference" id="contact-preference" value="am" checked>Morning
-                        </label>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="group_select">Qrup</label>
+                            <select class="form-control" name="" id="update_user_group">
+                              <option disabled value="">Seçin</option>
+                              <option value="I">I qrup</option>
+                              <option value="II">II qrup</option>
+                              <option value="III">III qrup</option>
+                              <option value="IV">IV qrup</option>
+                              <option value="V">V qrup</option>
+                            </select>
+                          </div>
+                  
+                        </div>
+                        <!--  col-md-6   -->
                       </div>
-                      <div class="radio">
-                        <label>
-                          <input type="radio" name="contact-preference" id="contact-preference" value="pm" checked>Evening
-                        </label>
+                      <!--  row   -->
+                      <div class="row">
+                       
+                       
+                        <!--  col-md-6   -->
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="adress_area">Ünvan</label>
+                            <textarea class="form-control" name="" id="adress_area" cols="30" rows="5"></textarea>
+                          </div>
+                  
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="info_area">Əlavə Məlumat</label>
+                            <textarea class="form-control" name="" id="adress_area" cols="30" rows="5"></textarea>
+                          </div>
+                  
+                        </div>
                       </div>
+                       <!--  col-md-6   -->
                   
-                      <label for="newsletter">Would you like to recieve our email newsletter?</label>
-                      <div class="checkbox">
-                  
-                        <label>
-                          <input type="checkbox" value="Sure!" id="newsletter"> Sure!
-                        </label>
-                      </div> -->
-                  
-                  
-                      <button type="submit" class="btn btn-primary">Submit</button>
+                      <button type="submit" id="update_user_btn" class="btn btn-primary">Yaddaşda Saxla</button>
                     </form>
                   </div>
               </div>
@@ -263,6 +315,46 @@
         </div>
       </div>
    
+
+      <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content" >
+            <div class="modal-header customModal "  >
+              <h5 class="modal-title" id="exampleModalLabel">Şifrəni Dəyiş</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form>
+            <div class="modal-body ">
+              
+                
+       
+        <div class="form-group contact_form ">
+          <label for="exampleInputPassword1">Əvvəlki Şifrə</label>
+          <input type="password"  id="exampleInputPassword1" placeholder="Əvvəlki Şifrə">
+        </div>
+        <div class="form-group contact_form ">
+          <label for="exampleInputPassword1">Yeni Şifrə</label>
+          <input type="password"  id="exampleInputPassword1" placeholder="Yeni Şifrə">
+        </div>
+        <div class="form-group contact_form ">
+          <label for="exampleInputPassword1">Təkrar Yeni Şifrə</label>
+          <input type="password"  id="exampleInputPassword1" placeholder="Təkrar Yeni Şifrə">
+        </div>
+       
+        
+      
+            </div>
+            <div class="modal-footer">
+
+              <button type="submit" class="btn btn-primary">Yadda Saxla</button>
+            </div>
+            
+              </form>
+          </div>
+        </div>
+      </div>
 
     <!-- Start Footer -->
     <footer class="footer-box" >
@@ -381,6 +473,7 @@
 	<script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="aos/aos.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <!-- ALL PLUGINS -->
     <script src="js/jquery.magnific-popup.min.js"></script>
     <script src="js/jquery.pogo-slider.min.js"></script>
