@@ -72,10 +72,46 @@
 					</ul>
 				</div>
 				<div class="login-box">
-					<a href="" data-toggle="modal" data-target="#exampleModal" class="login-btn">
-					   Giriş
-					</a>
-				</div>
+                    <a href=""  data-toggle="modal" data-target="#exampleModal" id="login_btn_data" class="login-btn">
+                       Giriş
+                    </a> 
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                          
+                          <li class="dropdown user user-menu">
+                            <!-- Menu Toggle Button -->
+                            <a href="#" class="" data-toggle="dropdown">
+                              <!-- The user image in the navbar-->
+                              <img src="https://vignette3.wikia.nocookie.net/nation/images/6/61/Emblem_person_blue.png/revision/latest?cb=20120218131529" id="user_index_img" class="user-image" alt="User Image">
+                              <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                              <!-- <span class="hidden-xs">John Abia</span> -->
+                            </a>
+                            <ul class="dropdown-menu">
+                              <!-- The user image in the menu -->
+                              <li class="user-header">
+                                <img src="https://vignette3.wikia.nocookie.net/nation/images/6/61/Emblem_person_blue.png/revision/latest?cb=20120218131529" class="img-circle" id="user_index_img_large" alt="User Image">
+                
+                                <p id="name_index_block">
+                                               
+                                </p>
+                              </li>
+                             
+                              <!-- Menu Footer-->
+                              <li class="user-footer">
+                                <div class="pull-left">
+                                  <a href="profile.html" class="btn btn-default btn-flat">Profil</a>
+                                </div>
+                                <div class="pull-right">
+                                  <a href="#" class="btn btn-default btn-flat">Çıxış</a>
+                                </div>
+                              </li>
+                            </ul>
+                          </li>
+                          <!-- Control Sidebar Toggle Button -->
+                        
+                        </ul>
+                      </div>
+                </div>
 			</div>
 		</nav>
 	</header>
@@ -287,7 +323,7 @@
 
               <button type="button" class="btn btn-secondary" ><a href="login.html">Qeydiyyat</a></button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" id="sign_in_btn"  class="btn btn-primary">Submit</button>
             </div>
             
               </form>

@@ -75,10 +75,46 @@
                     </ul>
                 </div>
                 <div class="login-box">
-                    <a href="" data-toggle="modal" data-target="#exampleModal" class="login-btn">
-                       Giriş
-                    </a>
-                </div>
+                  <a href=""  data-toggle="modal" data-target="#exampleModal" id="login_btn_data" class="login-btn">
+                     Giriş
+                  </a> 
+                  <div class="navbar-custom-menu">
+                      <ul class="nav navbar-nav">
+                        
+                        <li class="dropdown user user-menu">
+                          <!-- Menu Toggle Button -->
+                          <a href="#" class="" data-toggle="dropdown">
+                            <!-- The user image in the navbar-->
+                            <img src="https://vignette3.wikia.nocookie.net/nation/images/6/61/Emblem_person_blue.png/revision/latest?cb=20120218131529" id="user_index_img" class="user-image" alt="User Image">
+                            <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                            <!-- <span class="hidden-xs">John Abia</span> -->
+                          </a>
+                          <ul class="dropdown-menu">
+                            <!-- The user image in the menu -->
+                            <li class="user-header">
+                              <img src="https://vignette3.wikia.nocookie.net/nation/images/6/61/Emblem_person_blue.png/revision/latest?cb=20120218131529" class="img-circle" id="user_index_img_large" alt="User Image">
+              
+                              <p id="name_index_block">
+                                                
+                              </p>
+                            </li>
+                           
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                              <div class="pull-left">
+                                <a href="profile.html" class="btn btn-default btn-flat">Profil</a>
+                              </div>
+                              <div class="pull-right">
+                                <a href="#" class="btn btn-default btn-flat">Çıxış</a>
+                              </div>
+                            </li>
+                          </ul>
+                        </li>
+                        <!-- Control Sidebar Toggle Button -->
+                      
+                      </ul>
+                    </div>
+              </div>
             </div>
         </nav>
     </header>
@@ -87,11 +123,17 @@
     <div class="container profile_container" >
         <div class="profile-header">
           <div class="profile-img">
-            <img src="images/userprofile.png" width="200" id="profile_picture_img" alt="Profile Image">
-            <div class="upload-btn-wrapper">
-              <button class="btn">Şəkli Dəyiş</button>
-              <input type="file" id="profile_change" name="myfile" />
-            </div>
+            
+              <img src="images/userprofile.png" width="200" id="profile_picture_img" alt="Profile Image">
+              <div class="upload-btn-wrapper">
+                <button class="btn">Şəkli Dəyiş</button>
+                <form >
+                  <input type="file" id="profile_change" name="myfile" />
+                </form>
+               
+              </div>
+          
+           
           </div>
           <div class="profile-nav-info">
             <h3 class="user-name" id="user_name_pr">Revan Gozelov</h3>
@@ -183,7 +225,7 @@
                   
                             <div >
                               <label for="email">Email</label>
-                              <input type="email" class="form-control" id="update_user_mail" placeholder="email">
+                              <input type="email" disabled class="form-control" id="update_user_mail" placeholder="email">
                             </div>
                           </div>
                         <!--  col-md-6   -->
@@ -192,7 +234,11 @@
                   
                           <div >
                             <label for="phone">Mobil Telefon</label>
-                            <input type="tel" class="form-control" id="update_user_mobil" placeholder="phone">
+                            <input  class="form-control" id="update_user_mobil"   type="tel" 
+                            name="phone" 
+                            value="+994 (__) ___-__-__" 
+                            pattern="^\+994(\s+)?\(?(17|25|29|33|44)\)?(\s+)?[0-9]{3}-?[0-9]{2}-?[0-9]{2}$" 
+                            required placeholder="Əlaqə Nömrəsi">
                           </div>
                         </div>
                         <!--  col-md-6   -->
@@ -290,16 +336,108 @@
               </div>
               <div class="profile-reviews tab">
                 <h1>İmtahanlar</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam pariatur officia, aperiam quidem quasi, tenetur molestiae. Architecto mollitia laborum possimus iste esse. Perferendis tempora consectetur, quae qui nihil voluptas. Maiores debitis
-                  repellendus excepturi quisquam temporibus quam nobis voluptatem, reiciendis distinctio deserunt vitae! Maxime provident, distinctio animi commodi nemo, eveniet fugit porro quos nesciunt quidem a, corporis nisi dolorum minus sit eaque error
-                  sequi ullam. Quidem ut fugiat, praesentium velit aliquam!</p>
+                <div class="container custom_card_block">
+                  <div class="row">
+                   
+                    
+                    <div class="col-12 col-sm-6 col-lg-4">
+                      <div class="card bg-primary text-white">
+                        <div class="card-body">
+                          <h5 class="card-title">İmtahan 1</h5>
+                          <h6 class="card-subtitle mb-2">Qiymeet 15 AZN</h6>
+                          <p class="card-text">İmtahan İnfo </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-4">
+                      <div class="card bg-primary text-white">
+                        <div class="card-body">
+                          <h5 class="card-title">İmtahan 1</h5>
+                          <h6 class="card-subtitle mb-2">Qiymeet 15 AZN</h6>
+                          <p class="card-text">İmtahan İnfo </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-4">
+                      <div class="card bg-primary text-white">
+                        <div class="card-body">
+                          <h5 class="card-title">İmtahan 1</h5>
+                          <h6 class="card-subtitle mb-2">Qiymeet 15 AZN</h6>
+                          <p class="card-text">İmtahan İnfo </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-4">
+                      <div class="card bg-primary text-white">
+                        <div class="card-body">
+                          <h5 class="card-title">İmtahan 1</h5>
+                          <h6 class="card-subtitle mb-2">Qiymeet 15 AZN</h6>
+                          <p class="card-text">İmtahan İnfo </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-4">
+                      <div class="card bg-primary text-white">
+                        <div class="card-body">
+                          <h5 class="card-title">İmtahan 1</h5>
+                          <h6 class="card-subtitle mb-2">Qiymeet 15 AZN</h6>
+                          <p class="card-text">İmtahan İnfo </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-4">
+                      <div class="card bg-primary text-white">
+                        <div class="card-body">
+                          <h5 class="card-title">İmtahan 1</h5>
+                          <h6 class="card-subtitle mb-2">Qiymeet 15 AZN</h6>
+                          <p class="card-text">İmtahan İnfo </p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                 
+                
+                </div>
+                </div>
               </div>
-              <div class="profile-settings tab">
+              <div class="profile-history tab">
                 <div class="account-setting">
                   <h1>Tarixçə</h1>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit omnis eaque, expedita nostrum, facere libero provident laudantium. Quis, hic doloribus! Laboriosam nemo tempora praesentium. Culpa quo velit omnis, debitis maxime, sequi
-                    animi dolores commodi odio placeat, magnam, cupiditate facilis impedit veniam? Soluta aliquam excepturi illum natus adipisci ipsum quo, voluptatem, nemo, commodi, molestiae doloribus magni et. Cum, saepe enim quam voluptatum vel debitis
-                    nihil, recusandae, omnis officiis tenetur, ullam rerum.</p>
+                  <table class="table table-bordered responsive">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th> İmtahan Adı</th>
+                        <th>Vaxt</th>
+                        <th>Nəticə</th>
+                       </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                          
+                        <th  row-header="Table heading" scope="row">1</th>
+                        <td row-header="Table">Mendese</td>
+                        <td row-header="Table heading">Table cell</td>
+                        <td row-header="heading">Table cell</td>
+                       
+                  
+                      </tr>
+                      <tr>
+                        <th row-header="Table heading" scope="row">2</th>
+                        <td row-header="Table heading">Hendese</td>
+                        <td row-header="Table heading">Table cell</td>
+                        <td row-header="Table heading">Table cell</td>
+                   
+                      </tr>
+                      <tr>
+                        <th row-header="Table heading" scope="row">3</th>
+                        <td row-header="Table heading">Table cell</td>
+                        <td row-header="Table heading">Table cell</td>
+                        <td row-header="Table heading">Table cell</td>
+                
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
               <div class="profile-settings tab">
@@ -460,7 +598,7 @@
 
               <button type="button" class="btn btn-secondary" ><a href="login.html">Qeydiyyat</a></button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" id="sign_in_btn" class="btn btn-primary" >Submit</button>
             </div>
             
               </form>

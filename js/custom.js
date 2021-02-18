@@ -15,7 +15,13 @@
 			format: '+994 (__) ___-__-__',
 			separator: '+994 (   )-'
 		 });
+		MaskedInput({
+			elm: document.getElementById('update_user_mobil'), // select only by id
+			format: '+994 (__) ___-__-__',
+			separator: '+994 (   )-'
+		 });
 		
+		 getUserInfoProfile();
 	});
     	
 	/* ..............................................
@@ -673,7 +679,98 @@ $('.nav-tabs-dropdown')
    })
 
   
-   let userId='21020608524507336798' 
+   let userId='21020608524507336798';
+
+   function updateProgress(evt) {
+    
+	var prec =$('.percentTst');    
+	  var percentLoaded = Math.round((evt.loaded / evt.total) * 100);
+	  
+	  prec.css("width",percentLoaded+'%');
+	  prec.text(percentLoaded+'%');
+   
+}
+   function uploadFile4Ipo(id) {
+    var prec =$('.percentTst');
+    var r = "";
+    var that = this;
+    var files = document.getElementById(id).files;
+    var file_count = files.length;
+    var st = "";
+    var trc = 0;
+    for (var i = 0, f; f = files[i]; i++) {
+//            var file = files[0];
+        var file = f;
+        var fileext = file['name'].split('.').pop();
+        var fname = file['name'].split('.')[0];
+//            console.log('fname=' + fname);
+        if (files && file) {
+            var reader = new FileReader();
+            prec.css('width','0%');
+		    prec.text('0%');
+            reader.fileName = fname;
+            reader.fileExt = fileext;
+            reader.fileNo = i;
+            reader.onprogress = updateProgress;
+            reader.onloadstart = function(e) {
+                $('#progress_bar').addClass('loading') ;
+            }
+            reader.onload = function (readerEvt) {
+                prec.css('width','100%');
+		        prec.text('100%');
+                
+                setTimeout(function() { 
+                    $('#progress_bar').removeClass('loading');
+                }, 2000);
+                trc++;
+                var fname1 = readerEvt.target.fileName;
+                var fileext1 = readerEvt.target.fileExt;
+                var fileNo = readerEvt.target.fileNo;
+//                    console.log('trc no=' + trc);
+                var binaryString = readerEvt.target.result;
+                var s = uploadFile4IpoCore(fileext1, btoa(binaryString), fname1);
+                st += s;
+                st += (trc < file_count) ? global_var.vertical_seperator : "";
+
+                if (trc === file_count) {
+
+                    $('#' + id).attr('fname', st);
+                }
+                
+            };
+            
+            reader.readAsBinaryString(file, fname);
+        }
+    }
+}
+
+function uploadFile4IpoCore(fileext, file_base_64, file_name) {
+//        console.log(file_base_64)
+    var d = new Object();
+    d.file_base_64 = file_base_64;
+    d.file_extension = fileext;
+    d.file_type = "general";
+    d.file_name = file_name;
+    conf = JSON.parse('{"kv":{}}');
+    conf['kv'] = d;
+    var dat = JSON.stringify(conf);
+    var finalname = "";
+    $.ajax({
+        url:"https://app.sourcedagile.com/api/post/upload",
+        type: "POST",
+        data: dat,
+        contentType: "application/json",
+        async: false,
+        success: function (data) {
+			finalname = data.kv.uploaded_file_name;
+			console.log('okey');
+        },
+        error: function () {
+			console.log('fail');
+        }
+    });
+    return finalname;
+}
    $(document).ready(function(){
 
 	$(document).on('change', '#profile_change',function(event) {
@@ -683,6 +780,9 @@ $('.nav-tabs-dropdown')
 		  output.attr('src',reader.result);
 		}
 		reader.readAsDataURL(event.target.files[0]);
+		
+		uploadFile4Ipo($(this).attr('id'))
+
 	});
 	
 	$('#password_input_qb').keyup(function() {
@@ -724,10 +824,6 @@ $('.nav-tabs-dropdown')
 	});
 
    // user Info Functions update and accept
-
-
-
-
 
 	$(document).on("click",'#update_user_btn', function(){
 
@@ -783,9 +879,23 @@ $('.nav-tabs-dropdown')
 
 	})
 	
+	$(document).on("click",'#sign_in_btn', function(){
+
+		getUserInfoProfile();
+		$('#exampleModal').modal("toggle");
+	})
+	
+
 });
-getUserInfoProfile()
+
 function getUserInfoProfile(data){// pass your data in method
+
+	if(userId.length>0){
+
+	
+	$('#login_btn_data').css('display','none');
+		$('.navbar-custom-menu').css('display','block');
+		
 	$.ajax({
 			type: "POST",
 			url: "https://app.sourcedagile.com/api/post/zd/qebulaz/getUserList",
@@ -826,6 +936,7 @@ function getUserInfoProfile(data){// pass your data in method
 					  $("#update_user_group").val(exGr);
 					  $("#update_user_status").val(sts);
 					  $("#profile_picture_img").attr('src','https://app.sourcedagile.com/api/get/files/'+imgTc);
+					  userSignIn(imgTc,nm,srnm);
 				   }
 				   
 				  	
@@ -840,5 +951,56 @@ function getUserInfoProfile(data){// pass your data in method
 				alert('fail' + status.code);
 			}
 		 });
-   }
+		}
+  }
     
+	//User sign in function
+function userSignIn(img,name,srnm){
+	 
+	$('#user_index_img').attr('src','https://app.sourcedagile.com/api/get/files/'+img);
+	$('#user_index_img_large').attr('src','https://app.sourcedagile.com/api/get/files/'+img);
+	$('#name_index_block').text(name+' '+srnm);
+
+
+
+}
+
+let  lute = true
+
+$(document).on('click','.dataRespOpen', function(){
+
+  var respX = $(window).width();
+
+      let tds =$(this).parent().find('td');
+      console.log(respX);
+      if(respX<900){
+
+        if(lute){
+
+       
+          tds.css('display','block');
+      
+         
+          lute=false
+        }
+        else{
+          tds.css('display','none');
+          lute=true
+        }
+  
+          
+      }
+     
+    
+})
+
+
+
+ function addTableRespBtn(){
+     
+     var tds1=$('table tbody tr th');
+
+     tds1.addClass('dataRespOpen');
+     
+ }
+ addTableRespBtn()
