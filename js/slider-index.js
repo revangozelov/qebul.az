@@ -23,9 +23,13 @@ function addDataSlide(data){// pass your data in method
 					var idSld=dat[index]['id']
 					var imgSld=dat[index]['slider1']
 					
-						$('#js-main-slider').append('<div class="pogoSlider-slide" id='+idSld+' style="background-image:url(https://app.sourcedagile.com/api/get/files/'+imgSld+');"></div>')
+						$('#js-main-slider')
+						   .append($("<div>")
+						              .addClass('pogoSlider-slide')
+						              .attr('id',idSld)
+						              .attr('style','background-image:url("https://app.sourcedagile.com/api/get/files/'+imgSld+'");'))
 
-					
+					console.log(imgSld);
 					
 				}
 				
