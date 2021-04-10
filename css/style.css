@@ -3020,6 +3020,8 @@ button.createbtn i {
 
 .question_answers {
 	margin-top: 20px;
+	display: flex;
+    flex-wrap: wrap;
 }
 
 .quizMessage {
@@ -3079,8 +3081,11 @@ button.createbtn i {
 
 .quizContainer {
 	padding: 20px;
+	display: none;
 }
-
+.quizContainer.active{
+	display: block;
+}
 .btn_custom_ex {
 	border-radius: 0;
 	min-width: 80px;
@@ -3478,4 +3483,32 @@ body .notification_btn .notification .content .text p {
 
 	margin-bottom: 2rem;
 
+}
+
+#imtahan_list_inside{
+	display: none;
+}
+
+.number-quest-short-block{
+  
+	width: 100%;
+    /* overflow: hidden; */
+    display: flex;
+    flex-wrap: wrap;
+}
+.number-quest-short-block span{
+   display: inline-block;
+   width: 40px;
+	margin-right: 5px;
+	padding: 5px 10px 5px 10px;
+	color: #10449A;
+	border: 1px solid #10449A;
+	cursor: pointer;
+	font-weight: bold;
+	text-align: center;
+}
+.number-quest-short-block span.active{ 
+    color: white;
+    background-color: #10449A;
+    
 }

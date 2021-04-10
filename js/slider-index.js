@@ -29,7 +29,7 @@ function addDataSlide(data){// pass your data in method
 						              .attr('id',idSld)
 						              .attr('style','background-image:url("https://app.sourcedagile.com/api/get/files/'+imgSld+'");'))
 
-					console.log(imgSld);
+					
 					
 				}
 				
@@ -38,7 +38,7 @@ function addDataSlide(data){// pass your data in method
 
              error: function (jqXHR, status) {
                  // error handler
-                 console.log(jqXHR);
+            
                  alert('fail' + status.code);
              }
           });
