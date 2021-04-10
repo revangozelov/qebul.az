@@ -629,30 +629,21 @@ function questGenBlockStus(quest) {
 
 }
 
-function questGenBlockInside() {
-	var qst = data.kv
-
-
-}
 
 $(document).ready(function () {
 	// Display the first question
 
-	//displayCurrentQuestion();
-	$(this).find(".quizMessage").hide();
-
-
-
+	
 
 	$(this).find(".preButton").on("click", function () {
 
-		var act1 = $('#fenn_list_block .tab-pane.active').find('.active');
+		var act1 = $(this).parents('#fenn_list_block').find('.tab-pane.active').find('.active.quizContainer');
 
 		act1.before().addClass('active');
 
 		act1.removeClass('active');
 
-		var act = $('#fenn_list_block .tab-pane.active').find('.active');
+		var act = $(this).parents('#fenn_list_block').find('.tab-pane.active').find('.active.quizContainer');
 		var type = act.attr('data-quest-type');
 		var idts = act.attr('id');
 
@@ -671,16 +662,16 @@ $(document).ready(function () {
 
 
 	// On clicking next, display the next question
-	$(this).find(".nextButton").on("click", function () {
+	$(document).on('click',".nextButton", function () {
 
 
 
-		var act1 = $('#fenn_list_block .tab-pane.active').find('.active');
+		var act1 = $(this).parents('#fenn_list_block').find('.active').find('.quizContainer.active');
 
 		act1.after().addClass('active');
 		act1.removeClass('active');
 
-		var act = $('#fenn_list_block .tab-pane.active').find('.active');
+		var act =$(this).parents('#fenn_list_block').find('.active').find('.quizContainer.active');
 
 		var type = act.attr('data-quest-type');
 		var idts = act.attr('id');
@@ -710,37 +701,6 @@ $(document).ready(function () {
 	})
 
 
-
-
-	// This displays the current question AND the choices
-	function displayCurrentQuestion(fgId, likn) {
-
-		let objectUser = {
-			"kv": {
-				"id": fgId,
-
-			}
-		}
-		$.ajax({
-			type: "POST",
-			url: "https://app.sourcedagile.com/api/post/zd/qebulaz/" + likn + "",
-			data: JSON.stringify(objectUser), // now data come in this function
-			contentType: "application/json; charset=utf-8",
-			crossDomain: true,
-			dataType: "json",
-			success: function (data, status, jqXHR) {
-
-				console.log(data);
-
-			},
-
-			error: function (jqXHR, status) {
-				// error handler
-				console.log(jqXHR);
-			}
-		});
-
-	}
 
 	function resetQuiz() {
 		currentQuestion = 0;
