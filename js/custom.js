@@ -1,3 +1,6 @@
+
+var UrlQb = "https://app.sourcedagile.com/";
+
 (function (a) {
 	a.MaskedInput = function (f) {
 		if (!f || !f.elm || !f.format) {
@@ -330,7 +333,7 @@ $(window).on('load', function () {
 
 		let vale = $(this).val()
 		tabs(vale);
-
+          
 	});
 
 
@@ -341,6 +344,7 @@ $(window).on('load', function () {
 			node.style.display = "none";
 		});
 		$(tab[panelIndex]).css('display', 'block');
+	
 	}
 	tabs(0);
 });
@@ -456,369 +460,11 @@ Fixed Menu
 
 
 
-
-
-var questions = [{
-	question: "1. How do you write 'Hello World' in an alert box?",
-	choices: ["msg('Hello World')", "msgBox('Hello World');", "alertBox('Hello World');", "alert('Hello World');"],
-	correctAnswer: 3
-}, {
-	question: "2. How to empty an array in JavaScript?",
-	choices: ["arrayList[]", "arrayList(0)", "arrayList.length=0", "arrayList.len(0)"],
-	correctAnswer: 2
-}, {
-	question: "3. What function to add an element at the begining of an array and one at the end?",
-	choices: ["push,unshift", "unshift,push", "first,push", "unshift,last"],
-	correctAnswer: 1
-}, {
-	question: "4. What will this output? var a = [1, 2, 3]; console.log(a[6]);",
-	choices: ["undefined", "0", "prints nothing", "Syntax error"],
-	correctAnswer: 0
-}, {
-	question: "5. What would following code return? console.log(typeof typeof 1);",
-	choices: ["string", "number", "Syntax error", "undefined"],
-	correctAnswer: 0
-}, {
-	question: "6. Which software company developed JavaScript?",
-	choices: ["Mozilla", "Netscape", "Sun Microsystems", "Oracle"],
-	correctAnswer: 1
-}, {
-	question: "7. What would be the result of 3+2+'7'?",
-	choices: ["327", "12", "14", "57"],
-	correctAnswer: 3
-}, {
-	question: "8. Look at the following selector: $('div'). What does it select?",
-	choices: ["The first div element", "The last div element", "All div elements", "Current div element"],
-	correctAnswer: 2
-}, {
-	question: "9. How can a value be appended to an array?",
-	choices: ["arr(length).value;", "arr[arr.length]=value;", "arr[]=add(value);", "None of these"],
-	correctAnswer: 1
-}, {
-	question: "10. What will the code below output to the console? console.log(1 +  +'2' + '2');",
-	choices: ["'32'", "'122'", "'13'", "'14'"],
-	correctAnswer: 0
-}];
-
-
-var currentQuestion = 0;
-var viewingAns = 0;
-var correctAnswers = 0;
-var quizOver = false;
-var iSelectedAnswer = [];
-var c = localStorage.getItem('TmEx');
-var t;
-//quiz template 
-function timedCount() {
-
-	if (c == 180) {
-		return false;
-	}
-
-	var hours = parseInt(c / 3600) % 24;
-	var minutes = parseInt(c / 60) % 60;
-	var seconds = c % 60;
-	var result = (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds < 10 ? "0" + seconds : seconds);
-	$('#timer').html(result);
-
-	if (c == 0) {
-		displayScore();
-		$('#iTimeShow').html('Quiz Time Completed!');
-		//$('#timer').html("You scored: " + correctAnswers + " out of: " + questions.length);
-		c = 185;
-		$(document).find(".preButton").text("View Answer");
-		$(document).find(".nextButton").html('<i class="fas fa-redo"></i>');
-		quizOver = true;
-		return false;
-
-	}
-
-
-	c = c - 1;
-	t = setTimeout(function () {
-		timedCount();
-		localStorage.setItem('TmEx', c)
-	}, 1000);
-	// This displays the current question AND the choices
-
-}
-
-function displayCurrentQuestion(typ, fgId, likn) {
-
-	let objectUser = {
-		"kv": {
-			"id": fgId,
-
-		}
-	}
-	$.ajax({
-		type: "POST",
-		url: "https://app.sourcedagile.com/api/post/zdfn/qebulaz/" + likn + "",
-		data: JSON.stringify(objectUser), // now data come in this function
-		contentType: "application/json; charset=utf-8",
-		crossDomain: true,
-		dataType: "json",
-		success: function (data, status, jqXHR) {
-			var dt = data.kv
-
-			var quest = dt['questionBody'];
-			if (typ === 'close') {
-
-				var a = dt['answerA'];
-				var b = dt['answerB'];
-				var c = dt['answerC'];
-				var d = dt['answerD'];
-				var e = dt['answerE'];
-
-				$('#' + fgId + '.quizContainer').append(questGenBlockClose(fgId, quest, a, b, c, d, e));
-
-			}
-			if (typ === 'open') {
-				$('#' + fgId).append(questGenBlockOpen(quest));
-			}
-			if (typ === 'stuasiya') {
-				$('#' + fgId).append(questGenBlockStus(quest));
-			}
-		},
-
-		error: function (jqXHR, status) {
-			// error handler
-			console.log(jqXHR);
-		}
-	});
-
-}
-
-function questGenBlockClose(id, quest, a, b, c, d, e) {
-
-	return `
-	<div class="question_content"> ${quest}</div>
-	<hr>
-	<ul class="choiceList">
-	  <li class="question_answers"><span>A)</span><input type="radio" class="data_cardAns radio-inline" value="0" name="dynradio${id}">${a}</li>
-	  <li class="question_answers"><span>B)</span><input type="radio" class="data_cardAns  radio-inline" value="1" name="dynradio${id}">${b}</li>
-	  <li class="question_answers"><span>C)</span><input type="radio" class="data_cardAns  radio-inline" value="2" name="dynradio${id}">${c}</li>
-	  <li class="question_answers"><span>D)</span><input type="radio" class="data_cardAns  radio-inline" value="3" name="dynradio${id}">${d}</li>
-	  <li class="question_answers"><span>E)</span><input type="radio" class="data_cardAns  radio-inline" value="4" name="dynradio${id}">${e}</li>
-	</ul>
-	 `
-
-}
-
-function questGenBlockOpen(quest) {
-
-	return `
-	<div class="question_content">${quest}</div>
-	<hr>
-	<ul class="choiceList">
-
-	</ul>
-	 `
-
-}
-
-function questGenBlockStus(quest) {
-
-	return `
-	<div class="question_content">${quest}</div>
-	<hr>
-	<ul class="choiceList">
-
-	</ul>
-	 `
-
-}
-
-
-$(document).ready(function () {
-	// Display the first question
-
-	$(document).on('click','.number-quest-short-block span', function(e){
-         var datr = $(this).attr('data-numb-type')
-		 var act1 = $(this).parents('#fenn_list_block').find('.tab-pane.active').find('.active.quizContainer');
-         act1.removeClass('active');
-
-		var act =$(this).parents('#fenn_list_block').find('.tab-pane.active').find('#'+datr);
-		    act.addClass('active')
-		    act.empty();
-		  
-		var type = act.attr('data-quest-type');
-		var idts = act.attr('id');
-		console.log(idts);
-		$('.number-quest-short-block').find('span').removeClass('active');
-		$(this).addClass('active');
-		if (type === 'close') {
-
-			displayCurrentQuestion(type, idts, 'getQapaliSualBodyById')
-		}
-		if (type === 'open') {
-			displayCurrentQuestion(type, idts, 'getAciqSualBodyById')
-		}
-		if (type === 'stuasiya') {
-			displayCurrentQuestion(type, idts, '')
-		}
-		 
-	})
-
-	$(this).find(".preButton").on("click", function () {
-
-		var act1 = $(this).parents('#fenn_list_block').find('.tab-pane.active').find('.active.quizContainer');
-
-		act1.prev().addClass('active');
-
-		act1.removeClass('active');
-
-		var act = $(this).parents('#fenn_list_block').find('.tab-pane.active').find('.active.quizContainer');
-		  act.empty();
-		var type = act.attr('data-quest-type');
-		var idts = act.attr('id');
-		$('.number-quest-short-block').find('span').removeClass('active');
-		$('[data-numb-type="'+idts+'"]').addClass('active');
-		if (type === 'close') {
-
-			displayCurrentQuestion(type, idts, 'getQapaliSualBodyById')
-		}
-		if (type === 'open') {
-			displayCurrentQuestion(type, idts, 'getAciqSualBodyById')
-		}
-		if (type === 'stuasiya') {
-			displayCurrentQuestion(type, idts, '')
-		}
-
-	});
-
-
-	// On clicking next, display the next question
-	$(document).on('click',".nextButton", function () {
-
-
-
-		var act1 = $(this).parents('#fenn_list_block').find('.active').find('.quizContainer.active');
-
-		act1.next().addClass('active');
-		act1.removeClass('active');
-
-		var act =$(this).parents('#fenn_list_block').find('.active').find('.quizContainer.active');
-		act.empty();
-		var type = act.attr('data-quest-type');
-		var idts = act.attr('id');
-		$('.number-quest-short-block').find('span').removeClass('active');
-		$('[data-numb-type="'+idts+'"]').addClass('active');
-	
-		if (type === 'close') {
-
-			displayCurrentQuestion(type, idts, 'getQapaliSualBodyById')
-		}
-		if (type === 'open') {
-			displayCurrentQuestion(type, idts, 'getAciqSualBodyById')
-		}
-		if (type === 'stuasiya') {
-			displayCurrentQuestion(type, idts, '')
-		}
-
-	});
-
-	$(document).on('click', '#un_checked_btn', function () {
-
-		$('.question_answers input').prop('checked', false)
-	})
-
-
-
-	function resetQuiz() {
-		currentQuestion = 0;
-		correctAnswers = 0;
-		hideScore();
-	}
-
-	function displayScore() {
-		$(document).find(".quizContainer > .result").text("You scored: " + correctAnswers + " out of: " + questions.length);
-		$(document).find(".quizContainer > .result").show();
-	}
-
-	function hideScore() {
-		$(document).find(".result").hide();
-	}
-
-	// This displays the current question AND the choices
-	function viewResults() {
-
-		if (currentQuestion == 10) {
-			currentQuestion = 0;
-			return false;
-		}
-		if (viewingAns == 1) {
-			return false;
-		}
-
-		hideScore();
-		var question = questions[currentQuestion].question;
-		var questionClass = $(document).find(".quizContainer > .question_content");
-		var choiceList = $(document).find(".quizContainer > .choiceList");
-		var numChoices = questions[currentQuestion].choices.length;
-		// Set the questionClass text to the current question
-		$(questionClass).text(question);
-		// Remove all current <li> elements (if any)
-		$(choiceList).find("li").remove();
-		var choice;
-
-
-		for (i = 0; i < numChoices; i++) {
-			choice = questions[currentQuestion].choices[i];
-
-			if (iSelectedAnswer[currentQuestion] == i) {
-				if (questions[currentQuestion].correctAnswer == i) {
-					$('<li style="border:2px solid green;margin-top:10px;"><input type="radio" class="radio-inline" checked="checked"  value=' + i + ' name="dynradio" />' + ' ' + choice + '</li>').appendTo(choiceList);
-				} else {
-					$('<li style="border:2px solid red;margin-top:10px;"><input type="radio" class="radio-inline" checked="checked"  value=' + i + ' name="dynradio" />' + ' ' + choice + '</li>').appendTo(choiceList);
-				}
-			} else {
-				if (questions[currentQuestion].correctAnswer == i) {
-					$('<li style="border:2px solid green;margin-top:10px;"><input type="radio" class="radio-inline" value=' + i + ' name="dynradio" />' + ' ' + choice + '</li>').appendTo(choiceList);
-				} else {
-					$('<li><input type="radio" class="radio-inline" value=' + i + ' name="dynradio" />' + ' ' + choice + '</li>').appendTo(choiceList);
-				}
-			}
-		}
-
-		currentQuestion++;
-
-		setTimeout(function () {
-			viewResults();
-		}, 3000);
-	}
-
-});
-
-
-
-let userId = '';
+let userId ='';
 
 //user info set 
 $(document).ready(function () {
-
-	function activeAddClass() {
-
-
-
-		$('#fenn_list_block .active .quizContainer').first().addClass('active');
-		var idts = $('#fenn_list_block .active .quizContainer').first().attr('id');
-		var type = $('#fenn_list_block .active .quizContainer').first().attr('data-quest-type');
-
-
-		if (type === 'close') {
-
-			displayCurrentQuestion(type, idts, 'getQapaliSualBodyById')
-		}
-		if (type === 'open') {
-			displayCurrentQuestion(type, idts, 'getAciqSualBodyById')
-		}
-		if (type === 'stuasiya') {
-			displayCurrentQuestion(type, idts, '')
-		}
-
-	};
-
+     
 	$(document).on('click', '#imtahan_list_index div', function () {
 
 		let id = $(this).attr('id')
@@ -835,272 +481,21 @@ $(document).ready(function () {
 
 
 	})
-
-	function genListFennName(nm, st) {
-		return `
-	  <li role="presentation" class="exam_fenn ">
-	  <a href="#${nm.trim()}" aria-controls="home" role="tab" class="${st}" data-toggle="tab">${nm}</a></li>
-	  `
-	}
-
-	function genListFennBlock(nm, st) {
-		return `<div role="tabpanel " class="tab-pane  ${st}" id="${nm.trim()}">
-	  <div class="number-quest-short-block"></div>
-	</div>
-	  `
-	}
-	var listFnm = [];
-
-	startExamBlockGen();
-
-	function startExamBlockGen() {
-		var gId = localStorage.getItem('idExam');
-		$.ajax({
-			type: "POST",
-			url: "https://app.sourcedagile.com/api/post/zd/qebulaz/getImtahanTreeList",
-			// now data come in this function
-			contentType: "application/json; charset=utf-8",
-			crossDomain: true,
-			dataType: "json",
-			success: function (data, status, jqXHR) {
-				var dat = data.tbl[0].r
-
-				for (let index = 0; index < dat.length; index++) {
-					var idTc = dat[index]['id'];
-					if (gId === idTc) {
-						var fenn_arr = [];
-						var sect1 = dat[index]['section1'];
-						var sect2 = dat[index]['section2'];
-						var sect3 = dat[index]['section3'];
-						var sect4 = dat[index]['section4'];
-						var sect5 = dat[index]['section5'];
-						fenn_arr.push(sect1, sect2, sect3, sect4, sect5)
-
-						for (let inx = 0; inx < fenn_arr.length; inx++) {
-
-							if (fenn_arr[inx] === '') {
-
-
-							} else {
-								listFnm.push(fenn_arr[inx])
-								if (inx === 0) {
-
-									$('#list_fenn_short').append(genListFennName(fenn_arr[inx], 'active'));
-									$('#fenn_list_block').prepend(genListFennBlock(fenn_arr[inx], 'active'));
-
-								} else {
-									$('#list_fenn_short').append(genListFennName(fenn_arr[inx], ''));
-									$('#fenn_list_block').prepend(genListFennBlock(fenn_arr[inx], ''));
-
-								}
-							}
-
-						}
-
-						//ilst.append(genExamBlock(idTc, nameTc,imgTc));
-
-
-					}
-
-				}
-
-				timedCount()
-				startQuestBlockGen(gId)
-			},
-
-			error: function (jqXHR, status) {
-				// error handler
-				console.log(jqXHR);
-				alert('fail' + status.code);
-			}
-		});
-
-	}
-
-
-	function startQuestBlockGen(idg) {
-
-
-		for (let ixe = 0; ixe < listFnm.length; ixe++) {
-			var exdat1 = {
-				"kv": {
-					"fkImtahanNovuId": idg,
-					"section": ixe
-				}
-			}
-
-
-
-			startQuestBlockGenCore(exdat1, ixe);
-
-
-
-		}
-		setTimeout(function () {
-
-			activeAddClass();
-		}, 1000);
-
-
-
-
-	}
-
-	function startQuestBlockGenCore(exdat1, ixe) {
-
-
-
-		$.ajax({
-			type: "POST",
-			url: "https://app.sourcedagile.com/api/post/zdfn/qebulaz/getSuallarByImtahanNovuAndSection",
-			data: JSON.stringify(exdat1), // now data come in this function
-			contentType: "application/json; charset=utf-8",
-			crossDomain: true,
-			dataType: "json",
-			success: function (data, status, jqXHR) {
-				var dat = data.kv['qapaliSuallar'].split(',')
-				let cnt = 1
-				for (let ix = 0; ix < dat.length; ix++) {
-
-					$('#' + listFnm[ixe].trim()).append(
-						$('<div>').addClass('quizContainer')
-						.attr('id', dat[ix])
-						.attr('data-quest-type', 'close')
-					)
-
-
-					$('.answer_card_body tbody').append($('<tr>')
-						.attr('data-numCard', dat[ix])
-						.append('<th>' + cnt + '</th>')
-						.append('<td><span>A</span></td>')
-						.append('<td><span>B</span></td>')
-						.append('<td><span>C</span></td>')
-						.append('<td><span>D</span></td>')
-						.append('<td><span>E</span></td>'));
-					if (cnt === 1) {
-						$('#' + listFnm[ixe] + ' .number-quest-short-block').append(
-							$('<span>').text(cnt)
-							.addClass('active')
-							.attr('data-numb-type', dat[ix])
-						)
-						cnt++
-					} else {
-
-						$('#' + listFnm[ixe] + ' .number-quest-short-block').append(
-							$('<span>').text(cnt)
-							.attr('data-numb-type', dat[ix]))
-
-
-						cnt++
-					}
-
-
-				}
-				var dat1 = data.kv['aciqSuallar'].split(',')
-
-				for (let ix = 0; ix < dat1.length; ix++) {
-
-					$('#' + listFnm[ixe].trim()).append(
-						$('<div>').addClass('quizContainer')
-						.attr('id', dat[ix])
-						.attr('data-quest-type', 'open')
-					)
-					$('.answer_card_body tbody').append($('<tr>')
-						.attr('data-numCard', dat[ix])
-						.append('<th>' + cnt + '</th>')
-						.append('<td>-</td>')
-						.append('<td>-</td>')
-						.append('<td>-</td>')
-						.append('<td>-</td>')
-						.append('<td>-</td>'));
-					if (cnt === 1) {
-						$('#' + listFnm[ixe] + ' .number-quest-short-block').append(
-							$('<span>').text(cnt)
-							.addClass('active')
-							.attr('data-numb-type', dat[ix])
-						)
-						cnt++
-					} else {
-
-						$('#' + listFnm[ixe] + ' .number-quest-short-block').append(
-							$('<span>').text(cnt)
-							.attr('data-numb-type', dat[ix]))
-
-						cnt++
-					}
-
-
-				}
-				var dat2 = data.kv['situasiyaSuallar'].split(',')
-
-				for (let ix = 0; ix < dat2.length; ix++) {
-
-					$('#' + listFnm[ixe].trim()).append(
-						$('<div>').addClass('quizContainer')
-						.attr('id', dat[ix])
-						.attr('data-quest-type', 'stuasiya')
-					)
-
-					$('.answer_card_body tbody').append($('<tr>')
-						.attr('data-numCard', dat[ix])
-						.append('<th>' + cnt + '</th>')
-						.append('<td>-</td>')
-						.append('<td>-</td>')
-						.append('<td>-</td>')
-						.append('<td>-</td>')
-						.append('<td>-</td>'));
-					if (cnt === 1) {
-						$('#' + listFnm[ixe] + ' .number-quest-short-block').append(
-							$('<span>').text(cnt)
-							.addClass('active')
-							.attr('data-numb-type', dat[ix])
-						)
-						cnt++
-					} else {
-
-						$('#' + listFnm[ixe] + ' .number-quest-short-block').append(
-							$('<span>').text(cnt)
-							.attr('data-numb-type', dat[ix]))
-
-						cnt++
-					}
-
-
-				}
-
-			},
-
-			error: function (jqXHR, status) {
-				// error handler
-				console.log(jqXHR);
-				alert('fail' + status.code);
-			}
-		});
-
-	}
-	//answer card generate 
-
-	getUserInfoProfile();
-	//teacher post api 
-
 	function genExamBlock(id, nam, img) {
 
 		return `<div id='${id}' class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
 	   <div class="full1 blog_img_popular">
-		   <img class="img-responsive" src="https://app.sourcedagile.com/api/get/files/${img}" alt="#" />
+		   <img class="img-responsive" src=${UrlQb}api/get/files/${img}" alt="#" />
 		   <h4>${nam}</h4>
 	   </div>
       </div>`
 
 	}
-
-
-
 	function addExamList(gId) {
 
 		$.ajax({
 			type: "POST",
-			url: "https://app.sourcedagile.com/api/post/zd/qebulaz/getImtahanTreeList",
+			url: UrlQb+"api/post/zd/qebulaz/getImtahanTreeList",
 			// now data come in this function
 			contentType: "application/json; charset=utf-8",
 			crossDomain: true,
@@ -1132,12 +527,15 @@ $(document).ready(function () {
 
 			error: function (jqXHR, status) {
 				// error handler
-				console.log(jqXHR);
+				
 				alert('fail' + status.code);
 			}
 		});
 	}
 
+
+	getUserInfoProfile();
+	//teacher post api 
 	function genTeacherBlock(id, img, name, fenn) {
 
 		return $('<div>')
@@ -1147,7 +545,7 @@ $(document).ready(function () {
 				.addClass('single-person')
 				.append($('<div>')
 					.addClass('person-image')
-					.append('<img src="https://app.sourcedagile.com/api/get/files/' + img + '" alt="">'))
+					.append('<img src="'+UrlQb+'api/get/files/' + img + '" alt="">'))
 				.append($('<div>')
 					.addClass('person-info')
 					.append('<h3 class="full-name center">' + name + '</h3>')
@@ -1162,7 +560,7 @@ $(document).ready(function () {
 	function addDataTeacher(data) { // pass your data in method
 		$.ajax({
 			type: "POST",
-			url: "https://app.sourcedagile.com/api/post/zd/qebulaz/getMuellimlerList",
+			url: UrlQb+"api/post/zd/qebulaz/getMuellimlerList",
 			data: JSON.stringify(data), // now data come in this function
 			contentType: "application/json; charset=utf-8",
 			crossDomain: true,
@@ -1186,7 +584,7 @@ $(document).ready(function () {
 
 			error: function (jqXHR, status) {
 				// error handler
-				console.log(jqXHR);
+			
 				alert('fail' + status.code);
 			}
 		});
@@ -1200,7 +598,7 @@ $(document).ready(function () {
 			.attr('id', id)
 			.append($('<div>')
 				.addClass('full blog_img_popular')
-				.append('<img class="img-responsive" src="https://app.sourcedagile.com/api/get/files/' + imgN + '" alt="#' + title + '" />')
+				.append('<img class="img-responsive" src="'+UrlQb+'api/get/files/' + imgN + '" alt="#' + title + '" />')
 				.append('<h4 class="data-newssend">' + title + '</h4>')
 				.append('<p>' + bdy + '</p>')
 				.append('<span class="newsDate">' + Date + '</span>'))
@@ -1215,7 +613,7 @@ $(document).ready(function () {
 			.attr('data-aos-delay', '300')
 			.append($('<div>')
 				.addClass('col-lg-4 col-md-4 col-sm-12')
-				.append('<div class="full float-right_img"><img class="data_newsImg" src="https://app.sourcedagile.com/api/get/files/' + imgN + '" alt="#"></div>'))
+				.append('<div class="full float-right_img"><img class="data_newsImg" src="'+UrlQb+'api/get/files/' + imgN + '" alt="#"></div>'))
 			.append($('<div>')
 				.addClass('data_newsTxt col-lg-8 col-md-8 col-sm-12')
 				.append('<h4>' + title + '</h4>')
@@ -1228,7 +626,7 @@ $(document).ready(function () {
 	function addDataNews(data) { // pass your data in method
 		$.ajax({
 			type: "POST",
-			url: "https://app.sourcedagile.com/api/post/zd/qebulaz/getNewsList",
+			url: UrlQb+"api/post/zd/qebulaz/getNewsList",
 			data: JSON.stringify(data), // now data come in this function
 			contentType: "application/json; charset=utf-8",
 			crossDomain: true,
@@ -1255,7 +653,7 @@ $(document).ready(function () {
 
 			error: function (jqXHR, status) {
 				// error handler
-				console.log(jqXHR);
+			
 				alert('fail' + status.code);
 			}
 		});
@@ -1315,7 +713,7 @@ $(document).ready(function () {
 
 					$.ajax({
 						type: "POST",
-						url: "https://app.sourcedagile.com/api/post/zd/qebulaz/insertNewUser",
+						url: UrlQb+"api/post/zd/qebulaz/insertNewUser",
 						data: JSON.stringify(objectUser), // now data come in this function
 						contentType: "application/json; charset=utf-8",
 						crossDomain: true,
@@ -1328,7 +726,7 @@ $(document).ready(function () {
 
 						error: function (jqXHR, status) {
 							// error handler
-							console.log(jqXHR);
+							
 							alert('fail' + status.code);
 						}
 					});
@@ -1429,17 +827,17 @@ $(document).ready(function () {
 		var dat = JSON.stringify(conf);
 		var finalname = "";
 		$.ajax({
-			url: "https://app.sourcedagile.com/api/post/upload",
+			url: UrlQb+"api/post/upload",
 			type: "POST",
 			data: dat,
 			contentType: "application/json",
 			async: false,
 			success: function (data) {
 				finalname = data.kv.uploaded_file_name;
-				console.log('okey');
+			
 			},
 			error: function () {
-				console.log('fail');
+			
 			}
 		});
 		return finalname;
@@ -1528,7 +926,7 @@ $(document).ready(function () {
 
 			$.ajax({
 				type: "POST",
-				url: "https://app.sourcedagile.com/api/post/zd/qebulaz/updateUserInfo",
+				url: UrlQb+"api/post/zd/qebulaz/updateUserInfo",
 				data: JSON.stringify(objectUser1), // now data come in this function
 				contentType: "application/json; charset=utf-8",
 				crossDomain: true,
@@ -1539,7 +937,7 @@ $(document).ready(function () {
 
 				error: function (jqXHR, status) {
 					// error handler
-					console.log(jqXHR);
+				
 					alert('fail' + status.code);
 				}
 			});
@@ -1577,7 +975,7 @@ $(document).ready(function () {
 		}
 		$.ajax({
 			type: "POST",
-			url: "https://app.sourcedagile.com/api/post/zdfn/qebulaz/login",
+			url: UrlQb+"api/post/zdfn/qebulaz/login",
 			data: JSON.stringify(datUs), // now data come in this function
 			contentType: "application/json; charset=utf-8",
 			crossDomain: true,
@@ -1592,7 +990,7 @@ $(document).ready(function () {
 
 			error: function (jqXHR, status) {
 				// error handler
-				console.log(jqXHR);
+			
 				alert('fail' + status.code);
 			}
 		});
@@ -1610,7 +1008,7 @@ $(document).ready(function () {
 
 			$.ajax({
 				type: "POST",
-				url: "https://app.sourcedagile.com/api/post/zdfn/qebulaz/getUserList",
+				url: UrlQb+"api/post/zdfn/qebulaz/getUserList",
 				//	data: JSON.stringify(data), // now data come in this function
 				contentType: "application/json; charset=utf-8",
 				crossDomain: true,
@@ -1646,7 +1044,7 @@ $(document).ready(function () {
 							$("#update_user_gender").val(gendr);
 							$("#update_user_group").val(exGr);
 							$("#update_user_status").val(sts);
-							$("#profile_picture_img").attr('src', 'https://app.sourcedagile.com/api/get/files/' + imgTc);
+							$("#profile_picture_img").attr('src', UrlQb+'api/get/files/' + imgTc);
 							userImageIn(imgTc, nm, srnm);
 						}
 
@@ -1658,7 +1056,7 @@ $(document).ready(function () {
 
 				error: function (jqXHR, status) {
 					// error handler
-					console.log(jqXHR);
+				
 					alert('fail' + status.code);
 				}
 			});
@@ -1668,8 +1066,8 @@ $(document).ready(function () {
 	//User sign in function
 	function userImageIn(img, name, srnm) {
 
-		$('#user_index_img').attr('src', 'https://app.sourcedagile.com/api/get/files/' + img);
-		$('#user_index_img_large').attr('src', 'https://app.sourcedagile.com/api/get/files/' + img);
+		$('#user_index_img').attr('src', UrlQb+'api/get/files/' + img);
+		$('#user_index_img_large').attr('src', UrlQb+'api/get/files/' + img);
 		$('#name_index_block').text(name + ' ' + srnm);
 
 
@@ -1718,4 +1116,3 @@ $(document).ready(function () {
 });
 
 
-AOS.init();

@@ -2511,7 +2511,7 @@ section.inner_banner h3 {
 	height: 190px;
 	position: relative;
 	box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.2);
-	border-top: 7px solid #10449A;
+	border-top: 8px solid #10449A;
 	border-radius: 5px
 }
 
@@ -2909,7 +2909,7 @@ button.createbtn i {
 
 	position: relative;
 	box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.2);
-	border-top: 7px solid #10449A;
+	border-top: 8px solid #10449A;
 	border-radius: 5px;
 }
 
@@ -2940,12 +2940,14 @@ button.createbtn i {
 	margin-top: 10px;
 
 	position: relative;
-	border-left: 7px solid #10449A;
+	border-left: 8px solid #10449A;
 	padding: 0 !important;
 
 	/* min-height: 280px; */
 }
-
+.tab-content>.tab-pane {
+    width: 100%;
+}
 .quizcontainer #quiz1 {
 	text-shadow: 1px 1px 2px orange;
 	font-family: "Georgia", Arial, sans-serif;
@@ -3001,6 +3003,10 @@ button.createbtn i {
 	width: 27px;
 	height: 27px;
 	text-align: center;
+}
+.answer_card_body table tbody tr td span.checkAns{
+	background-color: black;
+	color: white;
 }
 
 .answer_card_body table tbody {
@@ -3488,7 +3494,12 @@ body .notification_btn .notification .content .text p {
 #imtahan_list_inside{
 	display: none;
 }
-
+#table_answer_card tbody{
+	display: none;
+}
+#table_answer_card tbody.active{
+	display: block;
+}
 .number-quest-short-block{
   
 	width: 100%;
