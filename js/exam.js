@@ -14,15 +14,14 @@ $(document).ready(function () {
         var hours = parseInt(c / 3600) % 24;
         var minutes = parseInt(c / 60) % 60;
         var seconds = c % 60;
+        console.log(hours,minutes,seconds)
         var result = (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds < 10 ? "0" + seconds : seconds);
         $('#timer').html(result);
 
         if (c == 0) {
-            displayScore();
+           // displayScore();
             $('#iTimeShow').html('Quiz Time Completed!');
             //$('#timer').html("You scored: " + correctAnswers + " out of: " + questions.length);
-            c = 185;
-
             quizOver = true;
             return false;
 
@@ -121,8 +120,13 @@ $(document).ready(function () {
         return `
         <div class="question_content">${quest}</div>
         <hr>
-        <table>
+        <div class="col-lg-6">
+        <input disabled type="text" name="" class="form-control Input_button_list" id="">
+        </div>
+       
+        <table class='col-lg-6 table_button_list'>
       <thead>
+        <th>#</th>
         <th>A</th>
         <th>B</th>
         <th>C</th>
@@ -132,11 +136,11 @@ $(document).ready(function () {
       <tbody>
          <tr>
            <th>1</th>
-          <td><input type="checkbox" name="" id=""></td>
-          <td><input type="checkbox" name="" id=""></td>
-          <td><input type="checkbox" name="" id=""></td>
-          <td><input type="checkbox" name="" id=""></td>
-          <td><input type="checkbox" name="" id=""></td>
+          <td><input type="checkbox" name="" id="1A"></td>
+          <td><input type="checkbox" name="" id="1B"></td>
+          <td><input type="checkbox" name="" id="1C"></td>
+          <td><input type="checkbox" name="" id="1D"></td>
+          <td><input type="checkbox" name="" id="1E"></td>
         </tr>
          <tr>
            <th>2</th>
@@ -158,6 +162,7 @@ $(document).ready(function () {
          
       </tbody>
     </table>
+   
          `
 
     }
@@ -282,7 +287,12 @@ $(document).ready(function () {
 
     $(document).on('click', '#un_checked_btn', function () {
 
-        $('.question_answers input').prop('checked', false)
+        $('#fenn_list_block .active .active .data_cardAns').prop('checked', false);
+        var art=$('#fenn_list_block .active .quizContainer.active').attr('id');
+         console.log(art);
+        var anscr = $('#table_answer_card .active').find('tr[data-numcard=' + art + ']');
+
+        anscr.find('td span').removeClass('checkAns');
     })
     $(document).on('click', 'li.question_answers .data_cardAns', function () {
 
@@ -291,7 +301,7 @@ $(document).ready(function () {
 
         var anscr = $('#table_answer_card .active').find('tr[data-numcard=' + art + ']');
 
-        anscr.find('td span').removeClass('checkAns')
+        anscr.find('td span').removeClass('checkAns');
         anscr.find('td').eq(val).find('span').addClass('checkAns');
     })
 

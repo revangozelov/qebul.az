@@ -3523,3 +3523,63 @@ body .notification_btn .notification .content .text p {
     background-color: #10449A;
     
 }
+
+/* --- The Table Structure --- */
+.table_button_list {
+	border-collapse: separate;
+	border-spacing: 0;
+  }
+  .table_button_list tr th,
+  .table_button_list tr td {
+	border-right: 1px solid #bbb;
+	border-bottom: 1px solid #bbb;
+	box-shadow: 2px 2px 1px #e5dfcc;
+  }
+  .table_button_list tr th:first-child,
+  .table_button_list tr td:first-child {
+	border-left: 1px solid #bbb;
+  }
+  .table_button_list tr th {
+	border-top: 1px solid #bbb;
+  }
+  
+  /* top-left border-radius */
+  .table_button_list tr:first-child th:first-child {
+	border-top-left-radius: 6px;
+  }
+  
+  /* top-right border-radius */
+  .table_button_list tr:first-child th:last-child {
+	border-top-right-radius: 6px;
+  }
+  
+  /* bottom-left border-radius */
+  .table_button_list tr:last-child td:first-child {
+	border-bottom-left-radius: 6px;
+  }
+  
+  /* bottom-right border-radius */
+  .table_button_list tr:last-child td:last-child {
+	border-bottom-right-radius: 6px;
+  }
+  
+  /* -- The Stlyes -- */
+ 
+   .table_button_list th{
+	padding: 8px 16px;
+   } 
+   .table_button_list td{
+	padding: 5px 15px;
+  }
+   .table_button_list th{
+	background: #E5E6EB;
+	color: #111;
+  }
+  .table_button_list td{
+	background: #EFF1F6;
+  }
+  .table_button_list td input{
+	width: 20px;
+    height: 20px;
+  }
+  
