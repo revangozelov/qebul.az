@@ -633,20 +633,47 @@ function questGenBlockStus(quest) {
 $(document).ready(function () {
 	// Display the first question
 
-	
+	$(document).on('click','.number-quest-short-block span', function(e){
+         var datr = $(this).attr('data-numb-type')
+		 var act1 = $(this).parents('#fenn_list_block').find('.tab-pane.active').find('.active.quizContainer');
+         act1.removeClass('active');
+
+		var act =$(this).parents('#fenn_list_block').find('.tab-pane.active').find('#'+datr);
+		    act.addClass('active')
+		    act.empty();
+		  
+		var type = act.attr('data-quest-type');
+		var idts = act.attr('id');
+		console.log(idts);
+		$('.number-quest-short-block').find('span').removeClass('active');
+		$(this).addClass('active');
+		if (type === 'close') {
+
+			displayCurrentQuestion(type, idts, 'getQapaliSualBodyById')
+		}
+		if (type === 'open') {
+			displayCurrentQuestion(type, idts, 'getAciqSualBodyById')
+		}
+		if (type === 'stuasiya') {
+			displayCurrentQuestion(type, idts, '')
+		}
+		 
+	})
 
 	$(this).find(".preButton").on("click", function () {
 
 		var act1 = $(this).parents('#fenn_list_block').find('.tab-pane.active').find('.active.quizContainer');
 
-		act1.before().addClass('active');
+		act1.prev().addClass('active');
 
 		act1.removeClass('active');
 
 		var act = $(this).parents('#fenn_list_block').find('.tab-pane.active').find('.active.quizContainer');
+		  act.empty();
 		var type = act.attr('data-quest-type');
 		var idts = act.attr('id');
-
+		$('.number-quest-short-block').find('span').removeClass('active');
+		$('[data-numb-type="'+idts+'"]').addClass('active');
 		if (type === 'close') {
 
 			displayCurrentQuestion(type, idts, 'getQapaliSualBodyById')
@@ -668,14 +695,16 @@ $(document).ready(function () {
 
 		var act1 = $(this).parents('#fenn_list_block').find('.active').find('.quizContainer.active');
 
-		act1.after().addClass('active');
+		act1.next().addClass('active');
 		act1.removeClass('active');
 
 		var act =$(this).parents('#fenn_list_block').find('.active').find('.quizContainer.active');
-
+		act.empty();
 		var type = act.attr('data-quest-type');
 		var idts = act.attr('id');
-		console.log(act);
+		$('.number-quest-short-block').find('span').removeClass('active');
+		$('[data-numb-type="'+idts+'"]').addClass('active');
+	
 		if (type === 'close') {
 
 			displayCurrentQuestion(type, idts, 'getQapaliSualBodyById')
@@ -686,12 +715,6 @@ $(document).ready(function () {
 		if (type === 'stuasiya') {
 			displayCurrentQuestion(type, idts, '')
 		}
-
-
-
-
-
-
 
 	});
 
