@@ -1,28 +1,23 @@
 $(document).ready(function () {
-
-    var currentQuestion = 0;
-    var viewingAns = 0;
-    var correctAnswers = 0;
-    var quizOver = false;
-    var iSelectedAnswer = [];
+     
+     var fkImtID ;
     var c = localStorage.getItem('TmEx');
     var t;
 
     function timedCount() {
-
+          
+        
 
         var hours = parseInt(c / 3600) % 24;
         var minutes = parseInt(c / 60) % 60;
         var seconds = c % 60;
-        console.log(hours,minutes,seconds)
+       
         var result = (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds < 10 ? "0" + seconds : seconds);
         $('#timer').html(result);
 
         if (c == 0) {
-           // displayScore();
-            $('#iTimeShow').html('Quiz Time Completed!');
-            //$('#timer').html("You scored: " + correctAnswers + " out of: " + questions.length);
-            quizOver = true;
+
+            examEndFuncCore();
             return false;
 
         }
@@ -31,7 +26,7 @@ $(document).ready(function () {
         c = c - 1;
         t = setTimeout(function () {
             timedCount();
-            localStorage.setItem('TmEx', c)
+            localStorage.TmEx=c;
         }, 1000);
         // This displays the current question AND the choices
 
@@ -75,10 +70,23 @@ $(document).ready(function () {
                     var quest = dt['question'];
                     $('#' + fgId).append(questGenBlockOpen2(quest));
                 }
+                if (typ === '13acmatrix') {
+                    var quest = dt['question'];
+                    $('#' + fgId).append(questGenBlockOpen3(quest));
+                }
+                if (typ === '09onluqkesir') {
+                    var quest = dt['question'];
+                    $('#' + fgId).append(questGenBlockOpen4(quest));
+                }
                 if (typ === 'situasiya') {
                     var quest = dt['question'];
-                    $('#' + fgId).append(questGenBlockStus(quest));
+                    var crs = dt['answer'];
+                  
+                    $('#' + fgId).append(questGenBlockStus(quest,crs));
                 }
+
+                var hgt = $('#fenn_list_block').height();
+                $('.answer_card_body').css('height', hgt + 'px');
             },
 
             error: function (jqXHR, status) {
@@ -95,11 +103,11 @@ $(document).ready(function () {
         <div class="question_content"> ${quest}</div>
         <hr>
         <ul class="choiceList">
-          <li class="question_answers"><span>A)</span><input type="radio" class="data_cardAns radio-inline" value="0" name="dynradio${id}">${a}</li>
-          <li class="question_answers"><span>B)</span><input type="radio" class="data_cardAns  radio-inline" value="1" name="dynradio${id}">${b}</li>
-          <li class="question_answers"><span>C)</span><input type="radio" class="data_cardAns  radio-inline" value="2" name="dynradio${id}">${c}</li>
-          <li class="question_answers"><span>D)</span><input type="radio" class="data_cardAns  radio-inline" value="3" name="dynradio${id}">${d}</li>
-          <li class="question_answers"><span>E)</span><input type="radio" class="data_cardAns  radio-inline" value="4" name="dynradio${id}">${e}</li>
+          <li class="question_answers"><span>A)</span><input type="radio" data-fkAns="A" class="resultFk data_cardAns radio-inline" value="0" name="dynradio${id}">${a}</li>
+          <li class="question_answers"><span>B)</span><input type="radio" data-fkAns="B" class="resultFk data_cardAns  radio-inline" value="1" name="dynradio${id}">${b}</li>
+          <li class="question_answers"><span>C)</span><input type="radio" data-fkAns="C" class="resultFk data_cardAns  radio-inline" value="2" name="dynradio${id}">${c}</li>
+          <li class="question_answers"><span>D)</span><input type="radio" data-fkAns="D" class="resultFk data_cardAns  radio-inline" value="3" name="dynradio${id}">${d}</li>
+          <li class="question_answers"><span>E)</span><input type="radio" data-fkAns="E" class="resultFk data_cardAns  radio-inline" value="4" name="dynradio${id}">${e}</li>
         </ul>
          `
 
@@ -110,7 +118,7 @@ $(document).ready(function () {
         return `
         <div class="question_content">${quest}</div>
         <hr>
-        <input type="text" class="form-control" name="" id="textOpensimple">
+        <input type="text" class="resultFk form-control" name="" id="textOpensimple">
          `
 
     }
@@ -121,7 +129,7 @@ $(document).ready(function () {
         <div class="question_content">${quest}</div>
         <hr>
         <div class="col-lg-6">
-        <input disabled type="text" name="" class="form-control Input_button_list" id="">
+        <input disabled type="text" name="" class="resultFk form-control Input_button_list" id="">
         </div>
        
         <table class='col-lg-6 table_button_list'>
@@ -134,29 +142,126 @@ $(document).ready(function () {
         <th>E</th>
       </thead>
       <tbody>
-         <tr>
+      <tr data-vall="1">
+      <th>1</th>
+       <td><input type="checkbox" name="" value="A"></td>
+       <td><input type="checkbox" name="" value="B"></td>
+       <td><input type="checkbox" name="" value="C"></td>
+       <td><input type="checkbox" name="" value="D"></td>
+       <td><input type="checkbox" name="" value="E"></td>
+   
+      </tr>
+      <tr data-vall="2">
+      <th>1</th>
+       <td><input type="checkbox" name="" value="A"></td>
+       <td><input type="checkbox" name="" value="B"></td>
+       <td><input type="checkbox" name="" value="C"></td>
+       <td><input type="checkbox" name="" value="D"></td>
+       <td><input type="checkbox" name="" value="E"></td>
+   
+      </tr>
+      <tr data-vall="3">
+      <th>3</th>
+       <td><input type="checkbox" name="" value="A"></td>
+       <td><input type="checkbox" name="" value="B"></td>
+       <td><input type="checkbox" name="" value="C"></td>
+       <td><input type="checkbox" name="" value="D"></td>
+       <td><input type="checkbox" name="" value="E"></td>
+   
+      </tr>
+        
+         
+      </tbody>
+    </table>
+   
+         `
+
+    }
+    function questGenBlockOpen3(quest) {
+
+        return `
+        <div class="question_content">${quest}</div>
+        <hr>
+        <div class="col-lg-6">
+        <input disabled type="text" name="" class="resultFk form-control Input_button_list" id="">
+        </div>
+       
+        <table class='col-lg-6 table_button_list'>
+      <thead>
+        <th>#</th>
+        <th>A</th>
+        <th>B</th>
+        <th>C</th>
+        
+      </thead>
+      <tbody>
+         <tr data-vall="1">
            <th>1</th>
-          <td><input type="checkbox" name="" id="1A"></td>
-          <td><input type="checkbox" name="" id="1B"></td>
-          <td><input type="checkbox" name="" id="1C"></td>
-          <td><input type="checkbox" name="" id="1D"></td>
-          <td><input type="checkbox" name="" id="1E"></td>
+           <td><input type="checkbox" name="" value="A"></td>
+           <td><input type="checkbox" name="" value="B"></td>
+           <td><input type="checkbox" name="" value="C"></td>
+        
         </tr>
-         <tr>
+         <tr data-vall="2">
            <th>2</th>
-          <td><input type="checkbox" name="" id=""></td>
-          <td><input type="checkbox" name="" id=""></td>
-          <td><input type="checkbox" name="" id=""></td>
-          <td><input type="checkbox" name="" id=""></td>
-          <td><input type="checkbox" name="" id=""></td>
+          <td><input type="checkbox" name="" value="A"></td>
+          <td><input type="checkbox" name="" value="B"></td>
+          <td><input type="checkbox" name="" value="C"></td>
+          
         </tr>
-         <tr>
+         <tr data-vall="3">
            <th>3</th>
-          <td><input type="checkbox" name="" id=""></td>
-          <td><input type="checkbox" name="" id=""></td>
-          <td><input type="checkbox" name="" id=""></td>
-          <td><input type="checkbox" name="" id=""></td>
-          <td><input type="checkbox" name="" id=""></td>
+           <td><input type="checkbox" name="" value="A"></td>
+           <td><input type="checkbox" name="" value="B"></td>
+           <td><input type="checkbox" name="" value="C"></td>
+        
+        </tr>
+        
+         
+      </tbody>
+    </table>
+   
+         `
+
+    }
+    function questGenBlockOpen4(quest) {
+
+        return `
+        <div class="question_content">${quest}</div>
+        <hr>
+        <div class="col-lg-6">
+        <input disabled type="text" name="" class="resultFk form-control Input_button_list" id="">
+        </div>
+       
+        <table class='col-lg-6 table_button_list'>
+      <thead>
+        <th>#</th>
+        <th>A</th>
+        <th>B</th>
+        <th>C</th>
+        
+      </thead>
+      <tbody>
+         <tr data-vall="1">
+           <th>1</th>
+           <td><input type="checkbox" name="" value="A"></td>
+           <td><input type="checkbox" name="" value="B"></td>
+           <td><input type="checkbox" name="" value="C"></td>
+        
+        </tr>
+         <tr data-vall="2">
+           <th>2</th>
+          <td><input type="checkbox" name="" value="A"></td>
+          <td><input type="checkbox" name="" value="B"></td>
+          <td><input type="checkbox" name="" value="C"></td>
+          
+        </tr>
+         <tr data-vall="3">
+           <th>3</th>
+           <td><input type="checkbox" name="" value="A"></td>
+           <td><input type="checkbox" name="" value="B"></td>
+           <td><input type="checkbox" name="" value="C"></td>
+        
         </tr>
         
          
@@ -167,16 +272,74 @@ $(document).ready(function () {
 
     }
 
-    function questGenBlockStus(quest) {
+    function questGenBlockStus(quest,crs) {
 
         return `
         <div class="question_content">${quest}</div>
         <hr>
-        <textarea class="form-control" name="" id="textsituasiya" cols="30" rows="10"></textarea>
+        <input type="radio" name="result" data-fkans="0" class="resultFk">0bal
+        <br>
+        <input type="radio" name="result" data-fkans="1" class="resultFk">1bal
+        <br>
+        <input type="radio" name="result" data-fkans="2" class="resultFk">2bal
+        <br>
+       
+        <button class="show_answer btn btn-primary">Düzgün Cavab</button>
+        <br>
+        <span class="correct_answer">${crs}</span>
+        
          `
 
     }
 
+    function generateBlockQuestInside(type,idts){
+        if (type === 'close') {
+
+            displayCurrentQuestion(type, idts, 'getQapaliSualBodyById')
+        }
+        if (type === 'sadesual') {
+            displayCurrentQuestion(type, idts, 'getAciqSualBodyById')
+        }
+        if (type === '13aematrix') {
+            displayCurrentQuestion(type, idts, 'getAciqSualBodyById')
+        }
+        if (type === '13acmatrix') {
+            displayCurrentQuestion(type, idts, 'getAciqSualBodyById')
+        }
+        if (type === '09onluqkesir') {
+            displayCurrentQuestion(type, idts, 'getAciqSualBodyById')
+        }
+        if (type === 'cedvel') {
+            displayCurrentQuestion(type, idts, 'getAciqSualBodyById')
+        }
+    }
+
+    $(document).on('click',".table_button_list tbody tr td input",function(){
+
+        var vl = $(this).parents('tbody').find('tr');
+        var ale=[];
+      
+        for (let index = 0; index < vl.length; index++) {
+                var ts= $(vl[index]).find('input')
+                ale.push($(vl[index]).attr('data-vall'));
+
+                for (let i = 0; i < ts.length; i++) {
+
+                    if($(ts[i]).is(':checked')){
+
+
+
+                        ale.push($(ts[i]).val());
+                        
+        
+                       }
+                    
+                }
+                ale.push(',');
+        }
+        
+        $(this).parents(".quizContainer").find('.resultFk').val(ale.join(""));
+    })
     $(document).on('click', '.number-quest-short-block span', function (e) {
         var datr = $(this).attr('data-numb-type')
         var act1 = $(this).parents('#fenn_list_block').find('.tab-pane.active').find('.active.quizContainer');
@@ -188,27 +351,40 @@ $(document).ready(function () {
         act.empty();
         var type = act.attr('data-quest-type');
         var idts = act.attr('id');
-
+     
         $('.number-quest-short-block').find('span').removeClass('active');
         $(this).addClass('active');
-        if (type === 'close') {
-
-            displayCurrentQuestion(type, idts, 'getQapaliSualBodyById')
-        }
-        if (type === 'sadesual') {
-            displayCurrentQuestion(type, idts, 'getAciqSualBodyById')
-        }
-        if (type === '13aematrix') {
-            displayCurrentQuestion(type, idts, 'getAciqSualBodyById')
-        }
-        if (type === 'situasiya') {
-            displayCurrentQuestion(type, idts, 'getAciqSualBodyById')
-        }
+        generateBlockQuestInside(type,idts);
         setTimeout(function () {
             var hgt = $('#fenn_list_block').height();
             $('.answer_card_body').css('height', hgt + 'px');
         }, 500)
+        setBackQuestionHst(fkImtID,idts,act);
+    })
 
+    $(document).on('change','.resultFk', function(){
+        var lstId = $(this).parents('.quizContainer').attr('id');
+      
+        var typ = $(this).attr('type');
+        if(typ==='radio'){
+            var chkAns1 = $(this).attr('data-fkans');
+            examQuestionUpdate(fkImtID,lstId,chkAns1,fkUserCode);
+          
+            return
+        }
+        if(typ==='text'){
+            var chkAns = $(this).val();
+            examQuestionUpdate(fkImtID,lstId,chkAns,fkUserCode);
+           
+            return
+        }
+        
+       
+    })
+    $(document).on('click','.show_answer', function(){
+        
+        $(this).parent().find('.correct_answer').css('display','inline');
+       
     })
 
     $(this).find(".preButton").on("click", function () {
@@ -217,32 +393,22 @@ $(document).ready(function () {
 
         var act1 = $(this).parents('#fenn_list_block').find('.tab-pane.active').find('.active.quizContainer');
         var fkr = act1.index();
-        console.log(fkr);
+        
         if (fkr !== 1) {
             act1.prev().addClass('active');
-
+  
             act1.removeClass('active');
 
             var act = $(this).parents('#fenn_list_block').find('.tab-pane.active').find('.active.quizContainer');
             act.empty();
             var type = act.attr('data-quest-type');
             var idts = act.attr('id');
+           
             $('.number-quest-short-block').find('span').removeClass('active');
             $('[data-numb-type="' + idts + '"]').addClass('active');
-            if (type === 'close') {
-
-                displayCurrentQuestion(type, idts, 'getQapaliSualBodyById')
-            }
-            if (type === 'open') {
-                displayCurrentQuestion(type, idts, 'getAciqSualBodyById')
-            }
-            if (type === 'situasiya') {
-                displayCurrentQuestion(type, idts, 'getAciqSualBodyById')
-            }
-            setTimeout(function () {
-                var hgt = $('#fenn_list_block').height();
-                $('.answer_card_body').css('height', hgt + 'px');
-            }, 500)
+            generateBlockQuestInside(type,idts);
+           
+            setBackQuestionHst(fkImtID,idts,act);
         }
 
     });
@@ -256,31 +422,23 @@ $(document).ready(function () {
         var act1 = $(this).parents('#fenn_list_block').find('.active').find('.quizContainer.active');
 
 
-        if (act1.next().addClass('active')) {
+          act1.next().addClass('active')
             act1.removeClass('active');
 
             var act = $(this).parents('#fenn_list_block').find('.active').find('.quizContainer.active');
             act.empty();
             var type = act.attr('data-quest-type');
             var idts = act.attr('id');
+               
+           
+           
             $('.number-quest-short-block').find('span').removeClass('active');
             $('[data-numb-type="' + idts + '"]').addClass('active');
 
-            if (type === 'close') {
-
-                displayCurrentQuestion(type, idts, 'getQapaliSualBodyById')
-            }
-            if (type === 'open') {
-                displayCurrentQuestion(type, idts, 'getAciqSualBodyById')
-            }
-            if (type === 'situasiya') {
-                displayCurrentQuestion(type, idts, 'getAciqSualBodyById')
-            }
-            setTimeout(function () {
-                var hgt = $('#fenn_list_block').height();
-                $('.answer_card_body').css('height', hgt + 'px');
-            }, 500)
-        }
+            generateBlockQuestInside(type,idts);
+           
+            setBackQuestionHst(fkImtID,idts,act);
+        
 
 
     });
@@ -289,7 +447,7 @@ $(document).ready(function () {
 
         $('#fenn_list_block .active .active .data_cardAns').prop('checked', false);
         var art=$('#fenn_list_block .active .quizContainer.active').attr('id');
-         console.log(art);
+        
         var anscr = $('#table_answer_card .active').find('tr[data-numcard=' + art + ']');
 
         anscr.find('td span').removeClass('checkAns');
@@ -304,102 +462,27 @@ $(document).ready(function () {
         anscr.find('td span').removeClass('checkAns');
         anscr.find('td').eq(val).find('span').addClass('checkAns');
     })
+    $(document).on('click', '#end_exam_finished', function () {
 
-
-
-    function resetQuiz() {
-        currentQuestion = 0;
-        correctAnswers = 0;
-        hideScore();
-    }
-
-    function displayScore() {
-        $(document).find(".quizContainer > .result").text("You scored: " + correctAnswers + " out of: " + questions.length);
-        $(document).find(".quizContainer > .result").show();
-    }
-
-    function hideScore() {
-        $(document).find(".result").hide();
-    }
-
-    // This displays the current question AND the choices
-    function viewResults() {
-
-        if (currentQuestion == 10) {
-            currentQuestion = 0;
-            return false;
+        if(confirm("İmtahanı Sonlandırmaq istədiyinizdən əminsiniz?")){
+            examEndFuncCore();
         }
-        if (viewingAns == 1) {
-            return false;
-        }
-
-        hideScore();
-        var question = questions[currentQuestion].question;
-        var questionClass = $(document).find(".quizContainer > .question_content");
-        var choiceList = $(document).find(".quizContainer > .choiceList");
-        var numChoices = questions[currentQuestion].choices.length;
-        // Set the questionClass text to the current question
-        $(questionClass).text(question);
-        // Remove all current <li> elements (if any)
-        $(choiceList).find("li").remove();
-        var choice;
-
-
-        for (i = 0; i < numChoices; i++) {
-            choice = questions[currentQuestion].choices[i];
-
-            if (iSelectedAnswer[currentQuestion] == i) {
-                if (questions[currentQuestion].correctAnswer == i) {
-                    $('<li style="border:2px solid green;margin-top:10px;"><input type="radio" class="radio-inline" checked="checked"  value=' + i + ' name="dynradio" />' + ' ' + choice + '</li>').appendTo(choiceList);
-                } else {
-                    $('<li style="border:2px solid red;margin-top:10px;"><input type="radio" class="radio-inline" checked="checked"  value=' + i + ' name="dynradio" />' + ' ' + choice + '</li>').appendTo(choiceList);
-                }
-            } else {
-                if (questions[currentQuestion].correctAnswer == i) {
-                    $('<li style="border:2px solid green;margin-top:10px;"><input type="radio" class="radio-inline" value=' + i + ' name="dynradio" />' + ' ' + choice + '</li>').appendTo(choiceList);
-                } else {
-                    $('<li><input type="radio" class="radio-inline" value=' + i + ' name="dynradio" />' + ' ' + choice + '</li>').appendTo(choiceList);
-                }
-            }
-        }
-
-        currentQuestion++;
-
-        setTimeout(function () {
-            viewResults();
-        }, 3000);
-    }
+      
+    })
 
 
 
     function activeAddClass() {
 
-
-
         $('#fenn_list_block .active .quizContainer').first().addClass('active');
         $('#fenn_list_block .active .number-quest-short-block span').first().click();
-        /* 	var idts = $('#fenn_list_block .active .quizContainer').first().attr('id');
-		var type = $('#fenn_list_block .active .quizContainer').first().attr('data-quest-type');
-
-
-		if (type === 'close') {
-
-			displayCurrentQuestion(type, idts, 'getQapaliSualBodyById')
-		}
-		if (type === 'open') {
-			displayCurrentQuestion(type, idts, 'getAciqSualBodyById')
-		}
-		if (type === 'situasiya') {
-			displayCurrentQuestion(type, idts, 'getAciqSualBodyById')
-		}
- */
+  
     };
-
     $(document).on('click', '#list_fenn_short li', function () {
 
         let id = $(this).find('a').attr('href');
         var s2 = id.substring(1);
-        console.log(s2);
+        
         $('#table_answer_card tbody').removeClass('active')
         $('#table_answer_card [mid=' + s2 + ']').addClass('active');
         $('.custom_tab_content #' + s2 + '').find(".number-quest-short-block span:first-child").click();
@@ -441,8 +524,8 @@ $(document).ready(function () {
             crossDomain: true,
             dataType: "json",
             success: function (data, status, jqXHR) {
-                var dat = data.tbl[0].r
-
+               
+                var dat = data.tbl[0].r;
                 for (let index = 0; index < dat.length; index++) {
                     var idTc = dat[index]['id'];
                     if (gId === idTc) {
@@ -510,7 +593,7 @@ $(document).ready(function () {
             var exdat1 = {
                 "kv": {
                     "fkImtahanNovuId": idg,
-                    "fkUserId": 444
+                    "fkUserId": fkUserCode
                 }
             }
 
@@ -521,14 +604,10 @@ $(document).ready(function () {
 
 
         }
-        setTimeout(function () {
-
+        setTimeout(() => {
             activeAddClass();
         }, 1000);
-
-
-
-
+       
     }
 
     function startQuestBlockGenCore(exdat1, ixe, sctNm) {
@@ -537,12 +616,13 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: UrlQb + "api/post/zdfn/qebulaz/abituriyentImtahaninTeskili",
+            url: UrlQb + "api/post/zdfn/qebulaz/startAbituriyentExam",
             data: JSON.stringify(exdat1), // now data come in this function
             contentType: "application/json; charset=utf-8",
             crossDomain: true,
             dataType: "json",
             success: function (data, status, jqXHR) {
+                 fkImtID = data.kv['fkImtahanId'];
                 var ir = ixe + 1
                 var dat = data.kv['section' + ir + 'QapaliSuallar'].split(',')
                 let cnt = 1
@@ -583,7 +663,7 @@ $(document).ready(function () {
 
                 }
                 var dat1 = data.tbl[ixe].r
-
+                
                 for (let ix1 = 0; ix1 < dat1.length; ix1++) {
 
                     $('#' + sctNm).append(
@@ -654,6 +734,8 @@ $(document).ready(function () {
 
                 }
 
+
+               
             },
 
             error: function (jqXHR, status) {
@@ -666,6 +748,151 @@ $(document).ready(function () {
     }
     //answer card generate 
 
+    function examQuestionUpdate(fkId,fkQstId,cvb,Usid){
+
+        var prop = {
+            "kv": {
+                
+                 "fkImtahanId": fkId,
+                  "fkSualId": fkQstId,
+                  "cavab":cvb,
+                 "fkImtID":Usid       
+            } 
+        }
+
+        $.ajax({
+            type: "POST",
+            url: UrlQb + "api/post/zdfn/qebulaz/updateImtahanSuallarByImtahanIdAndSualId",
+            data: JSON.stringify(prop), // now data come in this function
+            contentType: "application/json; charset=utf-8",
+            crossDomain: true,
+            dataType: "json",
+            success: function (data, status, jqXHR) {
+             
+         
+
+            },
+
+            error: function (jqXHR, status) {
+                // error handler
+
+                alert('fail' + status.code);
+            }
+        }); 
+    }
+
+     function setBackQuestionHst(efkId,slId,tol){
+        var prop = {
+            "kv": { 
+                 "fkImtahanId": efkId,
+                 "fkSualId":slId
+            } 
+        }
+        $.ajax({
+            type: "POST",
+            url: UrlQb + "api/post/zdfn/qebulaz/getImtahanSuallarListByImtahanId",
+            data: JSON.stringify(prop), // now data come in this function
+            contentType: "application/json; charset=utf-8",
+            crossDomain: true,
+            dataType: "json",
+            success: function (data, status, jqXHR) {
+               var typ= data.kv['sualType'] ;
+               var cb= data.kv['cavab'] ;
+            
+             returnDataAnswer(tol,cb,typ)
+            },
+
+            error: function (jqXHR, status) {
+                // error handler
+
+                alert('fail' + status.code);
+            }
+        }); 
+     }
+     function returnDataAnswer(tol,cb,typ){
+      
+        console.log(tol,cb,typ);
+        if(typ==="qapali"){
+           
+             tol.find('.question_answers [data-fkans="'+cb+'"]').attr('checked', true);
+              
+        }
+        if(typ==="situasiya"){
+            tol.find('[data-fkans="'+cb+'"]').attr('checked', true);
+        }
+        if(typ==="aciq"){
+            tol.find('.resultFk').val(cb)
+        }
+         
+     }
+
+
+  function convertStDate(dt){
+
+     var arr = dt.slice(0, 4);
+     var arr1 = dt.slice(4, 6);
+     var arr2 = dt.slice(6, 8);
+    
+     var fns = arr+"/"+arr1+'/'+arr2;
+       
+     return fns
+  }
+  function convertStTime(dt){
+
+     var arr = dt.slice(0, 2);
+     var arr1 = dt.slice(2,4);
+   
+    
+     var fns = arr+":"+arr1;
+       
+     return fns
+  }
+
+     function examEndFuncCore(){
+
+        $('#exam_cont_page').css('display',"none");
+        $('#result_cont_page').css('display',"block");
+        examEndFunc(fkImtID,fkUserCode);
+         
+        localStorage.removeItem('idExam1');
+        localStorage.setItem('idExam');
+        localStorage.removeItem('TmEx');
+        c=0
+         }
+     function examEndFunc(efkId,UserCode){
+        var prop = {
+            "kv": { 
+                 "fkImtahanId": efkId,
+                 "fkUserId":UserCode
+            } 
+        }
+        $.ajax({
+            type: "POST",
+            url: UrlQb + "api/post/zdfn/qebulaz/getImtahanNeticeleriById",
+            data: JSON.stringify(prop), // now data come in this function
+            contentType: "application/json; charset=utf-8",
+            crossDomain: true,
+            dataType: "json",
+            success: function (data, status, jqXHR) {
+               var dat= data.tbl[0].r[0];
+              $('#exam_hours').text(dat['imtahanMuddeti']);
+              $('#variant_exam').text(dat['cariStatus']);
+              $('#start_date_exam').text(convertStDate(dat['baslamaTarixi']));
+              $('#start_hours_exam').text(convertStTime(dat['baslamaSaati']));
+              $('#end_date_exam').text(convertStDate(dat['bitisTarixi']));
+              $('#end_hours_exam').text(convertStTime(dat['bitisSaati']));
+              $('#general_result_exam').text(dat['umumiBal']);
+
+            
+            },
+
+            error: function (jqXHR, status) {
+                // error handler
+
+                alert('fail' + status.code);
+            }
+        }); 
+     }
 
 
 })

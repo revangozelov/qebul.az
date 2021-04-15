@@ -38,8 +38,8 @@
 
 </head>
 
-<body id="home" style="zoom: 78%;" data-spy="scroll" data-target="#navbar-wd" data-offset="98">
-  
+<body id="home"  data-spy="scroll" data-target="#navbar-wd" data-offset="98">
+ 
   <!-- LOADER -->
   <div id="preloader">
     <div class="loader">
@@ -50,7 +50,7 @@
   <!-- END LOADER -->
 
   <!-- End header -->
-  <div class="container" style="flex-wrap: wrap; display: flex;">
+  <div class="container"  id="exam_cont_page" style="zoom: 78%; flex-wrap: wrap; display: flex;">
     <div class="quiz_header" style="flex-wrap: wrap; display: flex;">
       <div class="col-sm-12 col-md-7 col-lg-7">
         <div class="quiz_name"> <span><i class="fas fa-book"></i></span> 9 cu Sinif Imtahani</div>
@@ -76,7 +76,7 @@
         </div>
       </div>
       <div class="exam_end col-sm-12 col-md-2 col-lg-2">
-        <button class="btn_end_exam">İmatahanı Sonlandır</button>
+        <button id="end_exam_finished" class="btn_end_exam">İmatahanı Sonlandır</button>
       </div>
 
       <div class="quiz_time_head col-sm-12 col-md-2 col-lg-2">
@@ -134,6 +134,56 @@
 
 
 
+  </div>
+
+  <div class style="zoom: 110%;display: none;" id="result_cont_page"  >
+    <nav class="navbar navbar-light bg-light">
+      <img src="images/logo.png" width="150" height="72" class="d-inline-block align-top" alt="">
+      <a class="navbar-brand" href="#"><i class="fas fa-file-pdf"></i>
+      </a>
+    </nav>
+       <div class="container">
+        <table class="zigzag-table">
+          <tbody>
+         <tr>
+           <td>İmtahan verənin adı və soyadı:</td>
+           <td>Revan</td>
+           <td>Gozelov</td>
+         </tr>
+         <tr>
+           <td>İmtahan adı: </td>
+           <td>1972</td>
+           <td>9.1</td>
+         </tr>
+         <tr>
+           <td>İmtahan Müddəti</td>
+           <td id="#exam_hours" >180</td>
+           <td>Dəqiqə</td>
+         </tr>
+         <tr>
+           <td>Variant </td>
+           <td id="variant_exam">A</td>
+           <td>Variantı</td>
+         </tr>
+         <tr>
+          <td>Başlanğıc Tarixi </td>
+          <td id="start_date_exam" >1994</td>
+          <td id="start_hours_exam" >8.8</td>
+        </tr>
+         <tr>
+           <td>Bitiş Tarixi</td>
+           <td id="end_date_exam" >1993</td>
+           <td id="end_hours_exam">8.9</td>
+         </tr>
+         <tr>
+           <td>Yekun Bal</td>
+           <td id="general_result_exam" >100</td>
+           <td>Bal</td>
+         </tr>
+       </tbody>
+     </table>
+       </div>
+    
   </div>
 
   <!-- ALL JS FILES -->

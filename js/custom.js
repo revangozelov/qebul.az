@@ -1,6 +1,6 @@
 
 var UrlQb = "https://app.sourcedagile.com/";
-
+var fkUserCode = localStorage.getItem('UsId');
 (function (a) {
 	a.MaskedInput = function (f) {
 		if (!f || !f.elm || !f.format) {
@@ -431,7 +431,6 @@ Fixed Menu
 
 
 	})
-	$(".data_picker").datepicker();
 	//open and close tab menu
 	$('.nav-tabs-dropdown')
 		.on("click", "li:not('.active') a", function (event) {
@@ -460,7 +459,7 @@ Fixed Menu
 
 
 
-let userId ='';
+let userId="";
 
 //user info set 
 $(document).ready(function () {
@@ -470,8 +469,9 @@ $(document).ready(function () {
 		let id = $(this).attr('id')
 		$("imtahan_list_inside").empty();
 		addExamList(id)
-
+      
 	})
+	
 	$(document).on('click', '#imtahan_list_inside div', function () {
 
 		let id = $(this).attr('id')
@@ -504,7 +504,7 @@ $(document).ready(function () {
 				var dat = data.tbl[0].r
 				var ilst = $('#imtahan_list_inside');
 
-
+                     
 				for (let index = 0; index < dat.length; index++) {
 
 					var fennTc = dat[index]['parentImtahanNovu'];
@@ -513,7 +513,7 @@ $(document).ready(function () {
 						var imgTc = dat[index]['logoUrl'];
 						var nameTc = dat[index]['imtahanNovuAdi'];
 						var time = dat[index]['duration'];
-						localStorage.setItem('TmEx', time)
+						localStorage.setItem('TmEx', time*60)
 						ilst.append(genExamBlock(idTc, nameTc, imgTc));
 
 
@@ -534,7 +534,7 @@ $(document).ready(function () {
 	}
 
 
-	getUserInfoProfile();
+	
 	//teacher post api 
 	function genTeacherBlock(id, img, name, fenn) {
 
@@ -670,7 +670,7 @@ $(document).ready(function () {
 		$('#number_input_qb').val('');
 		$('#password_input_qb').val('');
 		$('#repassword_input_qb').val('');
-		$('#status_select_qb').val('');
+		$('#date_select_qb').val('');
 
 
 
@@ -688,19 +688,18 @@ $(document).ready(function () {
 		var numb = $('#number_input_qb').val();
 		var pass = $('#password_input_qb').val();
 		var repass = $('#repassword_input_qb').val();
-		var stts = $('#status_select_qb').val();
+		var date = $('#date_select_qb').val();
 
 
 		let objectUser = {
 			"kv": {
-				"api": "insertNewUser",
 				"name": nm,
 				"surname": surnm,
 				"email": eml,
-				"userStatus": stts,
 				"mobile": numb,
 				"password": pass,
-
+				"confirmPassword":repass,
+				"birthDate": date     
 			}
 
 		}
@@ -713,13 +712,13 @@ $(document).ready(function () {
 
 					$.ajax({
 						type: "POST",
-						url: UrlQb+"api/post/zd/qebulaz/insertNewUser",
+						url: UrlQb+"api/post/zd/qebulaz/registration",
 						data: JSON.stringify(objectUser), // now data come in this function
 						contentType: "application/json; charset=utf-8",
 						crossDomain: true,
 						dataType: "json",
 						success: function (data, status, jqXHR) {
-
+                              console.log('data');
 							resetFlud(eml);
 
 						},
@@ -751,20 +750,10 @@ $(document).ready(function () {
 		setUserInfoDataBase()
 	})
 
-	function updateProgress(evt) {
-
-		var prec = $('.percentTst');
-		var percentLoaded = Math.round((evt.loaded / evt.total) * 100);
-
-		prec.css("width", percentLoaded + '%');
-		prec.text(percentLoaded + '%');
-
-	}
-
+	
 	function uploadFile4Ipo(id) {
-		var prec = $('.percentTst');
-		var r = "";
-		var that = this;
+		/* var prec = $('.percentTst'); */
+	
 		var files = document.getElementById(id).files;
 		var file_count = files.length;
 		var st = "";
@@ -777,29 +766,21 @@ $(document).ready(function () {
 
 			if (files && file) {
 				var reader = new FileReader();
-				prec.css('width', '0%');
-				prec.text('0%');
+				/* prec.css('width', '0%');
+				prec.text('0%'); */
 				reader.fileName = fname;
 				reader.fileExt = fileext;
 				reader.fileNo = i;
-				reader.onprogress = updateProgress;
-				reader.onloadstart = function (e) {
-					$('#progress_bar').addClass('loading');
-				}
+				
 				reader.onload = function (readerEvt) {
-					prec.css('width', '100%');
-					prec.text('100%');
-
-					setTimeout(function () {
-						$('#progress_bar').removeClass('loading');
-					}, 2000);
-					trc++;
+						trc++;
 					var fname1 = readerEvt.target.fileName;
 					var fileext1 = readerEvt.target.fileExt;
-					var fileNo = readerEvt.target.fileNo;
+					
 
 					var binaryString = readerEvt.target.result;
 					var s = uploadFile4IpoCore(fileext1, btoa(binaryString), fname1);
+				
 					st += s;
 					st += (trc < file_count) ? global_var.vertical_seperator : "";
 
@@ -816,7 +797,7 @@ $(document).ready(function () {
 	}
 
 	function uploadFile4IpoCore(fileext, file_base_64, file_name) {
-
+        
 		var d = new Object();
 		d.file_base_64 = file_base_64;
 		d.file_extension = fileext;
@@ -824,8 +805,10 @@ $(document).ready(function () {
 		d.file_name = file_name;
 		conf = JSON.parse('{"kv":{}}');
 		conf['kv'] = d;
+		
 		var dat = JSON.stringify(conf);
 		var finalname = "";
+		
 		$.ajax({
 			url: UrlQb+"api/post/upload",
 			type: "POST",
@@ -834,10 +817,10 @@ $(document).ready(function () {
 			async: false,
 			success: function (data) {
 				finalname = data.kv.uploaded_file_name;
-			
+				
 			},
 			error: function () {
-			
+			     console.log('olmadi');
 			}
 		});
 		return finalname;
@@ -949,25 +932,26 @@ $(document).ready(function () {
 	})
 	$(document).on("click", '#exit_profile_name', function () {
 
-		localStorage.UserName = '';
+		localStorage.removeItem('UsId');
 
-		location.reload()
+		location.reload();
+
 
 	})
 
 	$(document).on("click", '#sign_in_btn', function () {
 		var userNm = $(this).parents('.modal-content').find('#exampleInputEmail1').val();
 		var userPass = $(this).parents('.modal-content').find('#exampleInputPassword1').val();
-		getUserLogin(userNm, userPass)
+		getUserLogin(userNm, userPass);
 
-		$('#exampleModal').modal("toggle");
+		
 	})
 
 	function getUserLogin(usNm, pass) {
 
 		let datUs = {
 			"kv": {
-				"username": "" + usNm + "",
+				"email": "" + usNm + "",
 				"password": "" + pass + ""
 
 
@@ -981,11 +965,11 @@ $(document).ready(function () {
 			crossDomain: true,
 			dataType: "json",
 			success: function (data, status, jqXHR) {
-				var dat = data.kv;
-
-				// $('#user_from_sub').submit();
-				localStorage.UserName = dat['userCode'];
+				var dat = data.kv;		
+				localStorage.setItem('UsId', dat['id']);
+				
 				getUserInfoProfile();
+				$('#exampleModal').modal("toggle");
 			},
 
 			error: function (jqXHR, status) {
@@ -998,8 +982,8 @@ $(document).ready(function () {
 
 	function getUserInfoProfile() { // pass your data in method
 
-		userId = localStorage.UserName;
-		if (userId.length > 0) {
+		userId = localStorage.getItem('UsId');
+		if (userId.length !== '') {
 
 
 			$('#login_btn_data').css('display', 'none');
@@ -1019,7 +1003,7 @@ $(document).ready(function () {
 
 					for (let index = 0; index < dat.length; index++) {
 
-						var idTc = dat[index]['userCode'];
+						var idTc = dat[index]['id'];
 						var gendr = dat[index]['gender'];
 						var exGr = dat[index]['examGroup'];
 						var mbl = dat[index]['mobile'];
@@ -1111,7 +1095,10 @@ $(document).ready(function () {
 		tds1.addClass('dataRespOpen');
 
 	}
-	addTableRespBtn()
+	addTableRespBtn();
+
+
+	getUserInfoProfile();
 
 });
 
