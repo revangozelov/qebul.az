@@ -27,7 +27,7 @@ function addDataSlide(data){// pass your data in method
 						   .append($("<div>")
 						              .addClass('pogoSlider-slide')
 						              .attr('id',idSld)
-						              .attr('style','background-image:url("https://app.sourcedagile.com/api/get/files/'+imgSld+'");'))
+						              .attr('style','background-image:url("https://app.sourcedagile.com/api/get/zdfiles/qebulaz/'+imgSld+'");'))
 
 					
 					

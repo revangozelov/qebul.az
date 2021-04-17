@@ -1,7 +1,8 @@
 $(document).ready(function () {
      
-     var fkImtID ;
+    var fkImtID ;
     var c = localStorage.getItem('TmEx');
+     var nameEx=localStorage.getItem('nameExam')
     var t;
 
     function timedCount() {
@@ -277,12 +278,15 @@ $(document).ready(function () {
         return `
         <div class="question_content">${quest}</div>
         <hr>
-        <input type="radio" name="result" data-fkans="0" class="resultFk">0bal
-        <br>
-        <input type="radio" name="result" data-fkans="1" class="resultFk">1bal
-        <br>
-        <input type="radio" name="result" data-fkans="2" class="resultFk">2bal
-        <br>
+        <input type="radio" name="result" data-fkans="0" class="resultFk">
+        <span class="situasiya_bl">0 Bal</span>
+  
+        <input type="radio" name="result" data-fkans="1" class="resultFk">
+        <span class="situasiya_bl">1 Bal</span>
+        
+        <input type="radio" name="result" data-fkans="2" class="resultFk">
+        <span class="situasiya_bl">2 Bal</span>
+      
        
         <button class="show_answer btn btn-primary">Düzgün Cavab</button>
         <br>
@@ -310,6 +314,9 @@ $(document).ready(function () {
             displayCurrentQuestion(type, idts, 'getAciqSualBodyById')
         }
         if (type === 'cedvel') {
+            displayCurrentQuestion(type, idts, 'getAciqSualBodyById')
+        }
+        if (type === 'situasiya') {
             displayCurrentQuestion(type, idts, 'getAciqSualBodyById')
         }
     }
@@ -383,7 +390,7 @@ $(document).ready(function () {
     })
     $(document).on('click','.show_answer', function(){
         
-        $(this).parent().find('.correct_answer').css('display','inline');
+        $(this).parent().find('.correct_answer').css('display','inline-block');
        
     })
 
@@ -565,7 +572,7 @@ $(document).ready(function () {
                         }
 
                         //ilst.append(genExamBlock(idTc, nameTc,imgTc));
-
+                        $('#exam_namea').text(nameEx);
 
                     }
 
@@ -818,7 +825,8 @@ $(document).ready(function () {
               
         }
         if(typ==="situasiya"){
-            tol.find('[data-fkans="'+cb+'"]').attr('checked', true);
+            tol.find('.resultFk').val(cb);
+            //tol.find('[data-fkans="'+cb+'"]').attr('checked', true);
         }
         if(typ==="aciq"){
             tol.find('.resultFk').val(cb)
@@ -827,38 +835,20 @@ $(document).ready(function () {
      }
 
 
-  function convertStDate(dt){
 
-     var arr = dt.slice(0, 4);
-     var arr1 = dt.slice(4, 6);
-     var arr2 = dt.slice(6, 8);
-    
-     var fns = arr+"/"+arr1+'/'+arr2;
-       
-     return fns
-  }
-  function convertStTime(dt){
-
-     var arr = dt.slice(0, 2);
-     var arr1 = dt.slice(2,4);
-   
-    
-     var fns = arr+":"+arr1;
-       
-     return fns
-  }
 
      function examEndFuncCore(){
 
         $('#exam_cont_page').css('display',"none");
         $('#result_cont_page').css('display',"block");
-        examEndFunc(fkImtID,fkUserCode);
+        examEndFunc1(fkImtID,fkUserCode);
          
         localStorage.removeItem('idExam1');
-        localStorage.setItem('idExam');
+        localStorage.removeItem('idExam');
         localStorage.removeItem('TmEx');
         c=0
          }
+
      function examEndFunc(efkId,UserCode){
         var prop = {
             "kv": { 
@@ -875,6 +865,7 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data, status, jqXHR) {
                var dat= data.tbl[0].r[0];
+               console.log(data);
               $('#exam_hours').text(dat['imtahanMuddeti']);
               $('#variant_exam').text(dat['cariStatus']);
               $('#start_date_exam').text(convertStDate(dat['baslamaTarixi']));
@@ -882,7 +873,35 @@ $(document).ready(function () {
               $('#end_date_exam').text(convertStDate(dat['bitisTarixi']));
               $('#end_hours_exam').text(convertStTime(dat['bitisSaati']));
               $('#general_result_exam').text(dat['umumiBal']);
+              $('#exam_nmea_end').text(nameEx);
 
+            
+            },
+
+            error: function (jqXHR, status) {
+                // error handler
+
+                alert('fail' + status.code);
+            }
+        }); 
+     }
+     function examEndFunc1(efkId,UserCode){
+        var prop = {
+            "kv": { 
+                 "fkImtahanId": efkId,
+                 "fkUserId":UserCode
+            } 
+        }
+        $.ajax({
+            type: "POST",
+            url: UrlQb + "api/post/zdfn/qebulaz/calculateAbituriyentImtahanNeticesi",
+            data: JSON.stringify(prop), // now data come in this function
+            contentType: "application/json; charset=utf-8",
+            crossDomain: true,
+            dataType: "json",
+            success: function (data, status, jqXHR) {
+                examEndFunc(fkImtID,fkUserCode)
+           
             
             },
 
@@ -896,3 +915,12 @@ $(document).ready(function () {
 
 
 })
+
+
+/* html2pdf(element, {
+    margin: [10, 5, 0, -60],
+    filename: '<?= $dadosboleto["numero_documento"] . '-' . $dadosboleto["sacado_nome"] ?>.pdf',
+    image: {type: 'jpeg', quality: 0.98},
+    html2canvas: {dpi: 300, letterRendering: true, width: 1300, height: 1000, windowWidth: 1000, windowHeight: 1000},
+    jsPDF: {unit: 'mm', format: 'a4', orientation: 'portrait'}
+}); */
