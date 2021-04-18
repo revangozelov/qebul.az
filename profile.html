@@ -159,8 +159,8 @@
     <div class="main-bd">
       <div class="left-side">
         <div class="profile-side">
-          <p class="mobile-no"><i class="fa fa-phone"></i> <span id="user_pr_mobile">5747474574</span></p>
-          <p class="user-mail"><i class="fa fa-envelope"></i> <span id="user_pr_mail">Brightisaac80@gmail.com</span>
+          <p class="mobile-no"><i class="fa fa-phone"></i> <span id="user_pr_mobile"></span></p>
+          <p class="user-mail"><i class="fa fa-envelope"></i> <span id="user_pr_mail"></span>
           </p>
           <div class="user-bio">
             <h3>Əlavə Məlumat</h3>
@@ -398,7 +398,7 @@
           </div>
           <div class="modal-footer">
 
-            <button type="submit" class="btn btn-primary">Yadda Saxla</button>
+            <button type="button" class="btn btn-primary">Yadda Saxla</button>
           </div>
 
         </form>
@@ -418,9 +418,7 @@
               <img src="images/qebulson-2.png" alt="#" style="border-radius: 9px;" />
             </div>
             <div class="full white_fonts">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip </p>
+              <p> </p>
             </div>
           </div>
         </div>
@@ -441,7 +439,7 @@
         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
           <div class="footer_blog full white_fonts">
             <h3>Newsletter</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do</p>
+            <p></p>
             <div class="newsletter_form">
               <form action="index.html">
                 <input type="email" placeholder="Your Email" name="#" required />
@@ -499,13 +497,10 @@
               <input type="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
             </div>
             <div class="form-group contact_form ">
-              <label for="exampleInputPassword1">Password</label>
-              <input type="password" id="exampleInputPassword1" placeholder="Password">
+              <label for="exampleInputPassword1">Şifrə</label>
+              <input type="password" id="exampleInputPassword1" placeholder="Şifrə">
             </div>
-            <div class="form-group form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label" for="exampleCheck1">Remember Password</label>
-            </div>
+            
 
 
           </div>
@@ -513,30 +508,113 @@
 
             <button type="button" class="btn btn-secondary"><a href="login.html">Qeydiyyat</a></button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" id="sign_in_btn" class="btn btn-primary">Submit</button>
+            <button type="button" id="sign_in_btn" class="btn btn-primary">Submit</button>
           </div>
 
         </form>
       </div>
     </div>
   </div>
+  <div class="modal fade" id="resultHstoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true" style="padding-right: 0 !important;">
+        <div class="modal-dialog" style="max-width: 100%;" role="document">
+            <div class="modal-content" >
+                <div class="modal-header ">
+                    <h1 class="modal-title" id="exampleModalLabel">Imtahan Nəticələri</h1>
+                     <div style="margin-left: 20px;">
+                            
+                                <button data-ide='result_cont_page1' class="cnvrtpdfBtn btn btn-primary">PDF-ə Çevir</button>
+                        </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                
+                    <div class="modal-body ">
 
+                        <div class  id="result_cont_page1"  >           
+         
+                            </nav>
+                               <div class="container row" >
+                                <table class="zigzag-table" style="width: 40%; border-right: 1px solid rgba(214, 214, 214, 0.911);">
+                                 <th>İmtahan  </th>
+                                 <th>Nəticələri</th>
+                                 <th>#</th>
+                                  <tbody>
+                                 <tr>
+                                   <td>İmtahan verənin adı və soyadı:</td>
+                                   <td>Revan</td>
+                                   <td>Gozelov</td>
+                                 </tr>
+                                 <tr>
+                                   <td>İmtahan adı: </td>
+                                   <td id="exam_nmea_end1"> </td>
+                                   
+                                 </tr>
+                                 <tr>
+                                   <td>İmtahan Müddəti</td>
+                                   <td id="exam_hours1" ></td>
+                                   <td>Dəqiqə</td>
+                                 </tr>
+                                 <tr>
+                                   <td>Variant </td>
+                                   <td id="variant_exam1"></td>
+                                   <td>Variantı</td>
+                                 </tr>
+                                 <tr>
+                                  <td>Başlanğıc Tarixi </td>
+                                  <td id="start_date_exam1" ></td>
+                                  <td id="start_hours_exam1" ></td>
+                                </tr>
+                                 <tr>
+                                   <td>Bitiş Tarixi</td>
+                                   <td id="end_date_exam1" ></td>
+                                   <td id="end_hours_exam1"></td>
+                                 </tr>
+                                 <tr>
+                                   <td>Yekun Bal</td>
+                                   <td id="general_result_exam1" ></td>
+                                   <td>Bal</td>
+                                 </tr>
+                               </tbody>
+                             </table>
+                                <table class="zigzag-table" style="width: 60%;">
+                                  <thead>
+                                    <tr>
+                                      
+                                      <th>Fənn</th>
+                                      <th>Düzgün Cavab sayı(Qapalı)</th>
+                                      <th>Düzgün Cavab sayı(Açıq)</th>
+                                      <th>Bal</th>
+                                    </tr>
+                                  
+                                   
+                                  </thead>
+                                  <tbody id="fenn-resul-body1">
+                                
+                                 
+                               </tbody>
+                             </table>
+                               </div>
+                            
+                          </div>
+
+                    </div>
+                   
+
+               
+            </div>
+        </div>
+    </div>
     <!-- ALL JS FILES -->
     <script src="js/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="aos/aos.js"></script>
+    
     <!-- ALL PLUGINS -->
-    <!-- <script  src="js/jquery.magnific-popup.min.js"></script> -->
-    <script src="js/jquery.pogo-slider.min.js"></script>
-    <script src="js/slider-index.js"></script>
-    <!-- <script  src="js/smoothscroll.js"></script> -->
-    <!--  <script src="js/form-validator.min.js"></script> -->
-    <script src="js/contact-form-script.js"></script>
-    <!-- <script src="js/isotope.min.js"></script>
-  <script src="js/images-loded.min.js"></script -->
+    <script src="js/html2pdf.min.js"></script>
     <script src="js/custom.js"></script>
 </body>
 

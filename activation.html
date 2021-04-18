@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+      <div>Email Ugurla Aktivləsdirildi </div>
+      <script  src="js/jquery.min.js"></script>
+    <script  src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+    <script  src="js/popper.min.js"></script>
+    <script  src="js/bootstrap.min.js"></script>
+    <!-- <script  src="aos/aos.js"></script> -->
+    <!-- ALL PLUGINS -->
+  
+    <script  src="js/jquery.pogo-slider.min.js"></script>
+    <script  src="js/slider-index.js"></script>
+
+   <!--  <script src="js/form-validator.min.js"></script> -->
+    <script src="js/contact-form-script.js"></script>
+   <script src="js/isotope.min.js"></script>
+    <!-- <script src="js/images-loded.min.js"></script -->
+    
+      <script >
+ function activationPage(efkId){
+         
+         var prop = {
+             "kv": { 
+                  "id": efkId,
+             } 
+         }
+         $.ajax({
+             type: "POST",
+             url: "https://app.qebul.az/api/post/zdfn/qebulaz/activation",
+             data: JSON.stringify(prop), // now data come in this function
+             contentType: "application/json; charset=utf-8",
+             crossDomain: true,
+             dataType: "json",
+             success: function (data, status, jqXHR) {
+             
+              
+             
+             },
+ 
+             error: function (jqXHR, status) {
+                 // error handler
+ 
+                 alert('fail' + status.code);
+             }
+         }); 
+      }
+    
+      var parts = document.location.href.split("?");
+         var params = parts[parts.length - 1];
+         var pairs = params.split("&");
+         for (var i = 0; i < pairs.length; i++) {
+             var k = pairs[i].split("=")[0];
+             var v = pairs[i].split("=")[1];
+             try {
+                 v = v.replace(/#/g, '');
+             } catch (ee) {
+             }
+             
+                
+         }
+         activationPage(v);
+      </script>
+</body>
+</html>

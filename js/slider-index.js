@@ -10,7 +10,7 @@ $(document).ready(function () {
 function addDataSlide(data){// pass your data in method
      $.ajax({
              type: "POST",
-             url: "https://app.sourcedagile.com/api/post/zd/qebulaz/getSliderList",
+             url: "https://app.qebul.az/api/post/zd/qebulaz/getSliderList",
              data: JSON.stringify(data),// now data come in this function
              contentType: "application/json; charset=utf-8",
              crossDomain: true,

@@ -1,6 +1,7 @@
 
-var UrlQb = "https://app.sourcedagile.com/";
-var fkUserCode = localStorage.getItem('UsId');
+var UrlQb = "https://app.qebul.az/";
+var fkUserCode = ''
+fkUserCode = localStorage.getItem('UsId');
 
 (function (a) {
 	a.MaskedInput = function (f) {
@@ -388,9 +389,7 @@ $(document).ready(function () {
 	/* ..............................................
 Fixed Menu
 ................................................. */
-	/* ..............................................
-	    Scroll To Top
-	    ................................................. */
+
 	$(window).on('scroll', function () {
 		if ($(window).scrollTop() > 50) {
 			$('.top-header').addClass('fixed-menu');
@@ -493,14 +492,23 @@ $(document).ready(function () {
 	})
 	
 	$(document).on('click', '#imtahan_list_inside div', function () {
+        
+		fkUserCode 
+		
+
+		if(!localStorage.getItem('UsId')){
+			window.location.href = 'login.html';
+			return
+		} 
+
 
 		let id = $(this).attr('id');
 		let name = $(this).find('h4').text();
 		window.location.href = 'exam.html';
-           
 		localStorage.setItem('idExam', id);
-		localStorage.setItem('nameExam', name);
-
+	   localStorage.setItem('nameExam', name);
+		
+	
 
 
 	})
@@ -513,6 +521,46 @@ $(document).ready(function () {
 	   </div>
       </div>`
 
+	}
+
+	function addParentExam(){
+		$.ajax({
+			type: "POST",
+			url: UrlQb+"api/post/zd/qebulaz/getImtahanTreeList",
+			// now data come in this function
+			contentType: "application/json; charset=utf-8",
+			crossDomain: true,
+			dataType: "json",
+			success: function (data, status, jqXHR) {
+				var dat = data.tbl[0].r
+				var ilst = $('#imtahan_list_index');
+
+                    
+				for (let index = 0; index < dat.length; index++) {
+
+					var fennTc = dat[index]['parentImtahanNovu'];
+					if (fennTc==="") {
+						var idTc = dat[index]['id'];
+						var imgTc = dat[index]['logoUrl'];
+						var nameTc = dat[index]['imtahanNovuAdi'];
+						console.log(dat[index]); 
+						ilst.append(genExamBlock(idTc, nameTc, imgTc));
+						$('#exam_list_dropdown').append($('<li>')
+						                                       .append('<a class="dropdown-item" href="#exams">'+nameTc+'</a>'));
+
+
+					}
+
+				}
+			
+			},
+
+			error: function (jqXHR, status) {
+				// error handler
+				
+				alert('fail' + status.code);
+			}
+		});	
 	}
 	function addExamList(gId) {
 
@@ -556,7 +604,7 @@ $(document).ready(function () {
 		});
 	}
 
-
+	addParentExam();
 	
 	//teacher post api 
 	function genTeacherBlock(id, img, name, fenn) {
@@ -646,29 +694,91 @@ $(document).ready(function () {
 
 	}
 
-	function addDataNews(data) { // pass your data in method
+
+	function typeNewsGen(){
+
+		var type= ['news','aboutus','bilirsizmi','mmelumatlar']
+
+		for (let index = 0; index < type.length; index++) {
+			
+			addDataNews(type[index]);
+
+			console.log(type[index]);
+		}
+	}
+	typeNewsGen()
+
+	function addDataNews(typeN) { // pass your data in method
+	
+		let dtset ={
+			"kv": {
+				 "newsType":typeN
+			   
+			} 
+		}
 		$.ajax({
 			type: "POST",
 			url: UrlQb+"api/post/zd/qebulaz/getNewsList",
-			data: JSON.stringify(data), // now data come in this function
+			data: JSON.stringify(dtset), // now data come in this function
 			contentType: "application/json; charset=utf-8",
 			crossDomain: true,
 			dataType: "json",
 			success: function (data, status, jqXHR) {
 				var dat = data.tbl[0].r
-
+                    console.log(data);
 
 				for (let index = 0; index < dat.length; index++) {
 
-					var idNw = dat[index]['id'];
-					var imgNw = dat[index]['thumbImg'];
-					var titleNw = dat[index]['newsTitle'];
-					var inDateNw = convertStDate(dat[index]['insertDate']);
+					if(typeN==='news'){
+						var idNw = dat[index]['id'];
+						var imgNw = dat[index]['thumbImg'];
+						var titleNw = dat[index]['newsTitle'];
+						var inDateNw = convertStDate(dat[index]['insertDate']);
+	
+						var bodyNw = dat[index]['newsBody'];
+	
+	
+						$('#news-mini-block').prepend(genNewsBlokMini(idNw, titleNw, bodyNw, inDateNw, imgNw));
+						$('#news-large-block').prepend(genNewsBlokLarge(idNw, titleNw, bodyNw, inDateNw, imgNw));
+					}
+					if(typeN==='aboutus'){
+						var idNw = dat[index]['id'];
+						var imgNw = dat[index]['thumbImg'];
+						var titleNw = dat[index]['newsTitle'];
+						var inDateNw = convertStDate(dat[index]['insertDate']);
+	
+						var bodyNw = dat[index]['newsBody'];
+	
+	
+						$('#news-mini-block').prepend(genNewsBlokMini(idNw, titleNw, bodyNw, inDateNw, imgNw));
+						$('#news-large-block').prepend(genNewsBlokLarge(idNw, titleNw, bodyNw, inDateNw, imgNw));
+					}
+					if(typeN==='bilirsizmi'){
+						var idNw = dat[index]['id'];
+						var imgNw = dat[index]['thumbImg'];
+						var titleNw = dat[index]['newsTitle'];
+						var inDateNw = convertStDate(dat[index]['insertDate']);
+	
+						var bodyNw = dat[index]['newsBody'];
+	
+	
+						$('#blr-mini-block').prepend(genNewsBlokMini(idNw, titleNw, bodyNw, inDateNw, imgNw));
+						
+					}
+					if(typeN==='mmelumatlar'){
+						var idNw = dat[index]['id'];
+						var imgNw = dat[index]['thumbImg'];
+						var titleNw = dat[index]['newsTitle'];
+						var inDateNw = convertStDate(dat[index]['insertDate']);
+	
+						var bodyNw = dat[index]['newsBody'];
+	
+	
+						$('#mrql-mini-block').prepend(genNewsBlokMini(idNw, titleNw, bodyNw, inDateNw, imgNw));
+					
+					}
 
-					var bodyNw = dat[index]['newsBody'];
-
-					$('#news-mini-block').prepend(genNewsBlokMini(idNw, titleNw, bodyNw, inDateNw, imgNw));
-					$('#news-large-block').prepend(genNewsBlokLarge(idNw, titleNw, bodyNw, inDateNw, imgNw));
+					
 				}
 
 
@@ -682,7 +792,7 @@ $(document).ready(function () {
 		});
 	}
 
-	addDataNews();
+	
 
 	//user register send api
 	function resetFlud(email) {
@@ -735,7 +845,7 @@ $(document).ready(function () {
 
 					$.ajax({
 						type: "POST",
-						url: UrlQb+"api/post/zd/qebulaz/registration",
+						url: UrlQb+"api/post/zdfn/qebulaz/registration",
 						data: JSON.stringify(objectUser), // now data come in this function
 						contentType: "application/json; charset=utf-8",
 						crossDomain: true,
@@ -837,6 +947,8 @@ $(document).ready(function () {
 			type: "POST",
 			data: dat,
 			contentType: "application/json",
+			crossDomain: true,
+
 			async: false,
 			success: function (data) {
 				finalname = data.kv.uploaded_file_name;
@@ -905,16 +1017,14 @@ $(document).ready(function () {
 
 
 
-	function histBlockGen(nma,num,vxt,ntc){
-		return `<tr>
+	function histBlockGen(nma,num,vxt,rstid){
+		return `<tr data-rstid="${rstid}">
 
-		<th row-header="Table heading" scope="row">${num}</th>
+		<th row-header="Table heading"  scope="row">${num}</th>
 		<td row-header="Table">${nma}</td>
 		<td row-header="Table heading">${vxt}</td>
-		<td row-header="heading">${ntc}</td>
-
-
-	  </tr>`
+		<td row-header="heading"><a href="" data-toggle="modal" data-target="#resultHstoryModal" id="result-return" >Nəticəni göstər</a></td>
+      </tr>`
 	}
 
    function  historyExamListGen(usid){
@@ -937,16 +1047,22 @@ $(document).ready(function () {
 		success: function (data, status, jqXHR) {
 			$('#history_exam_result_table').empty();
 			var dat = data.tbl[0].r;	
-				
+			var arra = data.tbl[1].r;	
+				console.log(data);
              var ctes = 1
 			for (let index = 0; index < dat.length; index++) {
 				
 				var dj=dat[index]
                 var vxt =convertStDate(dj['baslamaTarixi']);
-                var nma = '1 qrup';
-                var ntc =dj['umumiBal'];
-                
-                console.log(nma,ntc,vxt);
+                var ntc =dj['id']; 
+                var fkch=dj['fkImtahanNovuId']
+               for (let inc = 0; inc < arra.length; inc++) {
+				   var tstch= arra[inc]['id']
+				   if(fkch===tstch){
+                     var nma =arra[inc]['imtahanNovuAdi']
+				   }
+			   }
+
 				$('#history_exam_result_table').append(histBlockGen(nma,ctes,vxt,ntc));
 				ctes++
 			}
@@ -965,11 +1081,17 @@ $(document).ready(function () {
 
    }
 
+   $(document).on("click","#result-return", function(){
+   
+       var IdImt = $(this).parents('tr').attr('data-rstid');
+
+	    examEndFuncHstry(IdImt,fkUserCode);
+   })
    function updateUserImage(img){
 	let objectUser1 = {
 		"kv": {
 			"imageUrl": img,
-			"id": fkUserCode,
+			"fkUserId": fkUserCode,
 		
 		}
 
@@ -979,7 +1101,7 @@ $(document).ready(function () {
 
 		$.ajax({
 			type: "POST",
-			url: UrlQb+"api/post/zd/qebulaz/updateUserInfo",
+			url: UrlQb+"api/post/zdfn/qebulaz/updateUserLogoPictureById",
 			data: JSON.stringify(objectUser1), // now data come in this function
 			contentType: "application/json; charset=utf-8",
 			crossDomain: true,
@@ -997,6 +1119,53 @@ $(document).ready(function () {
 
 	
    }
+   function examEndFuncHstry(efkId,UserCode){
+	var prop = {
+		"kv": { 
+			 "fkImtahanId": efkId,
+			 "fkUserId":UserCode
+		} 
+	}
+	$.ajax({
+		type: "POST",
+		url: UrlQb + "api/post/zdfn/qebulaz/getImtahanNeticeleriById",
+		data: JSON.stringify(prop), // now data come in this function
+		contentType: "application/json; charset=utf-8",
+		crossDomain: true,
+		dataType: "json",
+		success: function (data, status, jqXHR) {
+		   var dat= data.tbl[0].r[0];
+		  
+		  $('#exam_hours1').text(dat['imtahanMuddeti']);
+		  $('#variant_exam1').text(dat['cariStatus']);
+		  $('#start_date_exam1').text(convertStDate(dat['baslamaTarixi']));
+		  $('#start_hours_exam1').text(convertStTime(dat['baslamaSaati']));
+		  $('#end_date_exam1').text(convertStDate(dat['bitisTarixi']));
+		  $('#end_hours_exam1').text(convertStTime(dat['bitisSaati']));
+		  $('#general_result_exam1').text(dat['umumiBal']);
+		 // $('#exam_nmea_end1').text(nameEx);
+		   var fenn = data.tbl[1].r;
+		   $('#fenn-resul-body1').empty()
+		  for (let index = 0; index < fenn.length; index++) {
+			  let ale = fenn[index];
+			  console.log(data);
+			  $('#fenn-resul-body1').append($('<tr>')
+							   .append('<td>'+ale['imtahanSection']+'</td>')
+							   .append('<td>'+ale['qapaliSualDogru']+'/'+ale['qapaliSualSay']+'</td>')
+							   .append('<td>'+ale['aciqSualDogru']+'/'+ale['aciqSualSay']+'</td>')
+							   .append('<td>'+dat['balSection'+ale['imtahanSection']+'']+'</td>')
+							   )
+		  }
+		  
+		},
+
+		error: function (jqXHR, status) {
+			// error handler
+
+			alert('fail' + status.code);
+		}
+	}); 
+ }
 	// user Info Functions update and accept
 
 	$(document).on("click", '#update_user_btn', function () {
@@ -1031,7 +1200,7 @@ $(document).ready(function () {
 
 			$.ajax({
 				type: "POST",
-				url: UrlQb+"api/post/zd/qebulaz/updateUserInfo",
+				url: UrlQb+"api/post/zdfn/qebulaz/updateUserInfoById",
 				data: JSON.stringify(objectUser1), // now data come in this function
 				contentType: "application/json; charset=utf-8",
 				crossDomain: true,
@@ -1095,33 +1264,41 @@ $(document).ready(function () {
 			},
 
 			error: function (jqXHR, status) {
-				// error handler
-			
+							
 				alert('fail' + status.code);
 			}
 		});
 	}
 
 	function getUserInfoProfile() { // pass your data in method
-
+          
+		
 		userId = localStorage.getItem('UsId');
 		if (userId.length !== '') {
 
-
+			let objectUser1 = {
+				"kv": {
+				
+					"fkUserId": fkUserCode
+				
+				}
+		
+			}
 			$('#login_btn_data').css('display', 'none');
 			$('[data-target="#exampleModal"]').css('display', 'none');
 			$('.navbar-custom-menu').css('display', 'block');
 
 			$.ajax({
 				type: "POST",
-				url: UrlQb+"api/post/zdfn/qebulaz/getUserList",
+				url: UrlQb+"api/post/zdfn/qebulaz/getUserInfoById",
 				//	data: JSON.stringify(data), // now data come in this function
 				contentType: "application/json; charset=utf-8",
 				crossDomain: true,
 				dataType: "json",
+			
+				data: JSON.stringify(objectUser1),
 				success: function (data, status, jqXHR) {
 					var dat = data.tbl[0].r
-
 
 					for (let index = 0; index < dat.length; index++) {
 
@@ -1220,8 +1397,17 @@ $(document).ready(function () {
 	}
 	addTableRespBtn();
 
-
+  
 	getUserInfoProfile();
+
+	$(document).on('click','.cnvrtpdfBtn',function(){
+		var tst = $(this).attr('data-ide');
+   
+	   var element = document.getElementById(tst);
+	   html2pdf().from(element).save()
+	   
+   })
+  
 
 });
 

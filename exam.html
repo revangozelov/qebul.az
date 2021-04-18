@@ -139,11 +139,19 @@
   <div class style="zoom: 110%;display: none;" id="result_cont_page"  >
     <nav class="navbar navbar-light bg-light">
       <img src="images/logo.png" width="150" height="72" class="d-inline-block align-top" alt="">
-      <a class="navbar-brand" href="#"><i class="fas fa-file-pdf"></i>
-      </a>
+      <div style="float: right;">
+        <button  class="btn btn-primary"> <a class="" style="color: white;" href="index.html"> <i class="fas fa-directions"></i></a></button>
+        <button data-ide='result_cont_page3' class="cnvrtpdfBtn btn btn-primary"><i class="fas fa-file-pdf"></i></button>
+      </div>
+      
+     
+     
     </nav>
-       <div class="container">
-        <table class="zigzag-table">
+       <div class="container row" id="result_cont_page3" style="margin: auto;">
+        <table class="zigzag-table" style="width: 40%; border-right: 1px solid rgba(214, 214, 214, 0.911);">
+         <th>İmtahan  </th>
+         <th>Nəticələri</th>
+         <th>#</th>
           <tbody>
          <tr>
            <td>İmtahan verənin adı və soyadı:</td>
@@ -182,6 +190,23 @@
          </tr>
        </tbody>
      </table>
+        <table class="zigzag-table" style="width: 60%;">
+          <thead>
+            <tr>
+              
+              <th>Fənn</th>
+              <th>Düzgün Cavab sayı(Qapalı)</th>
+              <th>Düzgün Cavab sayı(Açıq)</th>
+              <th>Bal</th>
+            </tr>
+          
+           
+          </thead>
+          <tbody id="fenn-resul-body">
+        
+         
+       </tbody>
+     </table>
        </div>
     
   </div>
@@ -192,9 +217,7 @@
 
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
- 
-  <script src="js/jquery.pogo-slider.min.js"></script>
-  <script src="js/slider-index.js"></script>
+  <script src="js/html2pdf.min.js"></script>
   <script src="js/custom.js"></script>
   <script src="js/exam.js"></script>
 

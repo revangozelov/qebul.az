@@ -50,76 +50,80 @@
     </div>
     <!-- end loader -->
 	 <!-- Start header -->
-	 <header class="top-header" data-aos="fade-up" data-aos-delay="200">
-        <nav class="navbar header-nav navbar-expand-lg">
-            <div class="container-fluid cst_navbar_card">
-                <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="image"></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-wd"
-                    aria-controls="navbar-wd" aria-expanded="false" aria-label="Toggle navigation">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbar-wd">
-                    <ul class="navbar-nav">
-                        <li><a class="nav-link active" href="index.html">Əsas Səhifə</a></li>
+   <header class="top-header" data-aos="fade-up" data-aos-delay="200">
+    <nav class="navbar header-nav navbar-expand-lg">
+        <div class="container-fluid cst_navbar_card">
+            <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="image"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-wd"
+                aria-controls="navbar-wd" aria-expanded="false" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbar-wd">
+                <ul class="navbar-nav">
+                    <li><a class="nav-link active" href="index.html">Əsas Səhifə</a></li>
 
-                        <li data-toggle="collapse" data-target=".navbar-collapse.show"><a class="nav-link"
-                                href="#exams">İmtahanlar</a></li>
+                    <li class="dropdown" data-toggle="collapse"  data-target=".navbar-collapse.show"><a class="dropdown-toggle nav-link"
+                            href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >İmtahanlar</a>
+                            <ul class="dropdown-menu" id="exam_list_dropdown" aria-labelledby="navbarDropdown1">
+                                
+                            </ul>
+                        </li>
 
-                        <li><a class="nav-link" href="news.html">Xəbərlər</a></li>
-                        <li data-toggle="collapse" data-target=".navbar-collapse.show"><a class="nav-link"
-                                href="#contact">Əlaqə</a></li>
-                        <li><a class="nav-link" href="">Yeniliklər</a></li>
-                        <li><a class="nav-link" href="">Haqqinda</a></li>
+                    <li><a class="nav-link" href="news.html">Xəbərlər</a></li>
+                    <li data-toggle="collapse" data-target=".navbar-collapse.show"><a class="nav-link"
+                            href="#contact">Əlaqə</a></li>
+                    <li><a class="nav-link" href="">Yeniliklər</a></li>
+                    <li><a class="nav-link" href="">Haqqinda</a></li>
+                </ul>
+            </div>
+            <div class="login-box">
+                <a href="" data-toggle="modal" data-target="#exampleModal" id="login_btn_data" class="login-btn">
+                    Giriş
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+
+                        <li class="dropdown user user-menu">
+                            <!-- Menu Toggle Button -->
+                            <a href="#" class="" data-toggle="dropdown">
+                                <!-- The user image in the navbar-->
+                                <img src="https://vignette3.wikia.nocookie.net/nation/images/6/61/Emblem_person_blue.png/revision/latest?cb=20120218131529"
+                                    id="user_index_img" class="user-image" alt="User Image">
+                                <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                <!-- <span class="hidden-xs">John Abia</span> -->
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- The user image in the menu -->
+                                <li class="user-header">
+                                    <img src="https://vignette3.wikia.nocookie.net/nation/images/6/61/Emblem_person_blue.png/revision/latest?cb=20120218131529"
+                                        class="img-circle" id="user_index_img_large" alt="User Image">
+
+                                    <p id="name_index_block">
+                                        John Abia
+                                    </p>
+                                </li>
+
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="profile.html" class="btn btn-default btn-flat">Profil</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="#" id="exit_profile_name" class="btn btn-default btn-flat">Çıxış</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Control Sidebar Toggle Button -->
+
                     </ul>
                 </div>
-                <div class="login-box">
-                    <a href="" data-toggle="modal" data-target="#exampleModal" id="login_btn_data" class="login-btn">
-                        Giriş
-                    </a>
-                    <div class="navbar-custom-menu">
-                        <ul class="nav navbar-nav">
-
-                            <li class="dropdown user user-menu">
-                                <!-- Menu Toggle Button -->
-                                <a href="#" class="" data-toggle="dropdown">
-                                    <!-- The user image in the navbar-->
-                                    <img src="https://vignette3.wikia.nocookie.net/nation/images/6/61/Emblem_person_blue.png/revision/latest?cb=20120218131529"
-                                        id="user_index_img" class="user-image" alt="User Image">
-                                    <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                    <!-- <span class="hidden-xs">John Abia</span> -->
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <!-- The user image in the menu -->
-                                    <li class="user-header">
-                                        <img src="https://vignette3.wikia.nocookie.net/nation/images/6/61/Emblem_person_blue.png/revision/latest?cb=20120218131529"
-                                            class="img-circle" id="user_index_img_large" alt="User Image">
-
-                                        <p id="name_index_block">
-                                            John Abia
-                                        </p>
-                                    </li>
-
-                                    <!-- Menu Footer-->
-                                    <li class="user-footer">
-                                        <div class="pull-left">
-                                            <a href="profile.html" class="btn btn-default btn-flat">Profil</a>
-                                        </div>
-                                        <div class="pull-right">
-                                            <a href="#" id="exit_profile_name" class="btn btn-default btn-flat">Çıxış</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <!-- Control Sidebar Toggle Button -->
-
-                        </ul>
-                    </div>
-                </div>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
+   </header>
     <!-- End header -->
 
    	<!-- registr section -->
@@ -308,21 +312,18 @@
           <input type="email"  id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
         </div>
         <div class="form-group contact_form ">
-          <label for="exampleInputPassword1">Password</label>
-          <input type="password"  id="exampleInputPassword1" placeholder="Password">
+          <label for="exampleInputPassword1">Şifrə</label>
+          <input type="password"  id="exampleInputPassword1" placeholder="Şifrə">
         </div>
-        <div class="form-group form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Remember Password</label>
-        </div>
+        
         
       
             </div>
             <div class="modal-footer">
 
               <button type="button" class="btn btn-secondary" ><a href="login.html">Qeydiyyat</a></button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" id="sign_in_btn"  class="btn btn-primary">Submit</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Bağla</button>
+              <button type="button" id="sign_in_btn"  class="btn btn-primary">Giriş</button>
             </div>
             
               </form>

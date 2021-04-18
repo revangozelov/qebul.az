@@ -1,3 +1,5 @@
+
+
 $(document).ready(function () {
      
     var fkImtID ;
@@ -5,6 +7,10 @@ $(document).ready(function () {
      var nameEx=localStorage.getItem('nameExam')
     var t;
 
+    if(fkImtID===""){
+	   startExamBlockGen();
+
+    }
     function timedCount() {
           
         
@@ -33,7 +39,7 @@ $(document).ready(function () {
 
     }
 
-    function displayCurrentQuestion(typ, fgId, likn) {
+    function displayCurrentQuestion(typ, fgId, likn,tol) {
 
         let objectUser = {
             "kv": {
@@ -88,6 +94,7 @@ $(document).ready(function () {
 
                 var hgt = $('#fenn_list_block').height();
                 $('.answer_card_body').css('height', hgt + 'px');
+                setBackQuestionHst(fkImtID,fgId,tol);
             },
 
             error: function (jqXHR, status) {
@@ -296,28 +303,28 @@ $(document).ready(function () {
 
     }
 
-    function generateBlockQuestInside(type,idts){
+    function generateBlockQuestInside(type,idts,tol){
         if (type === 'close') {
 
-            displayCurrentQuestion(type, idts, 'getQapaliSualBodyById')
+            displayCurrentQuestion(type, idts, 'getQapaliSualBodyById',tol)
         }
         if (type === 'sadesual') {
-            displayCurrentQuestion(type, idts, 'getAciqSualBodyById')
+            displayCurrentQuestion(type, idts, 'getAciqSualBodyById',tol)
         }
         if (type === '13aematrix') {
-            displayCurrentQuestion(type, idts, 'getAciqSualBodyById')
+            displayCurrentQuestion(type, idts, 'getAciqSualBodyById',tol)
         }
         if (type === '13acmatrix') {
-            displayCurrentQuestion(type, idts, 'getAciqSualBodyById')
+            displayCurrentQuestion(type, idts, 'getAciqSualBodyById',tol)
         }
         if (type === '09onluqkesir') {
-            displayCurrentQuestion(type, idts, 'getAciqSualBodyById')
+            displayCurrentQuestion(type, idts, 'getAciqSualBodyById',tol)
         }
         if (type === 'cedvel') {
-            displayCurrentQuestion(type, idts, 'getAciqSualBodyById')
+            displayCurrentQuestion(type, idts, 'getAciqSualBodyById',tol)
         }
         if (type === 'situasiya') {
-            displayCurrentQuestion(type, idts, 'getAciqSualBodyById')
+            displayCurrentQuestion(type, idts, 'getAciqSualBodyById',tol)
         }
     }
 
@@ -361,12 +368,12 @@ $(document).ready(function () {
      
         $('.number-quest-short-block').find('span').removeClass('active');
         $(this).addClass('active');
-        generateBlockQuestInside(type,idts);
+        generateBlockQuestInside(type,idts,act);
         setTimeout(function () {
             var hgt = $('#fenn_list_block').height();
             $('.answer_card_body').css('height', hgt + 'px');
         }, 500)
-        setBackQuestionHst(fkImtID,idts,act);
+      
     })
 
     $(document).on('change','.resultFk', function(){
@@ -413,9 +420,9 @@ $(document).ready(function () {
            
             $('.number-quest-short-block').find('span').removeClass('active');
             $('[data-numb-type="' + idts + '"]').addClass('active');
-            generateBlockQuestInside(type,idts);
+            generateBlockQuestInside(type,idts,act);
            
-            setBackQuestionHst(fkImtID,idts,act);
+            
         }
 
     });
@@ -442,9 +449,9 @@ $(document).ready(function () {
             $('.number-quest-short-block').find('span').removeClass('active');
             $('[data-numb-type="' + idts + '"]').addClass('active');
 
-            generateBlockQuestInside(type,idts);
+            generateBlockQuestInside(type,idts,act);
            
-            setBackQuestionHst(fkImtID,idts,act);
+        
         
 
 
@@ -519,7 +526,7 @@ $(document).ready(function () {
     }
     var listFnm = [];
 
-    startExamBlockGen();
+    
 
     function startExamBlockGen() {
         var gId = localStorage.getItem('idExam');
@@ -818,15 +825,15 @@ $(document).ready(function () {
      }
      function returnDataAnswer(tol,cb,typ){
       
-        console.log(tol,cb,typ);
+    
         if(typ==="qapali"){
            
              tol.find('.question_answers [data-fkans="'+cb+'"]').attr('checked', true);
               
         }
         if(typ==="situasiya"){
-            tol.find('.resultFk').val(cb);
-            //tol.find('[data-fkans="'+cb+'"]').attr('checked', true);
+          //  tol.find('.resultFk').val(cb);
+            tol.find('[data-fkans="'+cb+'"]').attr('checked', true);
         }
         if(typ==="aciq"){
             tol.find('.resultFk').val(cb)
@@ -865,7 +872,7 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data, status, jqXHR) {
                var dat= data.tbl[0].r[0];
-               console.log(data);
+              
               $('#exam_hours').text(dat['imtahanMuddeti']);
               $('#variant_exam').text(dat['cariStatus']);
               $('#start_date_exam').text(convertStDate(dat['baslamaTarixi']));
@@ -874,8 +881,19 @@ $(document).ready(function () {
               $('#end_hours_exam').text(convertStTime(dat['bitisSaati']));
               $('#general_result_exam').text(dat['umumiBal']);
               $('#exam_nmea_end').text(nameEx);
-
-            
+               var fenn = data.tbl[1].r;
+               
+              for (let index = 0; index < fenn.length; index++) {
+                  let ale = fenn[index];
+                  console.log(ale);
+                  $('#fenn-resul-body').append($('<tr>')
+                                   .append('<td>'+ale['imtahanSection']+'</td>')
+                                   .append('<td>'+ale['qapaliSualDogru']+'/'+ale['qapaliSualSay']+'</td>')
+                                   .append('<td>'+ale['aciqSualDogru']+'/'+ale['aciqSualSay']+'</td>')
+                                   .append('<td>'+dat['balSection'+ale['imtahanSection']+'']+'</td>')
+                                   )
+              }
+              
             },
 
             error: function (jqXHR, status) {
@@ -914,13 +932,7 @@ $(document).ready(function () {
      }
 
 
+    
+    
 })
 
-
-/* html2pdf(element, {
-    margin: [10, 5, 0, -60],
-    filename: '<?= $dadosboleto["numero_documento"] . '-' . $dadosboleto["sacado_nome"] ?>.pdf',
-    image: {type: 'jpeg', quality: 0.98},
-    html2canvas: {dpi: 300, letterRendering: true, width: 1300, height: 1000, windowWidth: 1000, windowHeight: 1000},
-    jsPDF: {unit: 'mm', format: 'a4', orientation: 'portrait'}
-}); */
