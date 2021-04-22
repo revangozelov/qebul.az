@@ -3667,17 +3667,22 @@ body .notification_btn .notification .content .text p {
  /* makes the dropdown full width  */
  .navbar .dropdown {position:static;}
  
- .navbar .dropdown-menu {
-   width:100%;
-   left:0;
-   right:0;
+ .navbar  .dropdown-menu {
+  
  /*  height of nav-item  */
    top:45px;
-   
+   left: auto;
    display:block;
    visibility: hidden;
    opacity: 0;
    transition: visibility 0s, opacity 0.3s linear;
+   
+ }
+ .navbar .cstam-nav-dropdown .dropdown-menu {
+   width:100%;
+   left:0;
+   right:0;
+
    
  }
    
@@ -3710,7 +3715,7 @@ body .notification_btn .notification .content .text p {
  .alert{font-family: -apple-system,BlinkMacSystemFont,'Roboto','Segoe UI','Oxygen-Sans','Ubuntu','Cantarell','Helvetica Neue',sans-serif;
     min-height: 38px;
     padding: 12px 15px 15px;
-    margin: 5px auto;
+    margin: 0px auto;
     border-radius: 4px;
     border-left: 4px solid;
 	opacity:1;
