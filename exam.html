@@ -147,7 +147,7 @@
      
      
     </nav>
-       <div class="container row" id="result_cont_page3" style="margin: auto;">
+       <div class=" row" id="result_cont_page3" style="margin: auto;">
         <table class="zigzag-table" style="width: 40%; border-right: 1px solid rgba(214, 214, 214, 0.911);">
          <th>İmtahan  </th>
          <th>Nəticələri</th>
@@ -155,8 +155,8 @@
           <tbody>
          <tr>
            <td>İmtahan verənin adı və soyadı:</td>
-           <td>Revan</td>
-           <td>Gozelov</td>
+           <td id="result-name" ></td>
+           <td id="result-sunmae"></td>
          </tr>
          <tr>
            <td>İmtahan adı: </td>
@@ -195,8 +195,9 @@
             <tr>
               
               <th>Fənn</th>
-              <th>Düzgün Cavab sayı(Qapalı)</th>
-              <th>Düzgün Cavab sayı(Açıq)</th>
+              <th>Düzgün Cavab (Qapalı)</th>
+              <th>Düzgün Cavab (Açıq)</th>
+              <th>Düzgün Cavab (Stuasiya)</th>
               <th>Bal</th>
             </tr>
           
@@ -214,14 +215,18 @@
   <!-- ALL JS FILES -->
   <script src="js/jquery.min.js"></script>
   <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
+  <script src="js/paginiton.js"></script>
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/html2pdf.min.js"></script>
   <script src="js/custom.js"></script>
   <script src="js/exam.js"></script>
 
-
+  <script>
+    if(localStorage.getItem('UsId')===null){
+      window.location.href = 'index.html';
+    }
+  </script>
 </body>
 
 </html>

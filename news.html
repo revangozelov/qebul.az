@@ -34,7 +34,8 @@
     
 </head>
 
-<body id="inner_page" data-spy="scroll" data-target="#navbar-wd" data-offset="98">
+<body id="inner_page" >
+
 
     <!-- LOADER -->
     <div id="preloader">
@@ -45,103 +46,211 @@
     <!-- end loader -->
     <!-- END LOADER -->
 
- <!-- Start header -->
- <header class="top-header" data-aos="fade-up" data-aos-delay="200">
-	<nav class="navbar header-nav navbar-expand-lg">
-		<div class="container-fluid cst_navbar_card">
-			<a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="image"></a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-wd"
-				aria-controls="navbar-wd" aria-expanded="false" aria-label="Toggle navigation">
-				<span></span>
-				<span></span>
-				<span></span>
-			</button>
-			<div class="collapse navbar-collapse justify-content-end" id="navbar-wd">
-				<ul class="navbar-nav">
-					<li><a class="nav-link active" href="index.html">Əsas Səhifə</a></li>
+	   <!-- Start header -->
+        
+       <header class="top-header">
+        <nav class="navbar header-nav navbar-expand-lg">
+            <div class="container-fluid cst_navbar_card">
+                <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="image"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-wd"
+                    aria-controls="navbar-wd" aria-expanded="false" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbar-wd">
+                    <ul class="navbar-nav">
 
-					<li data-toggle="collapse" data-target=".navbar-collapse.show"><a class="nav-link"
-							href="#exams">İmtahanlar</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                İmtahanlar
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-					<li><a class="nav-link" href="news.html">Xəbərlər</a></li>
-					<li data-toggle="collapse" data-target=".navbar-collapse.show"><a class="nav-link"
-							href="index.html/#contact">Əlaqə</a></li>
-					<li><a class="nav-link" href="">Yeniliklər</a></li>
-					<li><a class="nav-link" href="">Haqqinda</a></li>
-				</ul>
-			</div>
-			<div class="login-box">
-				<a href="" data-toggle="modal" data-target="#exampleModal" id="login_btn_data" class="login-btn">
-					Giriş
-				</a>
-				<div class="navbar-custom-menu">
-					<ul class="nav navbar-nav">
 
-						<li class="dropdown user user-menu">
-							<!-- Menu Toggle Button -->
-							<a href="#" class="" data-toggle="dropdown">
-								<!-- The user image in the navbar-->
-								<img src="https://vignette3.wikia.nocookie.net/nation/images/6/61/Emblem_person_blue.png/revision/latest?cb=20120218131529"
-									id="user_index_img" class="user-image" alt="User Image">
-								<!-- hidden-xs hides the username on small devices so only the image appears. -->
-								<!-- <span class="hidden-xs">John Abia</span> -->
-							</a>
-							<ul class="dropdown-menu">
-								<!-- The user image in the menu -->
-								<li class="user-header">
-									<img src="https://vignette3.wikia.nocookie.net/nation/images/6/61/Emblem_person_blue.png/revision/latest?cb=20120218131529"
-										class="img-circle" id="user_index_img_large" alt="User Image">
+                                <div class="">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <a href="">
+                                                <img src="images/p6.jpg" alt="" class="img-fluid">
+                                            </a>
 
-									<p id="name_index_block">
-										John Abia
-									</p>
-								</li>
 
-								<!-- Menu Footer-->
-								<li class="user-footer">
-									<div class="pull-left">
-										<a href="profile.html" class="btn btn-default btn-flat">Profil</a>
-									</div>
-									<div class="pull-right">
-										<a href="#" id="exit_profile_name" class="btn btn-default btn-flat">Çıxış</a>
-									</div>
-								</li>
-							</ul>
-						</li>
-						<!-- Control Sidebar Toggle Button -->
+                                        </div>
+                                        <div class="col-md-2" id="21040812484203299814" style="text-align: center;">
+                                            <span
+                                                class="text-uppercase ">ABİTURYENT</span>
+                                                <hr>
+                                            <ul class="nav flex-column">
+                                                <li class="nav-item nav-inside-exam" data-times="180"
+                                                    id="21040814375205182246"><a class="nav-link active" href="#">I
+                                                        Qrup</a></li>
+                                                        <li class="nav-item nav-inside-exam" data-times="180"
+                                                        id="21040814362304832587"><a class="nav-link active" href="#">II
+                                                            Qrup</a></li>
+                                                <li class="nav-item nav-inside-exam" data-times="180"
+                                                    id="21040814372804752381"><a class="nav-link active"
+                                                        href="#">III Qrup</a></li>
+                                               
+                                                <li class="nav-item nav-inside-exam" data-times="180"
+                                                    id="21040814130304704095"><a class="nav-link active" href="#">IV
+                                                        Qrup</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-4" id=""  style="text-align: center;">
+                                            <span class="text-uppercase ">Digər İmtahanlar</span>
+                                                <hr>
+                                            <ul class="nav flex-column" style="text-align: left;">
+                                                <li class="nav-item nav-inside-exam" data-times="180"
+                                                    id=""><a class="nav-link active" href="#">İbtidai sinif imtahanı
+                                                        </a></li>
+                                                <li class="nav-item nav-inside-exam" data-times="180"
+                                                    id=""><a class="nav-link active" href="#">9-11 buraxılış  imtahanı
+                                                        </a></li>
+                                                <li class="nav-item nav-inside-exam" data-times="180"
+                                                    id=""><a class="nav-link active" href="#">8-11 fənn imtahanı
+                                                        </a></li>
+                                                <li class="nav-item nav-inside-exam" data-times="180"
+                                                    id=""><a class="nav-link active" href="#">Magistr qəbul imtahanı
+                                                        </a></li>
+                                                <li class="nav-item nav-inside-exam" data-times="180"
+                                                    id=""><a class="nav-link active" href="#">Dövlət qulluğuna qəbul imtahanı
+                                                        </a></li>
+                                                <li class="nav-item nav-inside-exam" data-times="180"
+                                                    id=""><a class="nav-link active" href="#">Müllimlərin işə qəbul imtahanı(MİQ)
+                                                        </a></li>
+                                                <li class="nav-item nav-inside-exam" data-times="180"
+                                                    id=""><a class="nav-link active" href="#">Bank sektoruna qəbul imtahanı(MİQ)
+                                                        </a></li>
+                                           
+                                              
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--  /.container  -->
 
-					</ul>
-				</div>
-			</div>
-		</div>
-	</nav>
-</header>
-<!-- End header -->
+
+                            </div>
+                        </li>
+
+                        <li><a class="nav-link news_blok_gen" data-secte='news' >Xəbərlər</a></li>
+                       
+                        <li><a class="nav-link news_blok_gen" data-secte='b?' >BİlİRSİNİZMİ?</a></li>
+                        <li><a class="nav-link news_blok_gen" data-secte='mm'  >Maraqlı Məlumatlar</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Digər
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                                <a class="dropdown-item" href="about.html">Haqqımızda</a>
+                                <a class="nav-link"  href="#contact">Əlaqə</a>
+                             
+                                                                    
+
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="login-box">
+                   <!--  <a href="" data-toggle="modal" data-target="#exampleModal" id="login_btn_data"
+                        class="login-btn">
+                        Qeydiyyat
+                    </a> -->
+                    <div style="padding: 8px;" class=" btn-group-sm " id="login_btn_data" role="group" aria-label="Basic example">
+                        <button type="button" id="openRegstrBtn" class="btn login-btn">Qeydiyyat </button>
+                        <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-secondary">Giriş</button>
+                      </div>
+
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+
+                            <li class="dropdown user user-menu">
+                                <!-- Menu Toggle Button -->
+                                <a href="#" class="" data-toggle="dropdown">
+                                    <!-- The user image in the navbar-->
+                                    <img src="" id="user_index_img" class="user-image" alt="User Image">
+                                    <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                    <!-- <span class="hidden-xs">John Abia</span> -->
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <!-- The user image in the menu -->
+                                    <li class="user-header">
+                                        <img src="" class="img-circle" id="user_index_img_large" alt="User Image">
+
+                                        <p id="name_index_block">
+
+                                        </p>
+                                    </li>
+
+                                    <!-- Menu Footer-->
+                                    <li class="user-footer">
+                                        <div class="pull-left">
+                                            <a href="profile.html" class="btn btn-default btn-flat">Profil</a>
+                                        </div>
+                                        <div class="pull-right">
+                                            <a href="#" id="exit_profile_name"
+                                                class="btn btn-default btn-flat">Çıxış</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- Control Sidebar Toggle Button -->
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- End header -->
+    <!-- End header -->
 
 	<!-- section -->
-	
-	<section class="inner_banner">
-	  <div class="container">
-	      <div class="row">
-		      <div class="col-12">
-			     <div class="full">
-				     <h3 class="data_newsHead">Xəbərlər</h3>
-				 </div>
-			  </div>
-		  </div>
-	  </div>
-	</section>
+
 	
 	<!-- end section -->
    
 	<!-- section -->
-    <div class="section layout_padding contact_section" style="background:#f6f6f6;">
-        <div class="container"  id="news-large-block">
+    <div class="section layout_padding contact_section news-blck"   style="background:#f6f6f6; display: none;"  >
+        <div class="pagination-container"></div>
+        <div class="container"  id="news-large-block" >
+             			  
+           		  
+             		  
+              		
+            
+
+
+           
+           </div>
+       
+           <div class="pagination-container"></div>
+        </div>
+    <div class="section layout_padding contact_section blr-blck" style="background:#f6f6f6; display: none;">
+        <div class="pagination-container1"></div>
+        <div class="container"  id="blr-large-block" >
              			  
            		  
              		  
               		  
            </div>
+       
+           <div class="pagination-container1"></div>
+        </div>
+    <div class="section layout_padding contact_section mm-blck"  style="background:#f6f6f6; display: none;">
+        <div class="pagination-container2"></div>
+        <div class="container"  id="mrql-large-block" >
+             			  
+           		  
+             		  
+              		  
+           </div>
+       
+           <div class="pagination-container2"></div>
         </div>
 	<!-- end section -->
   <!-- Start Footer -->
@@ -174,19 +283,7 @@
 					 </div>
 			 </div>
 			 
-			 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-			 <div class="footer_blog full white_fonts">
-						 <h3>Newsletter</h3>
-						 <p></p>
-						 <div class="newsletter_form">
-							<form action="index.html">
-							   <input type="email" placeholder="Your Email" name="#" required />
-							   <button>Submit</button>
-							</form>
-						 </div>
-					 </div>
-				</div>	 
-		  
+			
 		  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
 			 <div class="footer_blog full white_fonts">
 						 <h3>Əlaqə</h3>
@@ -214,68 +311,82 @@
 	</div>
 </div>
 <a href="#" id="scroll-to-top" class="hvr-radial-out"><i class="fa fa-angle-up"></i></a>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-	  <div class="modal-content" >
-		<div class="modal-header customModal "  >
-		  <h5 class="modal-title" id="exampleModalLabel">Giriş</h5>
-		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-		  </button>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+	<div class="modal-content">
+		<div class="modal-header customModal ">
+			<h5 class="modal-title" id="exampleModalLabel">Giriş</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
 		</div>
-		<form>
-		<div class="modal-body ">
-		  
-			
-	<div class="form-group contact_form">
-	  <label for="exampleInputEmail1">Email </label>
-	  <input type="email"  id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-	</div>
-	<div class="form-group contact_form ">
-	  <label for="exampleInputPassword1">Password</label>
-	  <input type="password"  id="exampleInputPassword1" placeholder="Password">
-	</div>
-	<div class="form-group form-check">
-	  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-	  <label class="form-check-label" for="exampleCheck1">Remember Password</label>
-	</div>
-	
-  
-		</div>
-		<div class="modal-footer">
+		<form id="user_from_sub">
+			<div class="modal-body ">
 
-		  <button type="button" class="btn btn-secondary" ><a href="login.html">Qeydiyyat</a></button>
-		  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		  <button type="button" id="sign_in_btn" class="btn btn-primary">Submit</button>
-		</div>
-		
-		  </form>
-	  </div>
+
+				<div class="form-group contact_form">
+					<label for="exampleInputEmail1">Email </label>
+					<input type="email" id="exampleInputEmail1" aria-describedby="emailHelp"
+						placeholder="Email Daxil et">
+				</div>
+				<div class="form-group contact_form ">
+					<label for="exampleInputPassword1">Şifrə</label>
+					<input type="password" id="exampleInputPassword1" placeholder="Şifrə">
+				</div>
+				<div class="form-group form-check">
+					<span id="errorMessage" style="color: red;"></span>
+				</div>
+
+
+			</div>
+			<div class="modal-footer">
+
+				<button type="button" class="btn btn-secondary"><a href="login.html">Qeydiyyat</a></button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" id="sign_in_btn">Submit</button>
+			</div>
+
+		</form>
 	</div>
-  </div>
-<!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  <!-- ALL JS FILES -->
+</div>
+</div>
+
   <script src="js/jquery.min.js"></script>
   <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
   <script src="js/popper.min.js"></script>
+  <script src="js/paginiton.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="aos/aos.js"></script>
-  <!-- ALL PLUGINS -->
-  <!-- <script  src="js/jquery.magnific-popup.min.js"></script> -->
   <script src="js/jquery.pogo-slider.min.js"></script>
   <script src="js/slider-index.js"></script>
-  <!-- <script  src="js/smoothscroll.js"></script> -->
-  <!--  <script src="js/form-validator.min.js"></script> -->
+
   <script src="js/contact-form-script.js"></script>
-  <!-- <script src="js/isotope.min.js"></script>
-<script src="js/images-loded.min.js"></script -->
+
   <script src="js/custom.js"></script>
     
+
+  <script>
+
+      function openBlockNe(){
+       var dte= localStorage.getItem('newsId');
+
+        if(dte==='news'){
+             $('.news-blck').toggle();
+		}
+		if(dte==='b?'){
+            $('.blr-blck').toggle();
+		}
+		if(dte==='mm'){
+            $('.mm-blck').toggle();
+		}
+          
+      }
+      openBlockNe();
+  </script>
 
 </body>
 
 </html>
+

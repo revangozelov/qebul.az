@@ -107,18 +107,7 @@
 					 </div>
 			 </div>
 			 
-			 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-			 <div class="footer_blog full white_fonts">
-						 <h3>Newsletter</h3>
-						 <p></p>
-						 <div class="newsletter_form">
-							<form action="index.html">
-							   <input type="email" placeholder="Your Email" name="#" required />
-							   <button>Submit</button>
-							</form>
-						 </div>
-					 </div>
-				</div>	 
+			
 		  
 		  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
 			 <div class="footer_blog full white_fonts">
@@ -200,60 +189,6 @@ aria-hidden="true">
   <script src="js/contact-form-script.js"></script>
 
   <script src="js/custom.js"></script>
-
-  <script >
-    function activationPage(prop){
-            
-          
-            $.ajax({
-                type: "POST",
-                url: "https://app.qebul.az/api/post/zdfn/qebulaz/activation",
-                data: JSON.stringify(prop), // now data come in this function
-                contentType: "application/json; charset=utf-8",
-                crossDomain: true,
-                dataType: "json",
-                success: function (data, status, jqXHR) {
-                
-                 
-                   try {
-                       var val = data.err['val'];
-                       alertBoxGenerate(val,"warning")
-                   } catch (error) {
-                       window.location.href="index.hmtl"
-                       alertBoxGenerate('Qeydiyyatınız Ugurla başa çatdi',"success")
-                   }
-                
-                },
-    
-                error: function (jqXHR, status) {
-                    // error handler
-    
-                    alert('fail' + status.code);
-                }
-            }); 
-         }
-       
-   
-      
-         var prop = {
-                "kv": {  } 
-            }
-         var parts = document.location.href.split("?");
-            var params = parts[parts.length - 1];
-            var pairs = params.split("&");
-            for (var i = 0; i < pairs.length; i++) {
-                var k = pairs[i].split("=")[0];
-                var v = pairs[i].split("=")[1];
-                try {
-                    v = v.replace(/#/g, '');
-                    prop.kv[k]=v;
-                } catch (ee) {
-                }
-                
-                   
-            }
-            activationPage(prop);
-         </script>
     
 
 </body>

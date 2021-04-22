@@ -7,10 +7,10 @@ $(document).ready(function () {
      var nameEx=localStorage.getItem('nameExam')
     var t;
 
-    if(fkImtID===""){
-	   startExamBlockGen();
 
-    }
+
+    fkImtID = localStorage.getItem('fkCnt');
+   
     function timedCount() {
           
         
@@ -160,7 +160,7 @@ $(document).ready(function () {
    
       </tr>
       <tr data-vall="2">
-      <th>1</th>
+      <th>2</th>
        <td><input type="checkbox" name="" value="A"></td>
        <td><input type="checkbox" name="" value="B"></td>
        <td><input type="checkbox" name="" value="C"></td>
@@ -345,13 +345,13 @@ $(document).ready(function () {
 
                         ale.push($(ts[i]).val());
                         
-        
+                        
                        }
                     
                 }
                 ale.push(',');
         }
-        
+        $(this).parents(".quizContainer").find('.resultFk').change();
         $(this).parents(".quizContainer").find('.resultFk').val(ale.join(""));
     })
     $(document).on('click', '.number-quest-short-block span', function (e) {
@@ -465,6 +465,7 @@ $(document).ready(function () {
         var anscr = $('#table_answer_card .active').find('tr[data-numcard=' + art + ']');
 
         anscr.find('td span').removeClass('checkAns');
+        examQuestionUpdate(fkImtID,art,'',fkUserCode)
     })
     $(document).on('click', 'li.question_answers .data_cardAns', function () {
 
@@ -526,7 +527,7 @@ $(document).ready(function () {
     }
     var listFnm = [];
 
-    
+    startExamBlockGen()
 
     function startExamBlockGen() {
         var gId = localStorage.getItem('idExam');
@@ -597,34 +598,239 @@ $(document).ready(function () {
         });
 
     }
+    function continueExamBlockGen(fkid,sctNm,ixe) {
+       
+        var prop = {
+            "kv": { 
+                 "fkImtahanId": fkid,
+            } 
+        }
+        $.ajax({
+            type: "POST",
+            url: UrlQb + "/api/post/zdfn/qebulaz/getImtahanSuallarListByImtahanId",
+            data: JSON.stringify(prop),
+            contentType: "application/json; charset=utf-8",
+            crossDomain: true,
+            dataType: "json",
+            success: function (data, status, jqXHR) {
+             
+                var dat1 = data.tbl[0].r;
+                dat =dat1.reverse()
+               var ir = ixe + 1
+               let cnt = 1
+              
+               console.log(data);
+               for (let ix = 0; ix < dat.length; ix++) {
+                var ate=dat[ix]['imtahanSection']
+                
+                
+                if(ir == ate){
+                    var atyp=dat[ix]['sualType'];
+                    
+                    if(atyp==="situasiya"){
+                        
+                   $('#' + sctNm).append(
+                    $('<div>').addClass('quizContainer')
+                    .attr('id', dat[ix]['fkSualId'])
+                    .attr('data-quest-type', 'situasiya')
+                )
+
+                $('#table_answer_card [mid=' + sctNm + ']').append($('<tr>')
+                    .attr('data-numCard', dat[ix]['fkSualId'])
+                    .append('<th>' + cnt + '</th>')
+                    .append('<td>-</td>')
+                    .append('<td>-</td>')
+                    .append('<td>-</td>')
+                    .append('<td>-</td>')
+                    .append('<td>-</td>'));
+                if (cnt === 1) {
+                    $('#' + sctNm + ' .number-quest-short-block').append(
+                        $('<span>').text(cnt)
+                        .addClass('active')
+                        .attr('data-numb-type', dat[ix]['fkSualId'])
+                    )
+                    cnt++
+                } else {
+
+                    $('#' + sctNm + ' .number-quest-short-block').append(
+                        $('<span>').text(cnt)
+                        .attr('data-numb-type', dat[ix]['fkSualId']))
+
+                    cnt++
+                }
+
+                    }
+                    if(atyp==="aciq"){
+                        $('#' + sctNm).append(
+                            $('<div>').addClass('quizContainer')
+                            .attr('id', dat[ix]['fkSualId'])
+                            .attr('data-quest-type', atyp)
+                        )
+                        $('#table_answer_card [mid=' + sctNm + ']').append($('<tr>')
+                            .attr('data-numCard', dat[ix]['fkSualId'])
+                            .append('<th>' + cnt + '</th>')
+                            .append('<td>-</td>')
+                            .append('<td>-</td>')
+                            .append('<td>-</td>')
+                            .append('<td>-</td>')
+                            .append('<td>-</td>'));
+                        if (cnt === 1) {
+                            $('#' + sctNm + ' .number-quest-short-block').append(
+                                $('<span>').text(cnt)
+                                .addClass('active')
+                                .attr('data-numb-type', dat[ix]['fkSualId'])
+                            )
+                            cnt++
+                        } else {
+     
+                            $('#' + sctNm + ' .number-quest-short-block').append(
+                                $('<span>').text(cnt)
+                                .attr('data-numb-type', dat[ix]['fkSualId']))
+     
+                            cnt++
+                        }
+     
+                    }
+                    if(atyp==="qapali"){
+                        var cvb=dat[ix]['cavab'];
+                        $('#' + sctNm).append(
+                            $('<div>').addClass('quizContainer')
+                            .attr('id', dat[ix]['fkSualId'])
+                            .attr('data-quest-type', 'close')
+                        )
+     
+     
+                        if(cvb==="A"){
+                            $('#table_answer_card [mid=' + sctNm + ']').append($('<tr>')
+                            .attr('data-numCard', dat[ix]['fkSualId'])
+                            .append('<th>' + cnt + '</th>')
+                            .append('<td><span class="checkAns">A</span></td>')
+                            .append('<td><span>B</span></td>')
+                            .append('<td><span>C</span></td>')
+                            .append('<td><span>D</span></td>')
+                            .append('<td><span>E</span></td>'));
+                        }
+                        if(cvb==="B"){
+                            $('#table_answer_card [mid=' + sctNm + ']').append($('<tr>')
+                            .attr('data-numCard', dat[ix]['fkSualId'])
+                            .append('<th>' + cnt + '</th>')
+                            .append('<td><span >A</span></td>')
+                            .append('<td><span class="checkAns">B</span></td>')
+                            .append('<td><span>C</span></td>')
+                            .append('<td><span>D</span></td>')
+                            .append('<td><span>E</span></td>'));
+                        }
+                        if(cvb==="C"){
+                            $('#table_answer_card [mid=' + sctNm + ']').append($('<tr>')
+                            .attr('data-numCard', dat[ix]['fkSualId'])
+                            .append('<th>' + cnt + '</th>')
+                            .append('<td><span >A</span></td>')
+                            .append('<td><span>B</span></td>')
+                            .append('<td><span class="checkAns">C</span></td>')
+                            .append('<td><span>D</span></td>')
+                            .append('<td><span>E</span></td>'));
+                        }
+                        if(cvb==="D"){
+                            $('#table_answer_card [mid=' + sctNm + ']').append($('<tr>')
+                            .attr('data-numCard', dat[ix]['fkSualId'])
+                            .append('<th>' + cnt + '</th>')
+                            .append('<td><span >A</span></td>')
+                            .append('<td><span>B</span></td>')
+                            .append('<td><span >C</span></td>')
+                            .append('<td><span class="checkAns">D</span></td>')
+                            .append('<td><span>E</span></td>'));
+                        }
+                        if(cvb==="E"){
+                            $('#table_answer_card [mid=' + sctNm + ']').append($('<tr>')
+                            .attr('data-numCard', dat[ix]['fkSualId'])
+                            .append('<th>' + cnt + '</th>')
+                            .append('<td><span >A</span></td>')
+                            .append('<td><span>B</span></td>')
+                            .append('<td><span >C</span></td>')
+                            .append('<td><span >D</span></td>')
+                            .append('<td><span class="checkAns">E</span></td>'));
+                        }
+                        if(cvb===""){
+                            $('#table_answer_card [mid=' + sctNm + ']').append($('<tr>')
+                            .attr('data-numCard', dat[ix]['fkSualId'])
+                            .append('<th>' + cnt + '</th>')
+                            .append('<td><span >A</span></td>')
+                            .append('<td><span>B</span></td>')
+                            .append('<td><span >C</span></td>')
+                            .append('<td><span >D</span></td>')
+                            .append('<td><span >E</span></td>'));
+                        }
+                       
+                        if (cnt === 1) {
+                            $('#' + sctNm + ' .number-quest-short-block').append(
+                                $('<span>').text(cnt)
+                                .addClass('active')
+                                .attr('data-numb-type', dat[ix]['fkSualId'])
+                            )
+                            cnt++
+                        } else {
+     
+                            $('#' + sctNm + ' .number-quest-short-block').append(
+                                $('<span>').text(cnt)
+                                .attr('data-numb-type', dat[ix]['fkSualId']))
+     
+     
+                            cnt++
+                        }
+     
+                    }
+                   
+
+
+                }
+                   
+
+               }
+
+            },
+
+            error: function (jqXHR, status) {
+                // error handler
+
+                alert('fail' + status.code);
+            }
+        });
+
+    }
 
 
     function startQuestBlockGen(idg) {
-
-
-        for (let ixe = 0; ixe < listFnm.length; ixe++) {
-            var sctNm = listFnm[ixe]
+        if(fkImtID===null){
             var exdat1 = {
                 "kv": {
                     "fkImtahanNovuId": idg,
                     "fkUserId": fkUserCode
                 }
             }
+            
+            startQuestBlockGenCore(exdat1);
+          
+        }else{
+            confirm('Davam Etməkdə olan İmtahanınız var. Zəhmət olmasa Ya qaldıqınız yerdən davam edin ya da imtahanı sonlandırın ' );
 
-
-
-            startQuestBlockGenCore(exdat1, ixe, sctNm);
-
-
-
+            for (let ixe = 0; ixe < listFnm.length; ixe++) {
+                var sctNm = listFnm[ixe]
+                
+                continueExamBlockGen(fkImtID,sctNm,ixe)
+               
+            }
+      
         }
+
+
+       
         setTimeout(() => {
             activeAddClass();
         }, 1000);
        
     }
 
-    function startQuestBlockGenCore(exdat1, ixe, sctNm) {
+    function startQuestBlockGenCore(exdat1) {
 
 
 
@@ -637,6 +843,16 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data, status, jqXHR) {
                  fkImtID = data.kv['fkImtahanId'];
+                 localStorage.setItem('fkCnt',fkImtID);
+                  
+                 for (let ixe = 0; ixe < listFnm.length; ixe++) {
+                    var sctNm = listFnm[ixe]
+                   
+                    
+                    
+                
+
+               
                 var ir = ixe + 1
                 var dat = data.kv['section' + ir + 'QapaliSuallar'].split(',')
                 let cnt = 1
@@ -747,7 +963,7 @@ $(document).ready(function () {
 
 
                 }
-
+                 }
 
                
             },
@@ -814,6 +1030,7 @@ $(document).ready(function () {
                var cb= data.kv['cavab'] ;
             
              returnDataAnswer(tol,cb,typ)
+             
             },
 
             error: function (jqXHR, status) {
@@ -836,7 +1053,8 @@ $(document).ready(function () {
             tol.find('[data-fkans="'+cb+'"]').attr('checked', true);
         }
         if(typ==="aciq"){
-            tol.find('.resultFk').val(cb)
+            tol.find('.resultFk').val(cb);
+            examMatrixReturnAns();
         }
          
      }
@@ -853,7 +1071,8 @@ $(document).ready(function () {
         localStorage.removeItem('idExam1');
         localStorage.removeItem('idExam');
         localStorage.removeItem('TmEx');
-        c=0
+        localStorage.removeItem('fkCnt');
+     
          }
 
      function examEndFunc(efkId,UserCode){
@@ -872,8 +1091,10 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data, status, jqXHR) {
                var dat= data.tbl[0].r[0];
-              
+              console.log(data);
               $('#exam_hours').text(dat['imtahanMuddeti']);
+              $('#result-name').text(nmFK);
+              $('#result-sunmae').text(surNmFK);
               $('#variant_exam').text(dat['cariStatus']);
               $('#start_date_exam').text(convertStDate(dat['baslamaTarixi']));
               $('#start_hours_exam').text(convertStTime(dat['baslamaSaati']));
@@ -881,17 +1102,29 @@ $(document).ready(function () {
               $('#end_hours_exam').text(convertStTime(dat['bitisSaati']));
               $('#general_result_exam').text(dat['umumiBal']);
               $('#exam_nmea_end').text(nameEx);
-               var fenn = data.tbl[1].r;
-               
+               var fenn = data.tbl[2].r;
+               var fnm = data.tbl[1].r;
+               var tb 
+               for (let inde = 0; inde < fnm.length; inde++) {
+                if(fnm[inde]['imtahanNovuAdi']===nameEx){
+
+                    tb = fnm[inde];
+                }
+                   
+               }
               for (let index = 0; index < fenn.length; index++) {
                   let ale = fenn[index];
-                  console.log(ale);
-                  $('#fenn-resul-body').append($('<tr>')
-                                   .append('<td>'+ale['imtahanSection']+'</td>')
-                                   .append('<td>'+ale['qapaliSualDogru']+'/'+ale['qapaliSualSay']+'</td>')
-                                   .append('<td>'+ale['aciqSualDogru']+'/'+ale['aciqSualSay']+'</td>')
-                                   .append('<td>'+dat['balSection'+ale['imtahanSection']+'']+'</td>')
-                                   )
+         
+                  var s= ale['imtahanSection']
+                    $('#fenn-resul-body').append($('<tr>')
+                    .append('<td>'+tb["section"+s+""]+'</td>')
+                    .append('<td>'+ale['qapaliSualDogru']+'/'+ale['qapaliSualSay']+'</td>')
+                    .append('<td>'+ale['aciqSualDogru']+'/'+ale['aciqSualSay']+'</td>')
+                    .append('<td>'+ale['situasiyaSualCem']+'/'+ale['situasiyaSualSay']+'</td>')
+                    .append('<td>'+dat['balSection'+ale['imtahanSection']+'']+'</td>')
+                    )
+                  
+               
               }
               
             },
@@ -931,7 +1164,17 @@ $(document).ready(function () {
         }); 
      }
 
+     function examMatrixReturnAns(){
+       
 
+        $('.resultFk').change(function(){
+            var csn= $('.resultFk').val();
+            console.log(csn,csn.split());
+        })
+       
+
+
+     }
     
     
 })

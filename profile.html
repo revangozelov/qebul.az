@@ -33,15 +33,9 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/custom.css" />
 
-
-  <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 </head>
 
-<body id="home" data-spy="scroll" data-target="#navbar-wd" data-offset="98">
+<body id="home">
 
   <!-- LOADER -->
   <div id="preloader">
@@ -52,8 +46,9 @@
   <!-- end loader -->
   <!-- END LOADER -->
 
-  <!-- Start header -->
-  <header class="top-header" data-aos="fade-up" data-aos-delay="200">
+   <!-- Start header -->
+        
+   <header class="top-header">
     <nav class="navbar header-nav navbar-expand-lg">
         <div class="container-fluid cst_navbar_card">
             <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="image"></a>
@@ -65,22 +60,111 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbar-wd">
                 <ul class="navbar-nav">
-                    <li><a class="nav-link active" href="index.html">Əsas Səhifə</a></li>
 
-                    <li data-toggle="collapse" data-target=".navbar-collapse.show"><a class="nav-link"
-                            href="#exams">İmtahanlar</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            İmtahanlar
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-                    <li><a class="nav-link" href="news.html">Xəbərlər</a></li>
-                    <li data-toggle="collapse" data-target=".navbar-collapse.show"><a class="nav-link"
-                            href="#contact">Əlaqə</a></li>
-                    <li><a class="nav-link" href="">Yeniliklər</a></li>
-                    <li><a class="nav-link" href="">Haqqinda</a></li>
+
+                            <div class="">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <a href="">
+                                            <img src="images/p6.jpg" alt="" class="img-fluid">
+                                        </a>
+
+
+                                    </div>
+                                    <div class="col-md-2" id="21040812484203299814" style="text-align: center;">
+                                        <span
+                                            class="text-uppercase ">ABİTURYENT</span>
+                                            <hr>
+                                        <ul class="nav flex-column">
+                                            <li class="nav-item nav-inside-exam" data-times="180"
+                                                id="21040814375205182246"><a class="nav-link active" href="#">I
+                                                    Qrup</a></li>
+                                                    <li class="nav-item nav-inside-exam" data-times="180"
+                                                    id="21040814362304832587"><a class="nav-link active" href="#">II
+                                                        Qrup</a></li>
+                                            <li class="nav-item nav-inside-exam" data-times="180"
+                                                id="21040814372804752381"><a class="nav-link active"
+                                                    href="#">III Qrup</a></li>
+                                           
+                                            <li class="nav-item nav-inside-exam" data-times="180"
+                                                id="21040814130304704095"><a class="nav-link active" href="#">IV
+                                                    Qrup</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-4" id=""  style="text-align: center;">
+                                        <span class="text-uppercase ">Digər İmtahanlar</span>
+                                            <hr>
+                                        <ul class="nav flex-column" style="text-align: left;">
+                                            <li class="nav-item nav-inside-exam" data-times="180"
+                                                id=""><a class="nav-link active" href="#">İbtidai sinif imtahanı
+                                                    </a></li>
+                                            <li class="nav-item nav-inside-exam" data-times="180"
+                                                id=""><a class="nav-link active" href="#">9-11 buraxılış  imtahanı
+                                                    </a></li>
+                                            <li class="nav-item nav-inside-exam" data-times="180"
+                                                id=""><a class="nav-link active" href="#">8-11 fənn imtahanı
+                                                    </a></li>
+                                            <li class="nav-item nav-inside-exam" data-times="180"
+                                                id=""><a class="nav-link active" href="#">Magistr qəbul imtahanı
+                                                    </a></li>
+                                            <li class="nav-item nav-inside-exam" data-times="180"
+                                                id=""><a class="nav-link active" href="#">Dövlət qulluğuna qəbul imtahanı
+                                                    </a></li>
+                                            <li class="nav-item nav-inside-exam" data-times="180"
+                                                id=""><a class="nav-link active" href="#">Müllimlərin işə qəbul imtahanı(MİQ)
+                                                    </a></li>
+                                            <li class="nav-item nav-inside-exam" data-times="180"
+                                                id=""><a class="nav-link active" href="#">Bank sektoruna qəbul imtahanı(MİQ)
+                                                    </a></li>
+                                       
+                                          
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--  /.container  -->
+
+
+                        </div>
+                    </li>
+
+                    <li><a class="nav-link news_blok_gen" data-secte='news' >Xəbərlər</a></li>
+                   
+                    <li><a class="nav-link news_blok_gen" data-secte='b?' >BİlİRSİNİZMİ?</a></li>
+                    <li><a class="nav-link news_blok_gen" data-secte='mm'  >Maraqlı Məlumatlar</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Digər
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                            <a class="dropdown-item" href="about.html">Haqqımızda</a>
+                            <a class="nav-link"  href="#contact">Əlaqə</a>
+                         
+                                                                
+
+                        </div>
+                    </li>
                 </ul>
             </div>
             <div class="login-box">
-                <a href="" data-toggle="modal" data-target="#exampleModal" id="login_btn_data" class="login-btn">
-                    Giriş
-                </a>
+               <!--  <a href="" data-toggle="modal" data-target="#exampleModal" id="login_btn_data"
+                    class="login-btn">
+                    Qeydiyyat
+                </a> -->
+                <div style="padding: 8px;" class=" btn-group-sm " id="login_btn_data" role="group" aria-label="Basic example">
+                  <button type="button" id="openRegstrBtn" class="btn login-btn">Qeydiyyat </button>
+                  <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-secondary">Giriş</button>
+                </div>
+
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
 
@@ -88,19 +172,17 @@
                             <!-- Menu Toggle Button -->
                             <a href="#" class="" data-toggle="dropdown">
                                 <!-- The user image in the navbar-->
-                                <img src="https://vignette3.wikia.nocookie.net/nation/images/6/61/Emblem_person_blue.png/revision/latest?cb=20120218131529"
-                                    id="user_index_img" class="user-image" alt="User Image">
+                                <img src="" id="user_index_img" class="user-image" alt="User Image">
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                 <!-- <span class="hidden-xs">John Abia</span> -->
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- The user image in the menu -->
                                 <li class="user-header">
-                                    <img src="https://vignette3.wikia.nocookie.net/nation/images/6/61/Emblem_person_blue.png/revision/latest?cb=20120218131529"
-                                        class="img-circle" id="user_index_img_large" alt="User Image">
+                                    <img src="" class="img-circle" id="user_index_img_large" alt="User Image">
 
                                     <p id="name_index_block">
-                                        John Abia
+
                                     </p>
                                 </li>
 
@@ -110,7 +192,8 @@
                                         <a href="profile.html" class="btn btn-default btn-flat">Profil</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="#" id="exit_profile_name" class="btn btn-default btn-flat">Çıxış</a>
+                                        <a href="#" id="exit_profile_name"
+                                            class="btn btn-default btn-flat">Çıxış</a>
                                     </div>
                                 </li>
                             </ul>
@@ -382,15 +465,15 @@
 
             <div class="form-group contact_form ">
               <label for="exampleInputPassword1">Əvvəlki Şifrə</label>
-              <input type="password" id="exampleInputPassword1" placeholder="Əvvəlki Şifrə">
+              <input type="password" id="exampleInputPasswordOld" placeholder="Əvvəlki Şifrə">
             </div>
             <div class="form-group contact_form ">
               <label for="exampleInputPassword1">Yeni Şifrə</label>
-              <input type="password" id="exampleInputPassword1" placeholder="Yeni Şifrə">
+              <input type="password" id="exampleInputPasswordNew" placeholder="Yeni Şifrə">
             </div>
             <div class="form-group contact_form ">
               <label for="exampleInputPassword1">Təkrar Yeni Şifrə</label>
-              <input type="password" id="exampleInputPassword1" placeholder="Təkrar Yeni Şifrə">
+              <input type="password" id="exampleInputPasswordReNew" placeholder="Təkrar Yeni Şifrə">
             </div>
 
 
@@ -398,7 +481,7 @@
           </div>
           <div class="modal-footer">
 
-            <button type="button" class="btn btn-primary">Yadda Saxla</button>
+            <button type="button" id="changePass-UserREg" class="btn btn-primary">Yadda Saxla</button>
           </div>
 
         </form>
@@ -479,42 +562,45 @@
 
   <a href="#" id="scroll-to-top" class="hvr-radial-out"><i class="fa fa-angle-up"></i></a>
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-header customModal ">
-          <h5 class="modal-title" id="exampleModalLabel">Giriş</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <form>
-          <div class="modal-body ">
-
-
-            <div class="form-group contact_form">
-              <label for="exampleInputEmail1">Email </label>
-              <input type="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            </div>
-            <div class="form-group contact_form ">
-              <label for="exampleInputPassword1">Şifrə</label>
-              <input type="password" id="exampleInputPassword1" placeholder="Şifrə">
-            </div>
-            
-
-
+          <div class="modal-header customModal ">
+              <h5 class="modal-title" id="exampleModalLabel">Giriş</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
           </div>
-          <div class="modal-footer">
+          <form id="user_from_sub">
+              <div class="modal-body ">
 
-            <button type="button" class="btn btn-secondary"><a href="login.html">Qeydiyyat</a></button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" id="sign_in_btn" class="btn btn-primary">Submit</button>
-          </div>
 
-        </form>
+                  <div class="form-group contact_form">
+                      <label for="exampleInputEmail1">Email </label>
+                      <input type="email" id="exampleInputEmail1" aria-describedby="emailHelp"
+                          placeholder="Email Daxil et">
+                  </div>
+                  <div class="form-group contact_form ">
+                      <label for="exampleInputPassword1">Şifrə</label>
+                      <input type="password" id="exampleInputPassword1" placeholder="Şifrə">
+                  </div>
+                  <div class="form-group form-check">
+                      <span id="errorMessage" style="color: red;"></span>
+                  </div>
+
+
+              </div>
+              <div class="modal-footer">
+
+                  <button type="button" class="btn btn-secondary"><a href="login.html">Qeydiyyat</a></button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" id="sign_in_btn">Submit</button>
+              </div>
+
+          </form>
       </div>
-    </div>
   </div>
+</div>
   <div class="modal fade" id="resultHstoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true" style="padding-right: 0 !important;">
         <div class="modal-dialog" style="max-width: 100%;" role="document">
@@ -535,66 +621,67 @@
                         <div class  id="result_cont_page1"  >           
          
                             </nav>
-                               <div class="container row" >
+                               <div class=" row" >
                                 <table class="zigzag-table" style="width: 40%; border-right: 1px solid rgba(214, 214, 214, 0.911);">
-                                 <th>İmtahan  </th>
-                                 <th>Nəticələri</th>
-                                 <th>#</th>
-                                  <tbody>
-                                 <tr>
-                                   <td>İmtahan verənin adı və soyadı:</td>
-                                   <td>Revan</td>
-                                   <td>Gozelov</td>
+                                  <th>İmtahan  </th>
+                                  <th>Nəticələri</th>
+                                  <th>#</th>
+                                   <tbody>
+                                  <tr>
+                                    <td>İmtahan verənin adı və soyadı:</td>
+                                    <td id="result-name1" ></td>
+                                    <td id="result-sunmae1"></td>
+                                  </tr>
+                                  <tr>
+                                    <td>İmtahan adı: </td>
+                                    <td id="exam_nmea_end1"> </td>
+                                    
+                                  </tr>
+                                  <tr>
+                                    <td>İmtahan Müddəti</td>
+                                    <td id="exam_hours1" ></td>
+                                    <td>Dəqiqə</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Variant </td>
+                                    <td id="variant_exam1"></td>
+                                    <td>Variantı</td>
+                                  </tr>
+                                  <tr>
+                                   <td>Başlanğıc Tarixi </td>
+                                   <td id="start_date_exam1" ></td>
+                                   <td id="start_hours_exam1" ></td>
                                  </tr>
-                                 <tr>
-                                   <td>İmtahan adı: </td>
-                                   <td id="exam_nmea_end1"> </td>
+                                  <tr>
+                                    <td>Bitiş Tarixi</td>
+                                    <td id="end_date_exam1" ></td>
+                                    <td id="end_hours_exam1"></td>
+                                  </tr>
+                                  <tr>
+                                    <td>Yekun Bal</td>
+                                    <td id="general_result_exam1" ></td>
+                                    <td>Bal</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                                 <table class="zigzag-table" style="width: 60%;">
+                                   <thead>
+                                     <tr>
+                                       
+                                       <th>Fənn</th>
+                                       <th>Düzgün Cavab (Qapalı)</th>
+                                       <th>Düzgün Cavab (Açıq)</th>
+                                       <th>Düzgün Cavab (Stuasiya)</th>
+                                       <th>Bal</th>
+                                     </tr>
                                    
-                                 </tr>
-                                 <tr>
-                                   <td>İmtahan Müddəti</td>
-                                   <td id="exam_hours1" ></td>
-                                   <td>Dəqiqə</td>
-                                 </tr>
-                                 <tr>
-                                   <td>Variant </td>
-                                   <td id="variant_exam1"></td>
-                                   <td>Variantı</td>
-                                 </tr>
-                                 <tr>
-                                  <td>Başlanğıc Tarixi </td>
-                                  <td id="start_date_exam1" ></td>
-                                  <td id="start_hours_exam1" ></td>
-                                </tr>
-                                 <tr>
-                                   <td>Bitiş Tarixi</td>
-                                   <td id="end_date_exam1" ></td>
-                                   <td id="end_hours_exam1"></td>
-                                 </tr>
-                                 <tr>
-                                   <td>Yekun Bal</td>
-                                   <td id="general_result_exam1" ></td>
-                                   <td>Bal</td>
-                                 </tr>
-                               </tbody>
-                             </table>
-                                <table class="zigzag-table" style="width: 60%;">
-                                  <thead>
-                                    <tr>
-                                      
-                                      <th>Fənn</th>
-                                      <th>Düzgün Cavab sayı(Qapalı)</th>
-                                      <th>Düzgün Cavab sayı(Açıq)</th>
-                                      <th>Bal</th>
-                                    </tr>
-                                  
-                                   
-                                  </thead>
-                                  <tbody id="fenn-resul-body1">
-                                
+                                    
+                                   </thead>
+                                   <tbody id="fenn-resul-body1">
                                  
-                               </tbody>
-                             </table>
+                                  
+                                </tbody>
+                              </table>
                                </div>
                             
                           </div>
@@ -606,16 +693,24 @@
             </div>
         </div>
     </div>
+
+    
     <!-- ALL JS FILES -->
     <script src="js/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    
+    <script src="js/paginiton.js"></script>
     <!-- ALL PLUGINS -->
     <script src="js/html2pdf.min.js"></script>
     <script src="js/custom.js"></script>
+
+    <script>
+      if(localStorage.getItem('UsId')===null){
+        window.location.href = 'index.html';
+      }
+    </script>
 </body>
 
 </html>

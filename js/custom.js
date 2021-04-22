@@ -2,7 +2,8 @@
 var UrlQb = "https://app.qebul.az/";
 var fkUserCode = ''
 fkUserCode = localStorage.getItem('UsId');
-
+var nmFK 
+var surNmFK
 (function (a) {
 	a.MaskedInput = function (f) {
 		if (!f || !f.elm || !f.format) {
@@ -324,6 +325,22 @@ function convertStDate(dt){
 	  
 	return fns
  }
+ function alertBoxGenerate(text,type){
+
+	var box = `<div class="alert ${type}">
+	<span class='alert-close' onclick="this.parentElement.style.display='none';">&times;</span>
+	<b>Bildiriş</b><br>
+<ul><li>
+
+${text}
+</li>
+
+</ul></div>`
+
+
+$('.alert_box_inside').append(box)
+	 
+}
 /* ..............................................
 	Loader 
     ................................................. */
@@ -373,11 +390,33 @@ $(window).on('load', function () {
 
 
 $(document).ready(function () {
+
+	// Get all elements with class="closebtn"
+var closec = document.getElementsByClassName("alert-close");
+var i;
+
+// Loop through all close buttons
+for (i = 0; i < closec.length; i++) {
+    // When someone clicks on a close button
+    closec[i].onclick = function(){
+
+        // Get the parent of <span class="closebtn"> (<div class="alert">)
+        var divc = this.parentElement;
+
+        // Set the opacity of div to 0 (transparent)
+        divc.style.opacity = "0";
+
+        // Hide the div after 600ms (the same amount of milliseconds it takes to fade out)
+        setTimeout(function(){ divc.style.display = "none"; }, 600);
+    }
+}
 	// masked_input_1.4-min.js
 	// angelwatt.com/coding/masked_input.php
 	/* ..............................................
     Navbar Bar
     ................................................. */
+
+	
 
 	$('.navbar-nav .nav-link').on('click', function () {
 		var toggle = $('.navbar-toggler').is(':visible');
@@ -396,7 +435,7 @@ Fixed Menu
 			$('.top-header').css('top', '0');
 		} else {
 			$('.top-header').removeClass('fixed-menu');
-			$('.top-header').css('top', '10px');
+			$('.top-header').css('top', '25px');
 		}
 		if ($(this).scrollTop() > 100) {
 			$('#scroll-to-top').fadeIn();
@@ -471,6 +510,10 @@ Fixed Menu
 
 		$('.notification').toggle('fast')
 	})
+	$(document).on('click', '#openRegstrBtn', function () {
+
+	  window.location.href = "login.html"
+	})
 
 
 
@@ -486,6 +529,10 @@ $(document).ready(function () {
 	$(document).on('click', '#imtahan_list_index div', function () {
 
 		let id = $(this).attr('id')
+
+		if(id===undefined){
+			return
+		}
 		$("imtahan_list_inside").empty();
 		addExamList(id)
       
@@ -493,11 +540,8 @@ $(document).ready(function () {
 	
 	$(document).on('click', '#imtahan_list_inside div', function () {
         
-		fkUserCode 
-		
-
 		if(!localStorage.getItem('UsId')){
-			window.location.href = 'login.html';
+			$('#exampleModal').modal("toggle");
 			return
 		} 
 
@@ -512,6 +556,40 @@ $(document).ready(function () {
 
 
 	})
+	$(document).on('click', '.nav-inside-exam', function () {
+        
+		fkUserCode 
+		
+
+		if(!localStorage.getItem('UsId')){
+			$('#exampleModal').modal("toggle");
+			return
+		} 
+
+
+		let id = $(this).attr('id');
+		let name = $(this).find('a').text();
+		let tmas=$(this).attr('data-times');;
+		window.location.href = 'exam.html';
+		localStorage.setItem('idExam', id);
+	   localStorage.setItem('nameExam', name);
+	   localStorage.setItem('TmEx', tmas*60)
+		
+	
+
+
+	})
+	$(document).on('click', '.news_blok_gen', function () {
+        
+		var dte= $(this).attr('data-secte');
+
+		localStorage.setItem('newsId',dte);
+           console.log(dte);
+        window.location.href ="news.html";
+
+     })
+  
+	 
 	function genExamBlock(id, nam, img) {
 
 		return `<div id='${id}' class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
@@ -523,45 +601,7 @@ $(document).ready(function () {
 
 	}
 
-	function addParentExam(){
-		$.ajax({
-			type: "POST",
-			url: UrlQb+"api/post/zd/qebulaz/getImtahanTreeList",
-			// now data come in this function
-			contentType: "application/json; charset=utf-8",
-			crossDomain: true,
-			dataType: "json",
-			success: function (data, status, jqXHR) {
-				var dat = data.tbl[0].r
-				var ilst = $('#imtahan_list_index');
-
-                    
-				for (let index = 0; index < dat.length; index++) {
-
-					var fennTc = dat[index]['parentImtahanNovu'];
-					if (fennTc==="") {
-						var idTc = dat[index]['id'];
-						var imgTc = dat[index]['logoUrl'];
-						var nameTc = dat[index]['imtahanNovuAdi'];
-						console.log(dat[index]); 
-						ilst.append(genExamBlock(idTc, nameTc, imgTc));
-						$('#exam_list_dropdown').append($('<li>')
-						                                       .append('<a class="dropdown-item" href="#exams">'+nameTc+'</a>'));
-
-
-					}
-
-				}
-			
-			},
-
-			error: function (jqXHR, status) {
-				// error handler
-				
-				alert('fail' + status.code);
-			}
-		});	
-	}
+	
 	function addExamList(gId) {
 
 		$.ajax({
@@ -603,8 +643,9 @@ $(document).ready(function () {
 			}
 		});
 	}
+	
 
-	addParentExam();
+	
 	
 	//teacher post api 
 	function genTeacherBlock(id, img, name, fenn) {
@@ -663,7 +704,7 @@ $(document).ready(function () {
 
 	addDataTeacher();
 	//news  post api 
-	function genNewsBlokMini(id, title, bdy, Date, imgN) {
+	function genNewsBlokMini(id, title,  Date, imgN) {
 		return $('<div>')
 			.addClass('col-lg-3 col-md-3 col-sm-12')
 			.attr('id', id)
@@ -671,7 +712,7 @@ $(document).ready(function () {
 				.addClass('full blog_img_popular')
 				.append('<img class="img-responsive" src="'+UrlQb+'api/get/zdfiles/qebulaz/' + imgN + '" alt="#' + title + '" />')
 				.append('<h4 class="data-newssend">' + title + '</h4>')
-				.append('<p>' + bdy + '</p>')
+				
 				.append('<span class="newsDate">' + Date + '</span>'))
 
 	}
@@ -738,7 +779,7 @@ $(document).ready(function () {
 						var bodyNw = dat[index]['newsBody'];
 	
 	
-						$('#news-mini-block').prepend(genNewsBlokMini(idNw, titleNw, bodyNw, inDateNw, imgNw));
+						$('#news-mini-block').prepend(genNewsBlokMini(idNw, titleNw,  inDateNw, imgNw));
 						$('#news-large-block').prepend(genNewsBlokLarge(idNw, titleNw, bodyNw, inDateNw, imgNw));
 					}
 					if(typeN==='aboutus'){
@@ -750,7 +791,7 @@ $(document).ready(function () {
 						var bodyNw = dat[index]['newsBody'];
 	
 	
-						$('#news-mini-block').prepend(genNewsBlokMini(idNw, titleNw, bodyNw, inDateNw, imgNw));
+						$('#news-mini-block').prepend(genNewsBlokMini(idNw, titleNw,  inDateNw, imgNw));
 						$('#news-large-block').prepend(genNewsBlokLarge(idNw, titleNw, bodyNw, inDateNw, imgNw));
 					}
 					if(typeN==='bilirsizmi'){
@@ -762,7 +803,8 @@ $(document).ready(function () {
 						var bodyNw = dat[index]['newsBody'];
 	
 	
-						$('#blr-mini-block').prepend(genNewsBlokMini(idNw, titleNw, bodyNw, inDateNw, imgNw));
+						$('#blr-mini-block').prepend(genNewsBlokMini(idNw, titleNw,  inDateNw, imgNw));
+						$('#blr-large-block').prepend(genNewsBlokLarge(idNw, titleNw, bodyNw, inDateNw, imgNw));
 						
 					}
 					if(typeN==='mmelumatlar'){
@@ -774,14 +816,15 @@ $(document).ready(function () {
 						var bodyNw = dat[index]['newsBody'];
 	
 	
-						$('#mrql-mini-block').prepend(genNewsBlokMini(idNw, titleNw, bodyNw, inDateNw, imgNw));
+						$('#mrql-mini-block').prepend(genNewsBlokMini(idNw, titleNw,  inDateNw, imgNw));
+						$('#mrql-large-block').prepend(genNewsBlokLarge(idNw, titleNw, bodyNw, inDateNw, imgNw));
 					
 					}
 
 					
 				}
 
-
+				pagintionFunc();
 			},
 
 			error: function (jqXHR, status) {
@@ -1021,7 +1064,7 @@ $(document).ready(function () {
 		return `<tr data-rstid="${rstid}">
 
 		<th row-header="Table heading"  scope="row">${num}</th>
-		<td row-header="Table">${nma}</td>
+		<td row-header="Table" id="hst_name_tag">${nma}</td>
 		<td row-header="Table heading">${vxt}</td>
 		<td row-header="heading"><a href="" data-toggle="modal" data-target="#resultHstoryModal" id="result-return" >Nəticəni göstər</a></td>
       </tr>`
@@ -1084,8 +1127,8 @@ $(document).ready(function () {
    $(document).on("click","#result-return", function(){
    
        var IdImt = $(this).parents('tr').attr('data-rstid');
-
-	    examEndFuncHstry(IdImt,fkUserCode);
+       var nm = $(this).parents('tbody').find('#hst_name_tag').text();
+	    examEndFuncHstry(IdImt,fkUserCode,nm);
    })
    function updateUserImage(img){
 	let objectUser1 = {
@@ -1119,7 +1162,7 @@ $(document).ready(function () {
 
 	
    }
-   function examEndFuncHstry(efkId,UserCode){
+   function examEndFuncHstry(efkId,UserCode,nameEx){
 	var prop = {
 		"kv": { 
 			 "fkImtahanId": efkId,
@@ -1135,7 +1178,8 @@ $(document).ready(function () {
 		dataType: "json",
 		success: function (data, status, jqXHR) {
 		   var dat= data.tbl[0].r[0];
-		  
+		   $('#result-name1').text(nmFK);
+		   $('#result-sunmae1').text(surNmFK);
 		  $('#exam_hours1').text(dat['imtahanMuddeti']);
 		  $('#variant_exam1').text(dat['cariStatus']);
 		  $('#start_date_exam1').text(convertStDate(dat['baslamaTarixi']));
@@ -1143,19 +1187,34 @@ $(document).ready(function () {
 		  $('#end_date_exam1').text(convertStDate(dat['bitisTarixi']));
 		  $('#end_hours_exam1').text(convertStTime(dat['bitisSaati']));
 		  $('#general_result_exam1').text(dat['umumiBal']);
-		 // $('#exam_nmea_end1').text(nameEx);
-		   var fenn = data.tbl[1].r;
-		   $('#fenn-resul-body1').empty()
-		  for (let index = 0; index < fenn.length; index++) {
-			  let ale = fenn[index];
-			  console.log(data);
-			  $('#fenn-resul-body1').append($('<tr>')
-							   .append('<td>'+ale['imtahanSection']+'</td>')
-							   .append('<td>'+ale['qapaliSualDogru']+'/'+ale['qapaliSualSay']+'</td>')
-							   .append('<td>'+ale['aciqSualDogru']+'/'+ale['aciqSualSay']+'</td>')
-							   .append('<td>'+dat['balSection'+ale['imtahanSection']+'']+'</td>')
-							   )
+		 
+		   $('#exam_nmea_end1').text(nameEx);
+		   
+		   $('#fenn-resul-body1').empty();
+		  var fenn = data.tbl[2].r;
+		  var fnm = data.tbl[1].r;
+		  var tb 
+		  for (let inde = 0; inde < fnm.length; inde++) {
+		   if(fnm[inde]['imtahanNovuAdi']===nameEx){
+
+			   tb = fnm[inde];
+		   }
+			  
 		  }
+		 for (let index = 0; index < fenn.length; index++) {
+			 let ale = fenn[index];
+	
+			 var s= ale['imtahanSection']
+			   $('#fenn-resul-body1').append($('<tr>')
+			   .append('<td>'+tb["section"+s+""]+'</td>')
+			   .append('<td>'+ale['qapaliSualDogru']+'/'+ale['qapaliSualSay']+'</td>')
+			   .append('<td>'+ale['aciqSualDogru']+'/'+ale['aciqSualSay']+'</td>')
+			   .append('<td>'+ale['situasiyaSualCem']+'/'+ale['situasiyaSualSay']+'</td>')
+			   .append('<td>'+dat['balSection'+ale['imtahanSection']+'']+'</td>')
+			   )
+			 
+		  
+		 }
 		  
 		},
 
@@ -1165,6 +1224,67 @@ $(document).ready(function () {
 			alert('fail' + status.code);
 		}
 	}); 
+ }
+
+ function pagintionFunc(){
+	var items = $("#news-large-block .news_block_large");
+    var numItems = items.length;
+    var perPage = 5;
+
+    items.slice(perPage).hide();
+
+    $('.pagination-container').pagination({
+        items: numItems,
+        itemsOnPage: perPage,
+        prevText: "&laquo;",
+        nextText: "&raquo;",
+        onPageClick: function (pageNumber) {
+            var showFrom = perPage * (pageNumber - 1);
+            var showTo = showFrom + perPage;
+            items.hide().slice(showFrom, showTo).show();
+        }
+    });
+	pagintionFunc1();
+ }
+ function pagintionFunc1(){
+	var items = $("#blr-large-block .news_block_large");
+    var numItems = items.length;
+    var perPage = 5;
+
+    items.slice(perPage).hide();
+
+    $('.pagination-container1').pagination({
+        items: numItems,
+        itemsOnPage: perPage,
+        prevText: "&laquo;",
+        nextText: "&raquo;",
+        onPageClick: function (pageNumber) {
+            var showFrom = perPage * (pageNumber - 1);
+            var showTo = showFrom + perPage;
+            items.hide().slice(showFrom, showTo).show();
+        }
+    });
+	pagintionFunc2();
+ }
+ function pagintionFunc2(){
+	var items = $("#mrql-large-block .news_block_large");
+    var numItems = items.length;
+    var perPage = 5;
+
+    items.slice(perPage).hide();
+
+    $('.pagination-container2').pagination({
+        items: numItems,
+        itemsOnPage: perPage,
+        prevText: "&laquo;",
+        nextText: "&raquo;",
+        onPageClick: function (pageNumber) {
+            var showFrom = perPage * (pageNumber - 1);
+            var showTo = showFrom + perPage;
+            items.hide().slice(showFrom, showTo).show();
+        }
+    });
+	
  }
 	// user Info Functions update and accept
 
@@ -1256,16 +1376,33 @@ $(document).ready(function () {
 			crossDomain: true,
 			dataType: "json",
 			success: function (data, status, jqXHR) {
-				var dat = data.kv;		
-				localStorage.setItem('UsId', dat['id']);
 				
-				getUserInfoProfile();
-				$('#exampleModal').modal("toggle");
+				
+				var dat = data.kv;
+				try {
+					var err= data.err[0]['code'];
+					if(err==="userNotFound"){
+						$('#errorMessage').text('İstifadəçi tapılmadı');
+				   return
+					}
+				  }
+				  catch(err) {
+					localStorage.setItem('UsId', dat['id']);
+					
+					$('#exampleModal').modal("toggle");
+					
+					window.location.reload(true);
+				  }
+			
+							
+			   
+					
+				 
+		
 			},
 
 			error: function (jqXHR, status) {
 							
-				alert('fail' + status.code);
 			}
 		});
 	}
@@ -1274,6 +1411,7 @@ $(document).ready(function () {
           
 		
 		userId = localStorage.getItem('UsId');
+		console.log(userId);
 		if (userId.length !== '') {
 
 			let objectUser1 = {
@@ -1315,7 +1453,8 @@ $(document).ready(function () {
 						var cty = dat[index]['qeydiyyatCity'];
 
 						if (userId === idTc) {
-							
+							nmFK =nm;
+							surNmFK=srnm
 							$("#user_name_pr").text(nm + " " + srnm);
 							$("#city_user_pr").text(cty);
 							$("#user_pr_mobile").text(mbl);
@@ -1328,12 +1467,21 @@ $(document).ready(function () {
 							$("#update_user_gender").val(gendr);
 							$("#update_user_group").val(exGr);
 							$("#update_user_status").val(sts);
-							$("#profile_picture_img").attr('src', UrlQb+'api/get/zdfiles/qebulaz/' + imgTc);
-							userImageIn(imgTc, nm, srnm);
+							if(imgTc===""){
+								$("#profile_picture_img").attr('src', 'images/userprofile.png');
+								$('#user_index_img').attr('src', 'images/userprofile.png');
+								$('#user_index_img_large').attr('src', 'images/userprofile.png');
+								$('#name_index_block').text(nm + ' ' + srnm);
+							}else{
+								$("#profile_picture_img").attr('src', UrlQb+'api/get/zdfiles/qebulaz/' + imgTc);
+								userImageIn(imgTc, nm, srnm);
+							}
+						
 						}
 
 
 					}
+
 
 
 				},
@@ -1408,6 +1556,57 @@ $(document).ready(function () {
 	   
    })
   
+   $(document).on('click','#changePass-UserREg',function(){
+
+
+	var oldps = $('#exampleInputPasswordOld').val();
+	var newps = $('#exampleInputPasswordNew').val();
+	var cnewps = $('#exampleInputPasswordReNew').val();
+	
+    if(newps===cnewps){
+		updatePass(fkUserCode,oldps,newps,cnewps);
+	}
+	
+
+
+   })
+
+   function updatePass(id,oldps,newps,cnewps){
+
+	var prop = {
+		"kv": { 
+			 "fkUserId": id,
+			 "oldPassword":oldps,
+			 "newPassword":newps,
+			 "confirmNewPassword":cnewps
+		} 
+	}
+	$.ajax({
+		type: "POST",
+		url: UrlQb + "api/post/zdfn/qebulaz/updateUserPasswordById",
+		data: JSON.stringify(prop), // now data come in this function
+		contentType: "application/json; charset=utf-8",
+		crossDomain: true,
+		dataType: "json",
+		success: function (data, status, jqXHR) {
+        
+			try{
+               var err =data.err[0]
+               
+			}catch{
+				$('#changePasswordModal').modal("toggle");
+			}
+		   console.log(data);
+		  
+		},
+
+		error: function (jqXHR, status) {
+			// error handler
+
+			alert('fail' + status.code);
+		}
+	}); 
+   }
 
 });
 
