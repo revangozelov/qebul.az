@@ -1104,7 +1104,7 @@ $(document).ready(function () {
               $('#exam_nmea_end').text(nameEx);
                var fenn = data.tbl[2].r;
                var fnm = data.tbl[1].r;
-               var tb 
+               var tb;
                for (let inde = 0; inde < fnm.length; inde++) {
                 if(fnm[inde]['imtahanNovuAdi']===nameEx){
 
@@ -1115,9 +1115,10 @@ $(document).ready(function () {
               for (let index = 0; index < fenn.length; index++) {
                   let ale = fenn[index];
          
-                  var s= ale['imtahanSection']
+                  var s= ale['imtahanSection'];
+                      console.log(tb);
                     $('#fenn-resul-body').append($('<tr>')
-                    .append('<td>'+tb["section"+s+""]+'</td>')
+                    .append('<td>'+tb['section'+s+'']+'</td>')
                     .append('<td>'+ale['qapaliSualDogru']+'/'+ale['qapaliSualSay']+'</td>')
                     .append('<td>'+ale['aciqSualDogru']+'/'+ale['aciqSualSay']+'</td>')
                     .append('<td>'+ale['situasiyaSualCem']+'/'+ale['situasiyaSualSay']+'</td>')

@@ -447,16 +447,75 @@ Fixed Menu
 		}
 	});
 
+	function genNewsBlokLarge(id, bdy, Date, imgN) {
+		return $('<div>')
+			.addClass('row news_block_large')
+			.attr('id', id)
+			.attr('data-aos', 'fade-up')
+			.attr('data-aos-delay', '300')
+			.append($('<div>')
+				.addClass('col-lg-4 col-md-4 col-sm-12')
+				.append('<div class="full float-right_img"><img class="data_newsImg" src="'+UrlQb+'api/get/zdfiles/qebulaz/' + imgN + '" alt="#"></div>'))
+			.append($('<div>')
+				.addClass('data_newsTxt col-lg-8 col-md-8 col-sm-12')
+				
+				.append('<span>' + bdy + '</span>')
+				.append('<p>' + Date + '</p>')
+			)
+
+	}
 
 
 	$(document).on('click', '.data-newssend', function () {
-
-		window.open("news.html", "Xəbərlər");
+          
+		//window.open("news.html", "Xəbərlər");
+		var id = $(this).parent().parent().attr('id')
+		$('#newsLargeBlock').modal("toggle");
+		$('#getNewlargeBody').empty();
+		getNewsLargeBlockInside(id)
 
 
 	})
 
+    function getNewsLargeBlockInside(id){
 
+		$.ajax({
+			type: "POST",
+			url: UrlQb+"api/post/zd/qebulaz/getNewsList",
+			res: JSON.stringify(), // now data come in this function
+			contentType: "application/json; charset=utf-8",
+			crossDomain: true,
+			dataType: "json",
+			success: function (res) {
+				
+				var dat = res.tbl[0].r;
+				for (let index = 0; index < dat.length; index++) {
+
+					if(dat[index]['id']===id){
+						var idNw = dat[index]['id'];
+						var imgNw = dat[index]['thumbImg'];
+						var titleNw = dat[index]['newsTitle'];
+						var inDateNw = convertStDate(dat[index]['insertDate']);
+	
+						var bodyNw = dat[index]['newsBody'];
+	
+											
+						$('#newsHeaderCnt').text(titleNw);
+						$('#getNewlargeBody').append(genNewsBlokLarge(idNw, bodyNw, inDateNw, imgNw));
+					}
+										
+				}
+
+			},
+
+			error: function (jqXHR, status) {
+				// error handler
+			
+				alert('fail' + status.code);
+			}
+		});
+
+	}
 
 
 	$('#scroll-to-top').click(function () {
@@ -583,7 +642,7 @@ $(document).ready(function () {
 			
 
 		let id = $(this).attr('id');
-		let name = $(this).find('a').text();
+		let name = $(this).attr('data-subtp')
 		let tmas=$(this).attr('data-times');;
 		window.location.href = 'exam.html';
 		localStorage.setItem('idExam', id);
@@ -742,23 +801,6 @@ $(document).ready(function () {
 
 	}
 
-	function genNewsBlokLarge(id, title, bdy, Date, imgN) {
-		return $('<div>')
-			.addClass('row news_block_large')
-			.attr('id', id)
-			.attr('data-aos', 'fade-up')
-			.attr('data-aos-delay', '300')
-			.append($('<div>')
-				.addClass('col-lg-4 col-md-4 col-sm-12')
-				.append('<div class="full float-right_img"><img class="data_newsImg" src="'+UrlQb+'api/get/zdfiles/qebulaz/' + imgN + '" alt="#"></div>'))
-			.append($('<div>')
-				.addClass('data_newsTxt col-lg-8 col-md-8 col-sm-12')
-				.append('<h4>' + title + '</h4>')
-				.append('<span>' + bdy + '</span>')
-				.append('<p>' + Date + '</p>')
-			)
-
-	}
 
   
 
@@ -776,7 +818,7 @@ $(document).ready(function () {
 	typeNewsGen()
 
 	function addDataNews(typeN) { // pass your data in method
-	
+	            
 		let dtset ={
 			"kv": {
 				 "newsType":typeN
@@ -790,11 +832,9 @@ $(document).ready(function () {
 			contentType: "application/json; charset=utf-8",
 			crossDomain: true,
 			dataType: "json",
-			success: function (data, status, jqXHR) {
-				
-				var dat = data.tbl[0].r
-                  
-                 console.log(data);
+			success: function (res) {
+				 
+				var dat = res.tbl[0].r;
 				for (let index = 0; index < dat.length; index++) {
 
 					if(typeN==='news'){
@@ -809,14 +849,9 @@ $(document).ready(function () {
 								$('#news-mini-block').prepend(genNewsBlokMini(idNw, titleNw,  inDateNw, imgNw,index));
 							 }
 					
-						$('#news-large-block').prepend(genNewsBlokLarge(idNw, titleNw, bodyNw, inDateNw, imgNw));
+						$('#news-large-block').prepend(genNewsBlokMini(idNw, titleNw, inDateNw, imgNw));
 					}
-					if(typeN==='aboutus'){
-						var idNw = dat[0]['id'];
-						$('#about-text-block').text( dat[0]['newsTitle'])
-						$('#about-text-img').attr("src",UrlQb+'api/get/zdfiles/qebulaz/' + dat[0]['thumbImg'])                  
-	                      
-					}
+					
 					if(typeN==='bilirsizmi'){
 						var idNw = dat[index]['id'];
 						var imgNw = dat[index]['thumbImg'];
@@ -829,7 +864,7 @@ $(document).ready(function () {
 						$('#blr-mini-block').prepend(genNewsBlokMini(idNw, titleNw,  inDateNw, imgNw,index));
 
 							  }
-						$('#blr-large-block').prepend(genNewsBlokLarge(idNw, titleNw, bodyNw, inDateNw, imgNw));
+						$('#blr-large-block').prepend(genNewsBlokMini(idNw, titleNw, inDateNw, imgNw));
 						
 					}
 					if(typeN==='mmelumatlar'){
@@ -845,13 +880,19 @@ $(document).ready(function () {
 						}
 	
 						
-						$('#mrql-large-block').prepend(genNewsBlokLarge(idNw, titleNw, bodyNw, inDateNw, imgNw));
+						$('#mrql-large-block').prepend(genNewsBlokMini(idNw, titleNw, inDateNw, imgNw));
 					
 					}
 
 					
 				}
 
+				if(typeN==='aboutus'){
+					var idNw = dat[0]['id'];
+					$('#about-text-block').append( dat[0]['newsBody'])
+					$('#about-text-img').attr("src",UrlQb+'api/get/zdfiles/qebulaz/' + dat[0]['thumbImg'])                  
+					  
+				}
 				pagintionFunc();
 			},
 
@@ -922,7 +963,7 @@ $(document).ready(function () {
 						crossDomain: true,
 						dataType: "json",
 						success: function (data, status, jqXHR) {
-                        console.log(data);
+                        
 							try {
 								
 								alertBoxGenerate(data.err[0]['val'],'warning','Xəta')
@@ -1263,9 +1304,9 @@ $(document).ready(function () {
  }
 
  function pagintionFunc(){
-	var items = $("#news-large-block .news_block_large");
+	var items = $("#news-large-block .blog_img_popular");
     var numItems = items.length;
-    var perPage = 5;
+    var perPage = 16;
 
     items.slice(perPage).hide();
 
@@ -1283,9 +1324,9 @@ $(document).ready(function () {
 	pagintionFunc1();
  }
  function pagintionFunc1(){
-	var items = $("#blr-large-block .news_block_large");
+	var items = $("#blr-large-block .blog_img_popular");
     var numItems = items.length;
-    var perPage = 5;
+    var perPage = 16;
 
     items.slice(perPage).hide();
 
@@ -1303,9 +1344,9 @@ $(document).ready(function () {
 	pagintionFunc2();
  }
  function pagintionFunc2(){
-	var items = $("#mrql-large-block .news_block_large");
+	var items = $("#mrql-large-block .blog_img_popular");
     var numItems = items.length;
-    var perPage = 5;
+    var perPage = 16;
 
     items.slice(perPage).hide();
 
@@ -1448,7 +1489,7 @@ $(document).ready(function () {
 		
 		userId = localStorage.getItem('UsId');
 		
-		if (userId.length !== '') {
+		if (userId !== null) {
 
 			let objectUser1 = {
 				"kv": {

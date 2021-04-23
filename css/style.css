@@ -2223,17 +2223,21 @@ section.inner_banner h3 {
 
 .blog_img_popular h4 {
 	width: 86%;
-	background: #fff;
-	margin: 0 7%;
-	padding: 5px;
-	color: #10449A;
-	text-align: center;
-	font-size: inherit;
-	min-height: 70px;
-	line-height: 30px !important;
-	box-shadow: 0 0 25px 0 rgba(0, 0, 0, .2);
-	margin-top: -35px;
-	border-radius: 6px;
+    background: #fff;
+    margin: 0 7%;
+    padding: 5px;
+    color: #10449A;
+    text-align: center;
+    font-size: 21px;
+    line-height: 24px !important;
+    box-shadow: 0 0 25px 0 rgb(0 0 0 / 20%);
+    margin-top: -35px;
+    border-radius: 6px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    height: 3.6em;
+    white-space:pre-wrap;
+    font-weight: 450;
 }
 
 .blog_img_popular p {
