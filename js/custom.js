@@ -627,27 +627,45 @@ $(document).ready(function () {
 
 
 	})
+
+
+
+	let excNm ;
+	let excTme;
+	let excId;
 	$(document).on('click', '.nav-inside-exam', function () {
         
 	       
-		var id = $(this).attr('id');
+		 excId = $(this).attr('id');
 
 
-		if( id!==''){
+		if( excId!==''){
 			if(!localStorage.getItem('UsId')){
 				$('#exampleModal').modal("toggle");
 				return
 			} 
+   
 
-			
+		    excNm = $(this).attr('data-subtp')
+		   excTme=$(this).attr('data-times');
 
-		let id = $(this).attr('id');
-		let name = $(this).attr('data-subtp')
-		let tmas=$(this).attr('data-times');;
-		window.location.href = 'exam.html';
-		localStorage.setItem('idExam', id);
-	   localStorage.setItem('nameExam', name);
-	   localStorage.setItem('TmEx', tmas*60)
+             var prce=dataPaymentGen(localStorage.getItem('UsId'))
+ 
+			$('#paymentModal').modal("toggle");
+			$('#blockGenIdExamInfo').empty()
+			$('#blockGenIdExamInfo').append($('<div>')
+			                .addClass('col-12')
+							.attr('id',excId))
+							.append($('<div>')
+							           .addClass('col-12 setExamNm')
+									   .append('<b>İmtahan Adı:</b> '+excNm))
+							.append($('<div>')
+							           .addClass('col-12 setTimeCl')
+									   .append('<b>İmtahan müddəti:</b> '+excTme+' dəqiqə'))
+							.append($('<div>')
+							           .addClass('col-12')
+									   .append('<b>İmtahan qiyməti:</b> '+prce+' AZN'))
+
 		
 		} else{
 
@@ -661,6 +679,117 @@ $(document).ready(function () {
 
 
 	})
+	$(document).on('click', '#cstam-nav-dropdown', function (e) {
+		e.stopPropagation();
+		e.preventDefault();
+	})
+	$(document).on('click', '#submit_payment_exam', function () {
+        
+	       
+		window.location.href = 'exam.html';
+		localStorage.setItem('idExam', excId);
+	   localStorage.setItem('nameExam', excNm);
+	   localStorage.setItem('TmEx', excTme*60)
+		
+	
+
+	
+
+	
+
+
+	})
+	function dataPaymentGen(ids){
+		console.log(ids);
+		let dtset ={
+			"kv": {
+				 "id":ids
+			     
+			} 
+		}
+			$.ajax({
+			type: "POST",
+			url: UrlQb+"api/post/zd/qebulaz/getPricelistList",
+			data: JSON.stringify(dtset), // now data come in this function
+			contentType: "application/json; charset=utf-8",
+			crossDomain: true,
+			dataType: "json",		
+			success: function (data) {
+				
+			var prc= data.tbl[0].r[0]['qiymet'];
+				
+                 
+			},
+
+			error: function (jqXHR, status) {
+				// error handler
+			
+				alert('fail' + status.code);
+			}
+		});
+	}
+	$(document).on('click', '#enter-forgot-menu', function () {
+        var prt= $(this).parents('.modal-dialog');
+
+
+		prt.find('.modeOn1').toggle();
+		prt.find('.modeOn2').toggle();
+		prt.find('.modalOnblock2').toggle();
+		prt.find('.modalOnBlock1').toggle();
+
+
+	})
+	$(document).on('click', '#exit-forgot-menu', function () {
+        var prt= $(this).parents('.modal-dialog');
+
+
+		prt.find('.modeOn1').toggle();
+		prt.find('.modeOn2').toggle();
+		prt.find('.modalOnblock2').toggle();
+		prt.find('.modalOnBlock1').toggle();
+
+
+	})
+	$(document).on('click', '#submit-email-forgot', function () {
+        var val= $(this).parents('.modal-dialog').find('#forgotEmailİn').val();
+
+        forgotPassApi(val)
+	})
+
+	function forgotPassApi(ml){
+		let dtset ={
+			"kv": {
+				 "email":ml
+			     
+			} 
+		}
+			$.ajax({
+			type: "POST",
+			url: UrlQb+"api/post/zdfn/qebulaz/forgetPassword",
+			data: JSON.stringify(dtset), // now data come in this function
+			contentType: "application/json; charset=utf-8",
+			crossDomain: true,
+			dataType: "json",		
+			success: function (data) {
+				console.log(data);
+				
+				try{
+                var val= dat.err[0][val]
+				
+				}
+				catch(error){
+
+				}
+			},
+
+			error: function (jqXHR, status) {
+				// error handler
+			
+				alert('fail' + status.code);
+			}
+		});
+	}
+	
 	$(document).on('click', '.news_blok_gen', function () {
         
 		var dte= $(this).attr('data-secte');
@@ -789,8 +918,8 @@ $(document).ready(function () {
 	function genNewsBlokMini(id, title,  Date, imgN,aos) {
 		return $('<div>')
 			.addClass('col-lg-3 col-md-3 col-sm-12')
-			.attr('data-aos','fade-up')
-			.attr('data-aos-delay',aos+'00')
+			.attr('data-aos',aos)
+			.attr('data-aos-delay','200')
 			.attr('id', id)
 			.append($('<div>')
 				.addClass('full blog_img_popular')
@@ -822,67 +951,69 @@ $(document).ready(function () {
 		let dtset ={
 			"kv": {
 				 "newsType":typeN
-			   
+			     
 			} 
 		}
-		$.ajax({
+			$.ajax({
 			type: "POST",
 			url: UrlQb+"api/post/zd/qebulaz/getNewsList",
 			data: JSON.stringify(dtset), // now data come in this function
 			contentType: "application/json; charset=utf-8",
 			crossDomain: true,
-			dataType: "json",
+			dataType: "json",		
 			success: function (res) {
-				 
+				
 				var dat = res.tbl[0].r;
 				for (let index = 0; index < dat.length; index++) {
-
-					if(typeN==='news'){
-						var idNw = dat[index]['id'];
-						var imgNw = dat[index]['thumbImg'];
-						var titleNw = dat[index]['newsTitle'];
-						var inDateNw = convertStDate(dat[index]['insertDate']);
-	
-						var bodyNw = dat[index]['newsBody'];
-	
-	                         if(index<8){
-								$('#news-mini-block').prepend(genNewsBlokMini(idNw, titleNw,  inDateNw, imgNw,index));
-							 }
-					
-						$('#news-large-block').prepend(genNewsBlokMini(idNw, titleNw, inDateNw, imgNw));
-					}
-					
-					if(typeN==='bilirsizmi'){
-						var idNw = dat[index]['id'];
-						var imgNw = dat[index]['thumbImg'];
-						var titleNw = dat[index]['newsTitle'];
-						var inDateNw = convertStDate(dat[index]['insertDate']);
-	
-						var bodyNw = dat[index]['newsBody'];
-	
-	                       if(index<8){
-						$('#blr-mini-block').prepend(genNewsBlokMini(idNw, titleNw,  inDateNw, imgNw,index));
-
-							  }
-						$('#blr-large-block').prepend(genNewsBlokMini(idNw, titleNw, inDateNw, imgNw));
+                  var stuts= dat[index]['status'];
+					if(stuts==="A"){
+						if(typeN==='news'){
+							var idNw = dat[index]['id'];
+							var imgNw = dat[index]['thumbImg'];
+							var titleNw = dat[index]['newsTitle'];
+							var inDateNw = convertStDate(dat[index]['insertDate']);
+			
+								 if(index<8){
+									$('#news-mini-block').prepend(genNewsBlokMini(idNw, titleNw,  inDateNw, imgNw,'fade-up'));
+								 }
 						
-					}
-					if(typeN==='mmelumatlar'){
-						var idNw = dat[index]['id'];
-						var imgNw = dat[index]['thumbImg'];
-						var titleNw = dat[index]['newsTitle'];
-						var inDateNw = convertStDate(dat[index]['insertDate']);
-	
-						var bodyNw = dat[index]['newsBody'];
-	                       
-						if(index<8){
-							$('#mrql-mini-block').prepend(genNewsBlokMini(idNw, titleNw,  inDateNw, imgNw,index));
+							$('#news-large-block').prepend(genNewsBlokMini(idNw, titleNw, inDateNw, imgNw,''));
 						}
-	
 						
-						$('#mrql-large-block').prepend(genNewsBlokMini(idNw, titleNw, inDateNw, imgNw));
-					
+						if(typeN==='bilirsizmi'){
+							var idNw = dat[index]['id'];
+							var imgNw = dat[index]['thumbImg'];
+							var titleNw = dat[index]['newsTitle'];
+							var inDateNw = convertStDate(dat[index]['insertDate']);
+		
+							var bodyNw = dat[index]['newsBody'];
+		
+							   if(index<8){
+							$('#blr-mini-block').prepend(genNewsBlokMini(idNw, titleNw,  inDateNw, imgNw,'fade-up'));
+	
+								  }
+							$('#blr-large-block').prepend(genNewsBlokMini(idNw, titleNw, inDateNw, imgNw,''));
+							
+						}
+						if(typeN==='mmelumatlar'){
+							var idNw = dat[index]['id'];
+							var imgNw = dat[index]['thumbImg'];
+							var titleNw = dat[index]['newsTitle'];
+							var inDateNw = convertStDate(dat[index]['insertDate']);
+		
+							var bodyNw = dat[index]['newsBody'];
+							   
+							if(index<8){
+								$('#mrql-mini-block').prepend(genNewsBlokMini(idNw, titleNw,  inDateNw, imgNw,'fade-up'));
+							}
+		
+							
+							$('#mrql-large-block').prepend(genNewsBlokMini(idNw, titleNw, inDateNw, imgNw,''));
+						
+						}
 					}
+
+				
 
 					
 				}
@@ -1085,6 +1216,10 @@ $(document).ready(function () {
 		
 		historyExamListGen(fkUserCode);
 	});
+	$(document).on('click', '.hst_panel_pay', function (event) {
+		
+		historyPaymentListGen(fkUserCode);
+	});
 	$(document).on('change', '#profile_change', function (event) {
 		var reader = new FileReader();
 		reader.onload = function () {
@@ -1146,6 +1281,17 @@ $(document).ready(function () {
 		<td row-header="heading"><a href="" data-toggle="modal" data-target="#resultHstoryModal" id="result-return" >Nəticəni göstər</a></td>
       </tr>`
 	}
+	function histPayBlockGen(num,exnm,amn,bfrBl,aftBl,vxt){
+		return `<tr >
+
+		<th row-header="Table heading"  scope="row">${num}</th>
+		<td row-header="Table" id="hst_name_tag">${exnm}</td>
+		<td row-header="Table heading">${amn}</td>
+		<td row-header="heading">${bfrBl}</td>
+		<td row-header="heading">${aftBl}</td>
+		<td row-header="heading">${vxt}</td>
+      </tr>`
+	}
 
    function  historyExamListGen(usid){
 
@@ -1184,6 +1330,58 @@ $(document).ready(function () {
 			   }
 
 				$('#history_exam_result_table').append(histBlockGen(nma,ctes,vxt,ntc));
+				ctes++
+			}
+
+
+		},
+
+		error: function (jqXHR, status) {
+			// error handler
+		
+			alert('fail' + status.code);
+		}
+	});
+
+
+
+   }
+   function  historyPaymentListGen(usid,exnm){
+
+
+	let datUs = {
+		"kv": {
+			
+			"fkUserId": "" + usid + ""
+
+		}
+	}
+	$.ajax({
+		type: "POST",
+		url: UrlQb+"api/post/zdfn/qebulaz/getExamPaymentHistory",
+		data: JSON.stringify(datUs), // now data come in this function
+		contentType: "application/json; charset=utf-8",
+		crossDomain: true,
+		dataType: "json",
+		success: function (data, status, jqXHR) {
+			$('#history_price_result_table').empty();
+			
+			console.log(data);
+			var dat = data.tbl[0].r;	
+		
+             var ctes = 1
+			for (let index = 0; index < dat.length; index++) {
+				
+				var dj=dat[index]
+                var dt =convertStDate(dj['paymentDate']);
+                var tm =convertStTime(dj['paymentHours']);
+                var amn =dj['amount'];
+                var bfrBl =dj['balanceBefore'];
+                var aftBl =dj['balanceAfter'];
+                
+              
+
+				$('#history_price_result_table').append(histPayBlockGen(ctes,exnm,amn,bfrBl,aftBl,dt+' '+tm));
 				ctes++
 			}
 
@@ -1364,7 +1562,9 @@ $(document).ready(function () {
 	
  }
 	// user Info Functions update and accept
-
+	$(".navbar-toggler").click(function(e){
+		$('.justify-content-end').toggleClass("collapse");
+	  });
 	$(document).on("click", '#update_user_btn', function () {
 
 		var nm = $("#update_user_name").val();
@@ -1379,7 +1579,7 @@ $(document).ready(function () {
 		let objectUser1 = {
 			"kv": {
 				"updatedField": 'gender,mobile,name,email,userStatus,birthDate,examGroup,surname',
-				"id": userId,
+				"id": fkUserCode,
 				"name": nm,
 				"surname": srnm,
 				"email": mail,
@@ -1468,7 +1668,7 @@ $(document).ready(function () {
 					
 					$('#exampleModal').modal("toggle");
 					
-					window.location.reload(true);
+					window.location.href='index.html';
 				  }
 			
 							

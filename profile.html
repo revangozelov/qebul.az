@@ -224,8 +224,8 @@
       <div class="profile-nav-info">
         <h3 class="user-name" id="user_name_pr">Revan Gozelov</h3>
         <div class="address">
-          <p id="city_user_pr" class="state">Balans</p>
-          <span id="country_user_pr" class="country">100AZN</span>
+          <p id="" class="state">Balans</p>
+          <span id="" class="country">0AZN</span>
         </div>
 
       </div>
@@ -267,7 +267,7 @@
           <ul>
             <li value="0" class="user-post active">Hesab</li>
             <li value="1"  class="hst_panel_usr user-setting">Tarixçə</li>
-            <li value="2" class="user-setting"> Bildirişlər</li>
+            <li value="2" class=" hst_panel_pay user-setting"> Ödəniş Tarixçəsi</li>
           </ul>
         </div>
         <div class="profile-body">
@@ -309,7 +309,7 @@
 
                     <div>
                       <label for="phone">Mobil Telefon</label>
-                      <input class="form-control" id="update_user_mobil" type="tel" name="phone"
+                      <input class="form-control" id="update_user_mobil"  name="phone"
                         value="+994 (__) ___-__-__"
                         pattern="^\+994(\s+)?\(?(17|25|29|33|44)\)?(\s+)?[0-9]{3}-?[0-9]{2}-?[0-9]{2}$" required
                         placeholder="Əlaqə Nömrəsi">
@@ -430,14 +430,23 @@
           </div>
           <div class="profile-settings tab">
             <div class="account-setting">
-              <h1>Bildirişlər</h1>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit omnis eaque, expedita nostrum,
-                facere libero provident laudantium. Quis, hic doloribus! Laboriosam nemo tempora praesentium. Culpa quo
-                velit omnis, debitis maxime, sequi
-                animi dolores commodi odio placeat, magnam, cupiditate facilis impedit veniam? Soluta aliquam excepturi
-                illum natus adipisci ipsum quo, voluptatem, nemo, commodi, molestiae doloribus magni et. Cum, saepe enim
-                quam voluptatum vel debitis
-                nihil, recusandae, omnis officiis tenetur, ullam rerum.</p>
+              <h1>Ödəniş Tarixçəsi</h1>
+              <table class="table table-bordered responsive">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th> İmtahan Adı</th>
+                    <th> Miqdar</th>
+                    <th>Balans(Əvvəlki)</th>
+                    <th>Balans(Sonrakı)</th>
+                    <th>Ödəniş Tarixi</th>
+                  </tr>
+                </thead>
+                <tbody id="history_price_result_table">
+                  
+                
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
@@ -559,46 +568,7 @@
   </div>
 
   <a href="#" id="scroll-to-top" class="hvr-radial-out"><i class="fa fa-angle-up"></i></a>
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-      <div class="modal-content">
-          <div class="modal-header customModal ">
-              <h5 class="modal-title" id="exampleModalLabel">Giriş</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-              </button>
-          </div>
-          <form id="user_from_sub">
-              <div class="modal-body ">
-
-
-                  <div class="form-group contact_form">
-                      <label for="exampleInputEmail1">Email </label>
-                      <input type="email" id="exampleInputEmail1" aria-describedby="emailHelp"
-                          placeholder="Email Daxil et">
-                  </div>
-                  <div class="form-group contact_form ">
-                      <label for="exampleInputPassword1">Şifrə</label>
-                      <input type="password" id="exampleInputPassword1" placeholder="Şifrə">
-                  </div>
-                  <div class="form-group form-check">
-                      <span id="errorMessage" style="color: red;"></span>
-                  </div>
-
-
-              </div>
-              <div class="modal-footer">
-
-                  <button type="button" class="btn btn-secondary"><a href="login.html">Qeydiyyat</a></button>
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" id="sign_in_btn">Submit</button>
-              </div>
-
-          </form>
-      </div>
-  </div>
-</div>
+ 
   <div class="modal fade" id="resultHstoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true" style="padding-right: 0 !important;">
         <div class="modal-dialog" style="max-width: 100%;" role="document">
@@ -691,6 +661,36 @@
             </div>
         </div>
     </div>
+    
+        <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header customModal ">
+                    <h5 class="modal-title" id="exampleModalLabel">İmtahan ödəniş paneli</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+               
+                    <div class="modal-body " id="blockGenIdExamInfo">
+
+                                    
+
+                     
+
+
+                    </div>
+                    <div class="modal-footer">
+
+                       
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">İmtina et</button>
+                        <button type="button" class="btn btn-primary" id="submit_payment_exam">İmtahan Başla</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+
 
     <div class="alert_box_inside">
 

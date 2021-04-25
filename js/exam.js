@@ -87,7 +87,7 @@ $(document).ready(function () {
                 }
                 if (typ === 'situasiya') {
                     var quest = dt['question'];
-                    var crs = dt['answer'];
+                    var crs = dt['situasiya_cavab'];
                   
                     $('#' + fgId).append(questGenBlockStus(quest,crs));
                 }
@@ -619,7 +619,7 @@ $(document).ready(function () {
                var ir = ixe + 1
                let cnt = 1
               
-               console.log(data);
+           
                for (let ix = 0; ix < dat.length; ix++) {
                 var ate=dat[ix]['imtahanSection']
                 
@@ -660,37 +660,7 @@ $(document).ready(function () {
                 }
 
                     }
-                    if(atyp==="aciq"){
-                        $('#' + sctNm).append(
-                            $('<div>').addClass('quizContainer')
-                            .attr('id', dat[ix]['fkSualId'])
-                            .attr('data-quest-type', atyp)
-                        )
-                        $('#table_answer_card [mid=' + sctNm + ']').append($('<tr>')
-                            .attr('data-numCard', dat[ix]['fkSualId'])
-                            .append('<th>' + cnt + '</th>')
-                            .append('<td>-</td>')
-                            .append('<td>-</td>')
-                            .append('<td>-</td>')
-                            .append('<td>-</td>')
-                            .append('<td>-</td>'));
-                        if (cnt === 1) {
-                            $('#' + sctNm + ' .number-quest-short-block').append(
-                                $('<span>').text(cnt)
-                                .addClass('active')
-                                .attr('data-numb-type', dat[ix]['fkSualId'])
-                            )
-                            cnt++
-                        } else {
-     
-                            $('#' + sctNm + ' .number-quest-short-block').append(
-                                $('<span>').text(cnt)
-                                .attr('data-numb-type', dat[ix]['fkSualId']))
-     
-                            cnt++
-                        }
-     
-                    }
+                   
                     if(atyp==="qapali"){
                         var cvb=dat[ix]['cavab'];
                         $('#' + sctNm).append(
@@ -774,6 +744,37 @@ $(document).ready(function () {
                                 $('<span>').text(cnt)
                                 .attr('data-numb-type', dat[ix]['fkSualId']))
      
+     
+                            cnt++
+                        }
+     
+                    }
+                    else{
+                        $('#' + sctNm).append(
+                            $('<div>').addClass('quizContainer')
+                            .attr('id', dat[ix]['fkSualId'])
+                            .attr('data-quest-type', atyp)
+                        )
+                        $('#table_answer_card [mid=' + sctNm + ']').append($('<tr>')
+                            .attr('data-numCard', dat[ix]['fkSualId'])
+                            .append('<th>' + cnt + '</th>')
+                            .append('<td>-</td>')
+                            .append('<td>-</td>')
+                            .append('<td>-</td>')
+                            .append('<td>-</td>')
+                            .append('<td>-</td>'));
+                        if (cnt === 1) {
+                            $('#' + sctNm + ' .number-quest-short-block').append(
+                                $('<span>').text(cnt)
+                                .addClass('active')
+                                .attr('data-numb-type', dat[ix]['fkSualId'])
+                            )
+                            cnt++
+                        } else {
+     
+                            $('#' + sctNm + ' .number-quest-short-block').append(
+                                $('<span>').text(cnt)
+                                .attr('data-numb-type', dat[ix]['fkSualId']))
      
                             cnt++
                         }
@@ -1042,7 +1043,8 @@ $(document).ready(function () {
      }
      function returnDataAnswer(tol,cb,typ){
       
-    
+        var tip2= tol.attr('data-quest-type')  
+
         if(typ==="qapali"){
            
              tol.find('.question_answers [data-fkans="'+cb+'"]').attr('checked', true);
@@ -1052,10 +1054,13 @@ $(document).ready(function () {
           //  tol.find('.resultFk').val(cb);
             tol.find('[data-fkans="'+cb+'"]').attr('checked', true);
         }
-        if(typ==="aciq"){
+        if(tip2==="sadesual"){
             tol.find('.resultFk').val(cb);
-            examMatrixReturnAns();
+           console.log('olduuu');
         }
+       
+            examMatrixReturnAns();
+       
          
      }
 
@@ -1082,6 +1087,7 @@ $(document).ready(function () {
                  "fkUserId":UserCode
             } 
         }
+     
         $.ajax({
             type: "POST",
             url: UrlQb + "api/post/zdfn/qebulaz/getImtahanNeticeleriById",
@@ -1091,7 +1097,7 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data, status, jqXHR) {
                var dat= data.tbl[0].r[0];
-              console.log(data);
+            
               $('#exam_hours').text(dat['imtahanMuddeti']);
               $('#result-name').text(nmFK);
               $('#result-sunmae').text(surNmFK);
@@ -1116,7 +1122,7 @@ $(document).ready(function () {
                   let ale = fenn[index];
          
                   var s= ale['imtahanSection'];
-                      console.log(tb);
+                      
                     $('#fenn-resul-body').append($('<tr>')
                     .append('<td>'+tb['section'+s+'']+'</td>')
                     .append('<td>'+ale['qapaliSualDogru']+'/'+ale['qapaliSualSay']+'</td>')
@@ -1144,6 +1150,8 @@ $(document).ready(function () {
                  "fkUserId":UserCode
             } 
         }
+
+      
         $.ajax({
             type: "POST",
             url: UrlQb + "api/post/zdfn/qebulaz/calculateAbituriyentImtahanNeticesi",
@@ -1168,12 +1176,11 @@ $(document).ready(function () {
      function examMatrixReturnAns(){
        
 
-        $('.resultFk').change(function(){
+        
             var csn= $('.resultFk').val();
-            console.log(csn,csn.split());
-        })
+              console.log(csn);
+    
        
-
 
      }
     

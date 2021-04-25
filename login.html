@@ -356,32 +356,83 @@
             <form id="user_from_sub">
                 <div class="modal-body ">
 
+                 <div class="modalOnBlock1">  
+                     <div class="form-group contact_form">
+                    <label for="exampleInputEmail1">Email </label>
+                    <input type="email" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="Email Daxil et">
+                </div>
+                <div class="form-group contact_form ">
+                    <label for="exampleInputPassword1">Şifrə</label>
+                    <input type="password" id="exampleInputPassword1" placeholder="Şifrə">
+                </div>
+                <div class="form-group form-check">
+                    <span id="errorMessage" style="color: red;"></span>
+                </div>
+                 </div>
+                 <div class="modalOnblock2" style="display: none;">
 
                     <div class="form-group contact_form">
-                        <label for="exampleInputEmail1">Email </label>
-                        <input type="email" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        <label for="forgotEmailIn">Zəhmət olmasa Emaili daxil edin </label>
+                        <input type="email" id="forgotEmailİn" aria-describedby="emailHelp"
                             placeholder="Email Daxil et">
                     </div>
-                    <div class="form-group contact_form ">
-                        <label for="exampleInputPassword1">Şifrə</label>
-                        <input type="password" id="exampleInputPassword1" placeholder="Şifrə">
-                    </div>
-                    <div class="form-group form-check">
-                        <span id="errorMessage" style="color: red;"></span>
-                    </div>
+                 </div>
+                  
 
 
                 </div>
                 <div class="modal-footer">
-
-                    <button type="button" class="btn btn-secondary"><a href="login.html">Qeydiyyat</a></button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="sign_in_btn">Submit</button>
+               <div class="modeOn1">
+                <a  id="enter-forgot-menu" style="cursor: pointer;">Şifrəni unutdum</a>
+                <button type="button" class="btn btn-secondary"><a href="login.html">Qeydiyyat</a></button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Bağla</button>
+                <button type="button" class="btn btn-primary" id="sign_in_btn">Daxil ol</button>
+               </div>
+               <div class="modeOn2" style="display: none;">
+                
+                <button type="button" class="btn btn-primary" id="exit-forgot-menu">Geri</button>
+                
+                <button type="button" class="btn btn-primary" id="submit-email-forgot">Göndər</button>
+               </div>
+                  
                 </div>
 
             </form>
         </div>
     </div>
+</div>
+
+
+
+
+<div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header customModal ">
+            <h5 class="modal-title" id="exampleModalLabel">İmtahan ödəniş paneli</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+       
+            <div class="modal-body " id="blockGenIdExamInfo">
+
+                            
+
+             
+
+
+            </div>
+            <div class="modal-footer">
+
+               
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">İmtina et</button>
+                <button type="button" class="btn btn-primary" id="submit_payment_exam">İmtahan Başla</button>
+            </div>
+    </div>
+</div>
 </div>
 
 <div class="alert_box_inside">

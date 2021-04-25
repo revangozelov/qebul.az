@@ -51,7 +51,7 @@
             <nav class="navbar header-nav navbar-expand-lg">
                 <div class="container-fluid cst_navbar_card">
                     <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="image"></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-wd"
+                    <button class="navbar-toggler" type="button" data-toggle="navbar-collapse" data-target="#navbar-wd"
                         aria-controls="navbar-wd" aria-expanded="false" aria-label="Toggle navigation">
                         <span></span>
                         <span></span>
@@ -397,7 +397,7 @@
             </div>
         </div>
         <!-- news end section -->
-        <div class="section layout_padding padding_bottom-0 " data-aos="fade-up" data-aos-delay="200" id="teams">
+        <div class="section layout_padding padding_bottom-0 " style="display: none;" data-aos="fade-up" data-aos-delay="200" id="teams">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -547,27 +547,46 @@
                     <form id="user_from_sub">
                         <div class="modal-body ">
 
+                         <div class="modalOnBlock1">  
+                             <div class="form-group contact_form">
+                            <label for="exampleInputEmail1">Email </label>
+                            <input type="email" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                placeholder="Email Daxil et">
+                        </div>
+                        <div class="form-group contact_form ">
+                            <label for="exampleInputPassword1">Şifrə</label>
+                            <input type="password" id="exampleInputPassword1" placeholder="Şifrə">
+                        </div>
+                        <div class="form-group form-check">
+                            <span id="errorMessage" style="color: red;"></span>
+                        </div>
+                         </div>
+                         <div class="modalOnblock2" style="display: none;">
 
                             <div class="form-group contact_form">
-                                <label for="exampleInputEmail1">Email </label>
-                                <input type="email" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                <label for="forgotEmailIn">Zəhmət olmasa Emaili daxil edin </label>
+                                <input type="email" id="forgotEmailİn" aria-describedby="emailHelp"
                                     placeholder="Email Daxil et">
                             </div>
-                            <div class="form-group contact_form ">
-                                <label for="exampleInputPassword1">Şifrə</label>
-                                <input type="password" id="exampleInputPassword1" placeholder="Şifrə">
-                            </div>
-                            <div class="form-group form-check">
-                                <span id="errorMessage" style="color: red;"></span>
-                            </div>
+                         </div>
+                          
 
 
                         </div>
                         <div class="modal-footer">
-
-                            <button type="button" class="btn btn-secondary"><a href="login.html">Qeydiyyat</a></button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Bağla</button>
-                            <button type="button" class="btn btn-primary" id="sign_in_btn">Daxil ol</button>
+                       <div class="modeOn1">
+                        <a  id="enter-forgot-menu" style="cursor: pointer;">Şifrəni unutdum</a>
+                        <button type="button" class="btn btn-secondary"><a href="login.html">Qeydiyyat</a></button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Bağla</button>
+                        <button type="button" class="btn btn-primary" id="sign_in_btn">Daxil ol</button>
+                       </div>
+                       <div class="modeOn2" style="display: none;">
+                        
+                        <button type="button" class="btn btn-primary" id="exit-forgot-menu">Geri</button>
+                        
+                        <button type="button" class="btn btn-primary" id="submit-email-forgot">Göndər</button>
+                       </div>
+                          
                         </div>
 
                     </form>
@@ -575,30 +594,61 @@
             </div>
         </div>
 
-        <div class="modal fade" id="newsLargeBlock" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true" style="padding-right: 0 !important;">
-            <div class="modal-dialog" style="max-width: 100%;" role="document">
-                <div class="modal-content">
-                    <div class="modal-header ">
-                        <h1 class="modal-title" id="newsHeaderCnt"></h1>
-
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                    <div id="getNewlargeBody" class="modal-body">
+      
 
 
-
-
-                    </div>
-
-
-
+        <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header customModal ">
+                    <h5 class="modal-title" id="exampleModalLabel">İmtahan ödəniş paneli</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
+               
+                    <div class="modal-body " id="blockGenIdExamInfo">
+
+                                    
+
+                     
+
+
+                    </div>
+                    <div class="modal-footer">
+
+                       
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">İmtina et</button>
+                        <button type="button" class="btn btn-primary" id="submit_payment_exam">İmtahan Başla</button>
+                    </div>
             </div>
         </div>
+    </div>
+    <div class="modal fade" id="newsLargeBlock" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true" style="padding-right: 0 !important;">
+    <div class="modal-dialog" style="max-width: 100%;" role="document">
+        <div class="modal-content">
+            <div class="modal-header ">
+                <h1 class="modal-title" id="newsHeaderCnt"></h1>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div id="getNewlargeBody" class="modal-body">
+
+
+
+
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
     </div>
 
 
