@@ -4136,9 +4136,8 @@ a[href="login.html"]{
 	transition: all .25s ease;
   } 
   .card-content {
-	padding: 0px;
-    text-align: left;
-    height: 25px;
+	padding:15px;
+	text-align:left;
   }
   .card-title {
 	margin:0px;
