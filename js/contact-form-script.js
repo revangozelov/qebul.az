@@ -1,4 +1,4 @@
-
+/* 
 
 function submitForm(){
     // Initiate Variables With Form Content
@@ -41,4 +41,4 @@ function submitMSG(valid, msg){
         var msgClasses = "h3 text-center text-danger";
     }
     $("#msgSubmit").removeClass().addClass(msgClasses).text(msg);
-}
+} */

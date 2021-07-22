@@ -17,6 +17,7 @@
 
     <!-- Site Icons -->
     <link rel="shortcut icon" href="#" type="image/x-icon" />
+    <link rel="stylesheet" href="fontawesome-5-pro-master/css/all.css">
     <link rel="apple-touch-icon" href="#" />
     <!-- AOS CSS -->
     <link rel="stylesheet" href="aos/aos.css" />
@@ -31,6 +32,21 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css" />
 
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="aos/aos.js"></script>
+    <script src="js/jquery.pogo-slider.min.js"></script>
+    <script src="js/slider-index.js"></script>
+  
+    <script src="js/contact-form-script.js"></script>
+  
+    <script src="js/custom.js"></script>
+
     
 </head>
 
@@ -38,17 +54,23 @@
 
     <!-- LOADER -->
     <div id="preloader">
-        <div class="loader">
-            <img src="images/loader.gif" alt="#" />
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="images/loder.png" alt="">
+                </div>
+            </div>
         </div>
     </div>
+    <div class="padFullBody">
     <!-- end loader -->
     <!-- END LOADER -->
     <header class="top-header">
         <nav class="navbar header-nav navbar-expand-lg">
             <div class="container-fluid cst_navbar_card">
                 <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="image"></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-wd"
+                <button class="navbar-toggler" type="button"  data-target="#navbar-wd"
                     aria-controls="navbar-wd" aria-expanded="false" aria-label="Toggle navigation">
                     <span></span>
                     <span></span>
@@ -57,76 +79,59 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbar-wd">
                     <ul class="navbar-nav">
 
-                        <li class="nav-item dropdown">
+                        <li class="cstam-nav-dropdown nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 İmtahanlar
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-
-                                <div class="">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <a href="">
-                                                <img src="images/p6.jpg" alt="" class="img-fluid">
-                                            </a>
-
-
-                                        </div>
-                                        <div class="col-md-2" id="21040812484203299814" style="text-align: center;">
-                                            <span
-                                                class="text-uppercase ">ABİTURYENT</span>
-                                                <hr>
-                                                <ul class="nav flex-column">
-                                                    <li class="nav-item nav-inside-exam" data-subtp="I Qrup" data-times="180"
-                                                        id="21040814375205182246"><a class="nav-link active" href="#">I Qrup</a></li>
-                                                   <li class="nav-item nav-inside-exam" data-subtp="II Qrup" data-times="180"
-                                                            id="21040814362304832587"><a class="nav-link active" href="#">II Qrup</a></li>
-
-                                                    <li class="nav-item nav-inside-exam" data-subtp="III Qrup" data-times="180"
-                                                        id="21040814372804752381"><a class="nav-link active"
-                                                            href="#">III Qrup</a></li>
-                                                   
-                                                    <li class="nav-item nav-inside-exam" data-subtp="IV Qrup" data-times="180"
-                                                        id="21040814130304704095"><a class="nav-link active" href="#">IV Qrup</a></li>
-                                                </ul>
-                                        </div>
-                                        <div class="col-md-4" id=""  style="text-align: center;">
-                                            <span class="text-uppercase ">Digər İmtahanlar</span>
-                                                <hr>
-                                            <ul class="nav flex-column" style="text-align: left;">
-                                                <li class="nav-item nav-inside-exam" data-times="180"
-                                                    id=""><a class="nav-link active" href="#">İbtidai sinif imtahanı
-                                                        </a></li>
-                                                <li class="nav-item nav-inside-exam" data-times="180"
-                                                    id=""><a class="nav-link active" href="#">9-11 buraxılış  imtahanı
-                                                        </a></li>
-                                                <li class="nav-item nav-inside-exam" data-times="180"
-                                                    id=""><a class="nav-link active" href="#">8-11 fənn imtahanı
-                                                        </a></li>
-                                                <li class="nav-item nav-inside-exam" data-times="180"
-                                                    id=""><a class="nav-link active" href="#">Magistr qəbul imtahanı
-                                                        </a></li>
-                                                <li class="nav-item nav-inside-exam" data-times="180"
-                                                    id=""><a class="nav-link active" href="#">Dövlət qulluğuna qəbul imtahanı
-                                                        </a></li>
-                                                <li class="nav-item nav-inside-exam" data-times="180"
-                                                    id=""><a class="nav-link active" href="#">Müllimlərin işə qəbul imtahanı(MİQ)
-                                                        </a></li>
-                                                <li class="nav-item nav-inside-exam" data-times="180"
-                                                    id=""><a class="nav-link active" href="#">Bank sektoruna qəbul imtahanı(MİQ)
-                                                        </a></li>
+                                <ul class="nav flex-column">
+                                    <li class="nav-item open-exam-html" data-tyEx="abtr">
+                                        <a class="nav-link active" >
+                                            <i class="fas fa-list-alt"style="width: 35px;font-size: 20px;" ></i>
                                            
-                                              
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--  /.container  -->
+                                            ABİturİyent
+                                        </a>
+                                    </li>
+                                    <li class="nav-item open-exam-html" data-tyEx="ortmkt">
+                                        <a class="nav-link active" >
+                                            <i class="fas fa-list-alt"style="width: 35px;font-size: 20px;" ></i>
+                                            Fənlər üzrə İmtahan
+                                        </a>
+                                    </li>
+                                    <li class="nav-item open-exam-html" data-tyEx="mgstr">
+                                        <a class="nav-link active" >
+                                            <i class="fas fa-list-alt"style="width: 35px;font-size: 20px;" ></i>
+                                            Magİstr
+                                        </a>
+                                    </li>
+                                    <li class="nav-item open-exam-html" data-tyEx="ortmkt1">
+                                        <a class="nav-link active" >
+                                            <i class="fas fa-list-alt"style="width: 35px;font-size: 20px;" ></i>
+                                            Orta Məktəb
+                                        </a>
+                                    </li>
+                                    <li class="nav-item open-exam-html" data-tyEx="dvltqull">
+                                        <a class="nav-link active">
+                                            <i class="fas fa-list-alt"style="width: 35px;font-size: 20px;" ></i>
+                                            Dövlət qulluğuna qəbul
+                                        </a>
+                                    </li>
+                                    <li class="nav-item open-exam-html" data-tyEx="miq">
+                                        <a class="nav-link active" >
+                                            <i class="fas fa-list-alt"style="width: 35px;font-size: 20px;" ></i>
+                                            MİQ
+                                        </a>
+                                    </li>
+                                
+                                   
+                                </ul>
+                           
+                         
+                    <!--  /.container  -->
 
 
-                            </div>
+                </div>
                         </li>
 
                         <li><a class="nav-link news_blok_gen" data-secte='news' >Xəbərlər</a></li>
@@ -136,7 +141,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Digər
+                                DİGƏR
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
@@ -225,14 +230,14 @@
         </div>
     </div>
     <!-- section -->
-
+</div>
   <!-- Start Footer -->
   <footer class="footer-box" >
 	<div class="container">
 	
 	   <div class="row">
 	   
-		  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+		  <div class="hidden-xs col-sm-6 col-md-4 col-lg-2">
 			 <div class="footer_blog">
 				<div class="full margin-bottom_30">
 				   <img src="images/qebulson-2.png" alt="#" style="border-radius: 9px;" />
@@ -245,17 +250,21 @@
 		  
 		  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
 			   <div class="footer_blog footer_menu white_fonts">
-						<h3>Quick links</h3>
-						<ul> 
-						  <li><a href="#">> Giriş</a></li>
-						  <li><a href="login.html">> Qeydiyyat</a></li>
-						  <li><a href="#exams">> İmtahanlar</a></li>
-						  <li><a href="#news">> Xəbərlər</a></li>
-						  <li><a href="index.html#contact">> Haqqinda</a></li>
-						</ul>
+						<h3>Qısa Keçidlər</h3>
+                        <ul>
+                            <li><a href="index.html">> Əsas Səhifə</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#exampleModal">> Giriş</a></li>
+                            <li><a href="login.html">> Qeydiyyat</a></li>
+                            <li><a href="imtahanlar.html">> İmtahanlar</a></li>
+                            <li><a class="news_blok_gen" data-secte='news'>> Xəbərlər</a></li>
+
+                            <li><a class="news_blok_gen" data-secte='b?'>> Təhsİl qanunları</a></li>
+                            <li><a class="news_blok_gen" data-secte='mm'>> Maraqlı Məlumatlar</a></li>
+                            <li><a href="about.html">> Haqqında</a></li>
+                        </ul>
 					 </div>
 			 </div>
-			 
+		<!-- 	 
 			 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
 			 <div class="footer_blog full white_fonts">
 						 <h3>Newsletter</h3>
@@ -267,7 +276,7 @@
 							</form>
 						 </div>
 					 </div>
-				</div>	 
+				</div> -->	 
 		  
 		  <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
 			 <div class="footer_blog full white_fonts">
@@ -339,8 +348,7 @@ aria-hidden="true">
            <div class="modeOn1">
             <a  id="enter-forgot-menu" style="cursor: pointer;">Şifrəni unutdum</a>
             <button type="button" class="btn btn-secondary"><a href="login.html">Qeydiyyat</a></button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Bağla</button>
-            <button type="button" class="btn btn-primary" id="sign_in_btn">Daxil ol</button>
+                        <button type="button" class="btn btn-primary" id="sign_in_btn">Daxil ol</button>
            </div>
            <div class="modeOn2" style="display: none;">
             
@@ -359,52 +367,103 @@ aria-hidden="true">
 
 
 
-<div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-    <div class="modal-header customModal ">
-        <h5 class="modal-title" id="exampleModalLabel">İmtahan ödəniş paneli</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+<div class="modal fade" id="amountEnterdModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true" style="padding-right: 0 !important;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <h1 class="modal-title" id="newsHeaderCnt"></h1>
+    
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+    
+                <div  class="modal-body">
+    
+                    <div class="form-group row">
+                       
+                        <div class="col-12"><label>Miqdar: </label></div>
+                        <div class="form-group col-12 row pymntCurrenbtnGroup">
+                            
+                            <div class="col-6 ">
+                              <button data-quentity='5' onclick="fixedNum(this)" class="btn btn-outline-secondary">5 AZN</button>
+                            </div>
+                            <div class="col-6">
+                              <button data-quentity='10' onclick="fixedNum(this)" class="btn btn-outline-secondary">10 AZN</button>
+                            </div>
+                            <div class="col-6">
+                              <button data-quentity='20' onclick="fixedNum(this)" class="btn btn-outline-secondary">20 AZN</button>
+                            </div>
+                             <div class="col-6">
+                              <button  data-quentity='50' onclick="fixedNum(this)" class="btn btn-outline-secondary">50 AZN</button>
+                            </div>
+                           
+            
+                        </div>
+                        <div class="input-group col-12 ">
+                            <div class="input-group-btn">
+                                <button id="down" class="btn btn-default" onclick=" down('0')"><i class="fas fa-minus"></i></button>
+                            </div>
+                            <input type="number" id="quentityNumber" class="form-control input-number" minlength="1" value="1" />
+                            <div class="input-group-btn">
+                                <button id="up" class="btn btn-default" onclick="up('100000')"><i class="fas fa-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+    
+    
+                </div>
+                <div class="modal-footer">
+                    <div class="">
+                   
+                     <button type="button" class="btn btn-primary" id="quentityOrderSend">Göndər</button>
+                    </div>
+                 
+                   
+                     </div>
+    
+    
+            </div>
+        </div>
     </div>
-   
-        <div class="modal-body " id="blockGenIdExamInfo">
+        <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header customModal ">
+                    <h5 class="modal-title" id="exampleModalLabel">İmtahan ödəniş paneli</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+               
+                    <div class="modal-body " id="blockGenIdExamInfo">
 
-                        
+                                    
 
-         
+                     
 
 
+                    </div>
+                    <div class="modal-footer">
+
+                       
+                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#amountEnterdModal" >Balansı artırın</button>
+                        <button type="button" class="btn btn-primary" id="submit_payment_exam">İmtahan Başla</button>
+                    </div>
+            </div>
         </div>
-        <div class="modal-footer">
-
-           
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">İmtina et</button>
-            <button type="button" class="btn btn-primary" id="submit_payment_exam">İmtahan Başla</button>
-        </div>
-</div>
-</div>
-</div>
+    </div>
 <div class="alert_box_inside">
 
 
 </div>
-  <script src="js/jquery.min.js"></script>
-  <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="aos/aos.js"></script>
-  <script src="js/jquery.pogo-slider.min.js"></script>
-  <script src="js/slider-index.js"></script>
-
-  <script src="js/contact-form-script.js"></script>
-
-  <script src="js/custom.js"></script>
+ 
 
   <script >
+      init();
+      init1();
     function activationPage(prop){
             
           
