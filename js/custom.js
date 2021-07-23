@@ -307,22 +307,28 @@ let blcArr
 
 
 
+function genEventListBlock(id,logo,header,strtm){
+	return  ` <div id='${id}' class="data-gen-large swiper-slide">
+	<div class="testimonial-item">
+	<div class="profile mt-auto">
+	<img src="${UrlQb}api/get/zdfiles/qebulaz/${logo}" class="testimonial-img" alt="">
+	<h3> ${header}</h3>
+	<h4>Tarix ${strtm} </h4>
+  </div>
+	  <p>
+	 
+	  </p>
+  
+	</div>
+  </div>`
+  }
+  
 
 
 
 function addDataSlide(data){// pass your data in method
 
-	var inSlider = `<div class="container">
-	<div class="row">
-	  <div class="col-md-12">
-		<div class="slide_text">
-		
-		  <br>
-		  <div class="full center"><a class="contact_bt" href="imtahanlar.html">İmtahana başla</a></div>
-		</div>
-	  </div>
-	</div>
-  </div>`
+	
      $.ajax({
              type: "POST",
              url: UrlQb+"api/post/zd/qebulaz/getSliderList",
@@ -343,7 +349,7 @@ function addDataSlide(data){// pass your data in method
 						              .addClass('pogoSlider-slide')
 						              .attr('id',idSld)
 						              .attr('style','background-image:url("https://app.qebul.az/api/get/zdfiles/qebulaz/'+imgSld+'");')
-									  .append(inSlider))
+									  )
 
 					
 					
@@ -383,7 +389,7 @@ function convertStDate(dt) {
 	var arr1 = dt.slice(4, 6);
 	var arr2 = dt.slice(6, 8);
 
-	var fns = arr + "/" + arr1 + '/' + arr2;
+	var fns = arr2 + "/" + arr1 + '/' + arr;
 
 	return fns
 }
@@ -471,7 +477,32 @@ $(window).on('load', function () {
 
 function init(){
 
-
+	$(document).ajaxComplete(function(){
+		new Swiper('.testimonials-slider', {
+		  speed: 600,
+		  loop: true,
+		  autoplay: {
+			delay: 5000,
+			disableOnInteraction: false
+		  },
+		  slidesPerView: 'auto',
+		  pagination: {
+			el: '.swiper-pagination',
+			type: 'bullets',
+			clickable: true
+		  },
+		  breakpoints: {
+			320: {
+			  slidesPerView: 1,
+			  spaceBetween: 40
+			},
+		
+			1200: {
+			  slidesPerView: 3,
+			}
+		  }
+		});
+	  });
 
 	addDataSlide();
 	$(document).on('click', '#mailSendBtn', function () {
@@ -1139,15 +1170,19 @@ function init1() {
 
 							if (cslt < 8) {
 								if (cslt < 1) {
-									$('#news-mini-block').append(genNewsBlokMini1(idNw, titleNw, inDateNw, imgNw, 'fade-up','active'));
+									//$('#news-mini-block').append(genNewsBlokMini1(idNw, titleNw, inDateNw, imgNw, 'fade-up','active'));
+									
+						     	$('#news_list_hub').append(genEventListBlock(idNw,imgNw,titleNw,inDateNw));
 
 								} else {
-									$('#news-mini-block').append(genNewsBlokMini1(idNw, titleNw, inDateNw, imgNw, 'fade-up',''));
+								//	$('#news-mini-block').append(genNewsBlokMini1(idNw, titleNw, inDateNw, imgNw, 'fade-up',''));
+										
+								$('#news_list_hub').append(genEventListBlock(idNw,imgNw,titleNw,inDateNw));
 								}
                                 cslt++
-							}
+							} 
 
-							$('#news-large-block').append(genNewsBlokMini(idNw, titleNw, inDateNw, imgNw, ''));
+							//$('#news-large-block').append(genNewsBlokMini(idNw, titleNw, inDateNw, imgNw, ''));
 						}
 
 						if (typeN === 'bilirsizmi') {
@@ -2345,3 +2380,37 @@ function init1() {
 }
 
 
+function fixedNum(el){
+
+ var paymn= $(el).attr("data-quentity");
+
+
+ $("#quentityNumber").val(paymn)
+
+}
+function up(mak){
+
+	var mak = parseFloat(mak)
+	var paymn= $("#quentityNumber").val();
+
+
+	if(mak > paymn){
+   
+	   $("#quentityNumber").val(parseFloat(paymn)+1)
+	}
+   
+
+}
+function down(){
+
+ var paymn= $("#quentityNumber").val();
+
+
+ if(paymn > 1){
+
+	$("#quentityNumber").val(parseFloat(paymn)-1)
+ }
+
+ 
+
+}
