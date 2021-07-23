@@ -1240,9 +1240,14 @@ function init1() {
                          
 							var bodyNw = dat[index]['newsBody'];
 
-							if (cslt < 6) {
+							if (cslt < 3) {
 								$('#mrql-mini-block').append(genInterestBlokMini(idNw, titleNw, '', imgNw, 'fade-up'));
-								
+								if(cslt < 1){
+									$('#mrql-mini-block1').append(genNewsBlokMini1(idNw, titleNw, '', imgNw, 'fade-up','active'));
+								}else{
+									$('#mrql-mini-block1').append(genNewsBlokMini1(idNw, titleNw, '', imgNw, 'fade-up',''));
+
+								}
 								cslt++
 							}
 							
