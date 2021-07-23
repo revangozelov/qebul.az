@@ -1099,7 +1099,21 @@ function init1() {
 	}
 
 	addDataTeacher();
+
 	//news  post api 
+	function genInterestBlokMini(id, title, Date, imgN, aos) {
+		return  `
+		<div class="col-lg-4 data-gen-large" id="${id}">
+		<div class="post-box">
+		  <div class="post-img"><img src="${UrlQb}api/get/zdfiles/qebulaz/${imgN}"  alt=""></div>
+		  
+		  <h3 class="post-title">${title}</h3>
+		 
+		</div>
+	  </div>`
+
+
+	}
 	function genNewsBlokMini(id, title, Date, imgN, aos) {
 		return $('<div>')
 			.addClass('col-lg-4 col-md-4 col-sm-12 data-gen-large')
@@ -1184,17 +1198,11 @@ function init1() {
 							var titleNw = dat[index]['newsTitle'];
 							var inDateNw = convertStDate(dat[index]['insertDate']);
 
-							if (cslt < 8) {
-								if (cslt < 1) {
-									//$('#news-mini-block').append(genNewsBlokMini1(idNw, titleNw, inDateNw, imgNw, 'fade-up','active'));
+							if (cslt < 6) {
+							
 									
 						     	$('#news_list_hub').append(genEventListBlock(idNw,imgNw,titleNw,inDateNw));
 
-								} else {
-								//	$('#news-mini-block').append(genNewsBlokMini1(idNw, titleNw, inDateNw, imgNw, 'fade-up',''));
-										
-								$('#news_list_hub').append(genEventListBlock(idNw,imgNw,titleNw,inDateNw));
-								}
                                 cslt++
 							} 
 
@@ -1210,7 +1218,7 @@ function init1() {
 							var bodyNw = dat[index]['newsBody'];
 
 							if (cslt < 3) {
-								$('#blr-mini-block').append(genNewsBlokMini(idNw, titleNw, '', imgNw, 'fade-up'));
+								$('#blr-mini-block').append(genInterestBlokMini(idNw, titleNw, '', imgNw, 'fade-up'));
 								if(cslt < 1){
 									$('#blr-mini-block1').append(genNewsBlokMini1(idNw, titleNw, '', imgNw, 'fade-up','active'));
 								}else{
@@ -1233,13 +1241,8 @@ function init1() {
 							var bodyNw = dat[index]['newsBody'];
 
 							if (cslt < 3) {
-								$('#mrql-mini-block').append(genNewsBlokMini(idNw, titleNw, '', imgNw, 'fade-up'));
-								if(cslt < 1){
-									$('#mrql-mini-block1').append(genNewsBlokMini1(idNw, titleNw, '', imgNw, 'fade-up','active'));
-								}else{
-									$('#mrql-mini-block1').append(genNewsBlokMini1(idNw, titleNw, '', imgNw, 'fade-up',''));
-
-								}
+								$('#mrql-mini-block').append(genInterestBlokMini(idNw, titleNw, '', imgNw, 'fade-up'));
+								
 								cslt++
 							}
 							
