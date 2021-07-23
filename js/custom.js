@@ -313,7 +313,7 @@ function genEventListBlock(id,logo,header,strtm){
 	<div class="profile mt-auto">
 	<img src="${UrlQb}api/get/zdfiles/qebulaz/${logo}" class="testimonial-img" alt="">
 	<h3> ${header}</h3>
-	<h4>Tarix ${strtm} </h4>
+	<h4>Tarix:${strtm} </h4>
   </div>
 	  <p>
 	 
@@ -381,17 +381,58 @@ function addDataSlide(data){// pass your data in method
                  alert('fail' + status.code);
              }
           });
-    }
+}
+var lang  =[
+	{key:"01",
+	  value: "yanvar"
+	 },
+	{key:"02",
+	  value: "fevral"
+	 },
+	{key:"03",
+	  value: "mart"
+	 },
+	{key:"04",
+	  value: "aprel"
+	 },
+	{key:"05",
+	  value: "may"
+	 },
+	{key:"06",
+	  value: "iyun"
+	 },
+	{key:"07",
+	  value: "iyul"
+	 },
+	{key:"08",
+	  value: "avqust"
+	 },
+	{key:"09",
+	  value: "sentaybr"
+	 },
+	{key:"10",
+	  value: "oktyabr"
+	 },
+	{key:"11",
+	  value: "noyabr"
+	 },
+	{key:"12",
+	  value: "dekabr"
+	 },
+	
+	
+  ]
 
 function convertStDate(dt) {
 
 	var arr = dt.slice(0, 4);
 	var arr1 = dt.slice(4, 6);
 	var arr2 = dt.slice(6, 8);
+	var arr1 = lang.find(x => x.key === arr1).value;
+	var fns = arr2 + " " + arr1 + ' ' + arr;
 
-	var fns = arr2 + "/" + arr1 + '/' + arr;
+	return fns;
 
-	return fns
 }
 
 function convertStTime(dt) {
@@ -477,32 +518,7 @@ $(window).on('load', function () {
 
 function init(){
 
-	$(document).ajaxComplete(function(){
-		new Swiper('.testimonials-slider', {
-		  speed: 600,
-		  loop: true,
-		  autoplay: {
-			delay: 5000,
-			disableOnInteraction: false
-		  },
-		  slidesPerView: 'auto',
-		  pagination: {
-			el: '.swiper-pagination',
-			type: 'bullets',
-			clickable: true
-		  },
-		  breakpoints: {
-			320: {
-			  slidesPerView: 1,
-			  spaceBetween: 40
-			},
-		
-			1200: {
-			  slidesPerView: 3,
-			}
-		  }
-		});
-	  });
+	
 
 	addDataSlide();
 	$(document).on('click', '#mailSendBtn', function () {
@@ -1182,7 +1198,7 @@ function init1() {
                                 cslt++
 							} 
 
-							//$('#news-large-block').append(genNewsBlokMini(idNw, titleNw, inDateNw, imgNw, ''));
+							$('#news-large-block').append(genNewsBlokMini(idNw, titleNw, inDateNw, imgNw, ''));
 						}
 
 						if (typeN === 'bilirsizmi') {
