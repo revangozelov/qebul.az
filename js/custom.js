@@ -1240,7 +1240,7 @@ function init1() {
                          
 							var bodyNw = dat[index]['newsBody'];
 
-							if (cslt < 3) {
+							if (cslt < 6) {
 								$('#mrql-mini-block').append(genInterestBlokMini(idNw, titleNw, '', imgNw, 'fade-up'));
 								
 								cslt++
