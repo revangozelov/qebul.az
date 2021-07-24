@@ -2495,13 +2495,18 @@ section.inner_banner h3 {
 
 /** contact **/
 .contact_form {
-	margin: auto;
-	padding: 10px;
-	background-color: #ffffff;
-	border-radius: 6px;
-	box-shadow: 0px 0px 3px 0px rgb(0 0 0 / 20%);
-	-moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.2);
-	-webkit-box-shadow: 0px 0px 3px 0px rgb(0 0 0 / 20%);
+	
+
+	box-sizing: content-box;
+    padding: 30px;
+    margin: 40px 30px;
+    box-shadow: 0px 0 20px rgb(1 41 112 / 10%);
+    background: #fff;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    transition: 0.3s;
 }
 
 #login_page_block {
@@ -4390,4 +4395,155 @@ a[href="login.html"]{
 	transform: rotate(6deg) scale(1.2);
   }
   
+  
+.site-footer {
+
+	  position: relative;
+	  background-color:#f9f9f9;
+	  width: 100%;	
+	  bottom: 0; 
+  }
+  
+  .site-footer .container {
+	  max-width: 85%;
+	  margin: 0 auto;
+	  position: relative;
+	  overflow: hidden;
+	  padding-top: 20px;
+  }
+  
+  .site-footer .container h1 {
+	  font-size: 40px;
+  }
+  
+  .site-footer .container h2 {
+	  font-size: 40px;
+	  float: right;
+  }
+  
+  .site-footer .grid-container a {
+	  color: #0a65ab;
+	  text-decoration: none;
+	  font-size: 15px;
+	  line-height: 16.25px;
+  }
+  
+  .site-footer .grid-item {
+	  padding: 10px;
+	  color: #0a65ab;
+  }
+  
+  
+  .site-footer .grid-container .inner-grid-container {
+	  display: grid;
+	  grid-template-columns: auto auto auto auto;
+	  text-align: left;
+  }
+  
+  .site-footer .container hr { 
+	  display: block; 
+	  height: 1px;
+	  border: 0; border-top: 1px solid #0a65ab;
+	  margin: 1px; 
+	  padding: 0; 
+  }
+  
+  .site-footer .container p {
+	  font-size: 14px;
+	  text-align: right;
+	  color: #0a65ab;
+	  font-weight: 500;
+  }
+  
+  .site-footer .container .logo-img {
+	 
+	  cursor: pointer;
+  }
+  
+  .site-footer .grid-container .grid-item .social-buttons {
+	  padding-top: 20px;
+  }
+  
+  .site-footer .grid-container .grid-item .social-buttons a {
+	  display: inline-flex;
+	  text-decoration: none;
+	  font-size: 30px;
+	  width: 60px;
+	  height: 60px;
+	  color: #1A1F24;
+	  justify-content: center;
+	  align-items: center;
+	  position: relative;
+	  margin: 0 8px;
+  }
+  
+  
+  .site-footer .grid-container .grid-item .social-buttons a i{
+	  transition: 0.3s ease-in;
+  }
+  
+  .site-footer .grid-container .grid-item .social-buttons a:hover i {
+	  background: linear-gradient(45deg,#84c225,#84c225);
+	  -webkit-background-clip: text;
+	  -webkit-text-fill-color: transparent;
+	  transform: scale(1.5);
+  }
+  
+  .circle-icon {
+	background: #0a65ab;
+    padding: 15px;
+    border-radius: 50%;
+    color: #f9f9f9;
+  }
+  
+  
+  
+  /*------------------------------------------------------------------
+  [ Screen Sizes] */
+  
+  
+  /* Extra small devices (phones, 600px and down) */
+  @media only screen and (max-width: 600px) {
+  
+	  .site-footer {
+		  height: 620px;
+		  bottom: 0; 
+	  }
+  
+	  .site-footer .grid-container {
+		  display: grid;
+		  grid-template-columns: 400px;
+	  }
+  
+	  .site-footer .grid-container .inner-grid-container {
+		  display: grid;
+		  grid-template-columns: auto auto ;
+		  text-align: left;
+	  }
+  
+  
+  }
+  
+  /*========================================================*/
+  
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+  
+	  .site-footer {
+		  height: 260px;
+		  bottom: 0;
+	  }
+  
+	  .site-footer .grid-container {
+		  display: grid;
+		  grid-template-columns: 350px auto 350px;
+	  }
+  
+	  .site-footer .grid-container .inner-grid-container{
+		  display: grid;
+		  grid-template-columns: auto auto auto auto;
+		  text-align: left;
+	  }
+  
+  }
   

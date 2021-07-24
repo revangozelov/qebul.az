@@ -4,7 +4,69 @@ fkUserCode = localStorage.getItem('UsId');
 var nmFK
 var surNmFK
 let blcArr
+function insertParam(key, value) {
+    key = encodeURIComponent(key);
+    value = encodeURIComponent(value);
+
+    // kvp looks like ['key1=value1', 'key2=value2', ...]
+    var kvp = document.location.search.substr(1).split('&');
+    let i=0;
+
+    for(; i<kvp.length; i++){
+        if (kvp[i].startsWith(key + '=')) {
+            let pair = kvp[i].split('=');
+            pair[1] = value;
+            kvp[i] = pair.join('=');
+            break;
+        }
+    }
+
+    if(i >= kvp.length){
+        kvp[kvp.length] = [key,value].join('=');
+    }
+
+    // can return this or...
+    let params = kvp.join('&');
+
+    // reload page with new params
+    document.location.search = params;
+}
+  var getUrlParameter = function getUrlParameter(sParam) {
+	var sPageURL = window.location.search.substring(1),
+	  sURLVariables = sPageURL.split('&'),
+	  sParameterName,
+	  i;
+  
+	for (i = 0; i < sURLVariables.length; i++) {
+	  sParameterName = sURLVariables[i].split('=');
+  
+  
+	  if (sParameterName[0] === sParam) {
+		return typeof sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+	  }
+	}
+	return false;
+  };
+  
+  function openBlockNe(){
+	var dte= localStorage.getItem('newsId');
+
+	 if(dte==='news'){
+		  $('.news-blck').toggle();
+	 }
+	 if(dte==='b?'){
+		 $('.blr-blck').toggle();
+	 }
+	 if(dte==='mm'){
+		 $('.mm-blck').toggle();
+	 }
+	   
+   }
+ 
 (function (a) {
+
+
+	 
 	a.MaskedInput = function (f) {
 		if (!f || !f.elm || !f.format) {
 			return null
@@ -303,8 +365,66 @@ let blcArr
 		};
 		return r()
 	}
+
+
 }(window));
 
+function init(){
+
+	var pageLs = getUrlParameter("page");
+
+	if(pageLs === "news"){
+
+		$.get("news.html", function (html_string) {
+			$('#main-div').html(html_string);
+	  
+			openBlockNe();
+		  });
+	}
+	if(pageLs === "profile"){
+
+		$.get("profile.html", function (html_string) {
+			$('#main-div').html(html_string);
+	  
+			openBlockNe();
+		  });
+	}
+	if(pageLs === "about"){
+
+		$.get("about.html", function (html_string) {
+			$('#main-div').html(html_string);
+	  
+			abutUsGen()
+		  });
+	}
+	if(pageLs === "login"){
+
+		$.get("login.html", function (html_string) {
+			$('#main-div').html(html_string);
+	  
+			openBlockNe();
+		  });
+	}
+	if(pageLs === "imtahanlar"){
+
+		$.get("imtahanlar.html", function (html_string) {
+			$('#main-div').html(html_string);
+	  
+			openBlockNe();
+		  });
+	}
+	if(pageLs === false){
+
+		addDataSlide();
+		
+        addDataTeacher();
+	}
+	typeNewsGen();
+	addTableRespBtn();
+
+
+	getUserInfoProfile();
+}
 
 
 function genEventListBlock(id,logo,header,strtm){
@@ -323,6 +443,52 @@ function genEventListBlock(id,logo,header,strtm){
   </div>`
   }
   
+  function abutUsGen() { // pass your data in method
+
+	let dtset = {
+		"kv": {
+
+
+			"newsType": "aboutus",
+			"sortByField": "insertDate",
+			"sortByDesc": 1
+
+		}
+	}
+	$.ajax({
+		type: "POST",
+		url: UrlQb + "api/post/zd/qebulaz/getNewsList",
+		data: JSON.stringify(dtset), // now data come in this function
+		contentType: "application/json; charset=utf-8",
+		crossDomain: true,
+		dataType: "json",
+		success: function (res) {
+			   var cslt = 0
+			var dat = res.tbl[0].r;
+		
+
+		
+				var idNw = dat[0]['id'];
+				$('#about-text-block').append(dat[0]['newsBody'])
+			
+				if(dat[0]['thumbImg'].length === 0){
+				}else{
+					$('#about-text-img').css('display','block');
+					$('#about-text-img').attr("src", UrlQb + 'api/get/zdfiles/qebulaz/' + dat[0]['thumbImg']);
+
+				}
+
+			
+		
+		},
+
+		error: function (jqXHR, status) {
+			// error handler
+
+			alert('fail' + status.code);
+		}
+	});
+}
 
 
 
@@ -516,11 +682,11 @@ $(window).on('load', function () {
 
 
 
-function init(){
+
 
 	
 
-	addDataSlide();
+
 	$(document).on('click', '#mailSendBtn', function () {
 
 
@@ -557,7 +723,7 @@ function init(){
 
 
 
-	$('.navbar-nav .nav-link').on('click', function () {
+	$(document).on("click",'.navbar-nav .nav-link', function () {
 		var toggle = $('.navbar-toggler').is(':visible');
 		if (toggle) {
 			$('.navbar-collapse').collapse('hide');
@@ -617,7 +783,7 @@ Fixed Menu
 		var data = $(this).attr('data-tyEx');
 		localStorage.setItem('data-tyEx',data)  
          
-		window.location.href = "imtahanlar.html";
+		window.location.href = "index.html?&page=imtahanlar";
 		
 
 	})
@@ -728,19 +894,19 @@ Fixed Menu
 	})
 	$(document).on('click', '#openRegstrBtn', function () {
 
-		window.location.href = "login.html"
+		window.location.href = 'index.html?&page=login'
 	})
 
 
 
-}
+
 
 
 
 let userId = "";
 
 //user info set 
-function init1() {
+
 
 	$(document).on('click', '#imtahan_list_index div', function () {
 
@@ -751,25 +917,6 @@ function init1() {
 		}
 		$("imtahan_list_inside").empty();
 		addExamList(id)
-
-	})
-
-	$(document).on('click', '#imtahan_list_inside div', function () {
-
-		/* if(!localStorage.getItem('UsId')){
-			$('#exampleModal').modal("toggle");
-			return
-		} 
-
-
-		let id = $(this).attr('id');
-		let name = $(this).find('h4').text();
-		window.location.href = 'exam.html';
-		localStorage.setItem('idExam', id);
-	   localStorage.setItem('nameExam', name); */
-
-
-
 
 	})
 
@@ -980,7 +1127,7 @@ function init1() {
 
 		localStorage.setItem('newsId', dte);
 
-		window.location.href = "news.html";
+		window.location.href = "index.html?&page=news";
 
 	})
 
@@ -1098,7 +1245,6 @@ function init1() {
 		});
 	}
 
-	addDataTeacher();
 
 	//news  post api 
 	function genInterestBlokMini(id, title, Date, imgN, aos) {
@@ -1154,7 +1300,7 @@ function init1() {
 
 	function typeNewsGen() {
 
-		var type = ['news', 'aboutus', 'bilirsizmi', 'mmelumatlar']
+		var type = ['news', 'bilirsizmi', 'mmelumatlar']
 
 		for (let index = 0; index < type.length; index++) {
 
@@ -1163,7 +1309,7 @@ function init1() {
 
 		}
 	}
-	typeNewsGen()
+
 
 	function addDataNews(typeN) { // pass your data in method
 
@@ -1216,18 +1362,18 @@ function init1() {
 							var inDateNw = convertStDate(dat[index]['insertDate']);
 
 							var bodyNw = dat[index]['newsBody'];
-
+/* 
 							if (cslt < 3) {
 								$('#blr-mini-block').append(genInterestBlokMini(idNw, titleNw, '', imgNw, 'fade-up'));
 								if(cslt < 1){
-									$('#blr-mini-block1').append(genNewsBlokMini1(idNw, titleNw, '', imgNw, 'fade-up','active'));
+									//$('#blr-mini-block1').append(genNewsBlokMini1(idNw, titleNw, '', imgNw, 'fade-up','active'));
 								}else{
-									$('#blr-mini-block1').append(genNewsBlokMini1(idNw, titleNw, '', imgNw, 'fade-up',''));
+									//$('#blr-mini-block1').append(genNewsBlokMini1(idNw, titleNw, '', imgNw, 'fade-up',''));
 
 								}
 								
 								cslt++
-							}
+							} */
 							
 							$('#blr-large-block').append(genNewsBlokMini(idNw, titleNw, '', imgNw, ''));
 
@@ -1262,18 +1408,7 @@ function init1() {
 
 				}
 
-				if (typeN === 'aboutus') {
-					var idNw = dat[0]['id'];
-					$('#about-text-block').append(dat[0]['newsBody'])
 				
-					if(dat[0]['thumbImg'].length === 0){
-					}else{
-						$('#about-text-img').css('display','block');
-						$('#about-text-img').attr("src", UrlQb + 'api/get/zdfiles/qebulaz/' + dat[0]['thumbImg']);
-
-					}
-
-				}
 				pagintionFunc();
 			},
 
@@ -1981,7 +2116,7 @@ function init1() {
 
 	}
 	// user Info Functions update and accept
-	$(".navbar-toggler").click(function (e) {
+	$(document).on("click",".navbar-toggler",function (e) {
 		$('.justify-content-end').toggleClass("collapse");
 	});
 
@@ -2270,10 +2405,7 @@ function init1() {
 		tds1.addClass('dataRespOpen');
 
 	}
-	addTableRespBtn();
 
-
-	getUserInfoProfile();
 
 	$(document).on('click', '.cnvrtpdfBtn', function () {
 		var tst = $(this).attr('data-ide');
@@ -2401,7 +2533,7 @@ function init1() {
 	})
 
 
-}
+
 
 
 function fixedNum(el){

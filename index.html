@@ -157,10 +157,10 @@
                                 </div>
                             </li>
 
-                            <li><a class="nav-link news_blok_gen" data-secte='news'>Xəbərlər</a></li>
+                            <li><a class="nav-link news_blok_gen" href="index.html?&page=news" data-secte='news'>Xəbərlər</a></li>
 
                             <!-- <li><a class="nav-link news_blok_gen" data-secte='b?'>Təhsİl qanunları</a></li> -->
-                            <li><a class="nav-link news_blok_gen" data-secte='mm'>Maraqlı Məlumatlar</a></li>
+                            <li><a class="nav-link news_blok_gen" href="index.html?&page=news" data-secte='mm'>Maraqlı Məlumatlar</a></li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -168,8 +168,8 @@
                                 </a>
                                 <div class="dropdown-menu" style="left: auto;" aria-labelledby="navbarDropdown">
 
-                                    <a class="dropdown-item" href="about.html">Haqqımızda</a>
-                                    <a class="nav-link" href="#contact">Əlaqə</a>
+                                    <a class="dropdown-item" href="index.html?&page=about">Haqqımızda</a>
+                                    <a class="nav-link" href="index.html#contact">Əlaqə</a>
 
 
 
@@ -214,7 +214,7 @@
                                         <!-- Menu Footer-->
                                         <li class="user-footer">
                                             <div class="pull-left">
-                                                <a href="profile.html" class="btn btn-default btn-flat">Profil</a>
+                                                <a href="index.html?&page=profile" class="btn btn-default btn-flat">Profil</a>
                                             </div>
                                             <div class="pull-right">
                                                 <a href="#" id="exit_profile_name"
@@ -233,6 +233,9 @@
         </header>
         <!-- End header -->
 
+        <div id="main-div">
+
+    
         <!--  Start Banner -->
         <div class="ulockd-home-slider ">
           
@@ -571,11 +574,47 @@
         </div>
 
         <!-- end section -->
+          <!-- section -->
+    <div class="section contact_section" data-aos="fade-up" data-aos-delay="200" >
+        <div class="container">
+            <div class="row">
+                <div class=" layout_padding col-lg-6 col-md-6 col-sm-12">
+                    <div class="full float-right_img">
+                        <img src="images/img10.png" alt="#">
+                    </div>
+                </div>
+                <div class="layout_padding col-lg-6 col-md-6 col-sm-12">
+                    <div class="contact_form">
+                        
+                            <fieldset>
+                                <div class="full field">
+                                    <input type="text" placeholder="Ad Soyad" name="your name" />
+                                </div>
+                                <div class="full field">
+                                    <input type="email" placeholder="Email " name="Email" />
+                                </div>
+                                <div class="full field">
+                                    <input type="phn" placeholder="Telefon" name="Phone number" />
+                                </div>
+                                <div class="full field">
+                                    <textarea placeholder="Mətn"></textarea>
+                                </div>
+                                <div class="full field">
+                                    <div class="center"><button id="mailSendBtn" >Göndər</button></div>
+                                </div>
+                            </fieldset>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end section -->
     
       
 
       
-
+    </div>
         <div class="modal fade" id="amountEnterdModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true" style="padding-right: 0 !important;">
         <div class="modal-dialog" role="document">
@@ -690,44 +729,9 @@
 </div>
   
     </div>
-    <!-- section -->
-    <div class="section contact_section" data-aos="fade-up" data-aos-delay="200" style="background:#12385b;">
-        <div class="container">
-            <div class="row">
-                <div class=" layout_padding col-lg-6 col-md-6 col-sm-12">
-                    <div class="full float-right_img">
-                        <img src="images/img10.png" alt="#">
-                    </div>
-                </div>
-                <div class="layout_padding col-lg-6 col-md-6 col-sm-12">
-                    <div class="contact_form">
-                        
-                            <fieldset>
-                                <div class="full field">
-                                    <input type="text" placeholder="Ad Soyad" name="your name" />
-                                </div>
-                                <div class="full field">
-                                    <input type="email" placeholder="Email " name="Email" />
-                                </div>
-                                <div class="full field">
-                                    <input type="phn" placeholder="Telefon" name="Phone number" />
-                                </div>
-                                <div class="full field">
-                                    <textarea placeholder="Mətn"></textarea>
-                                </div>
-                                <div class="full field">
-                                    <div class="center"><button id="mailSendBtn" >Göndər</button></div>
-                                </div>
-                            </fieldset>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end section -->
+  
       <!-- Start Footer -->
-      <footer class="footer-box">
+    <!--   <footer class="footer-box">
         <div class="container">
 
             <div class="row">
@@ -751,13 +755,13 @@
                         <ul>
                             <li><a href="index.html">> Əsas Səhifə</a></li>
                             <li><a href="#" data-toggle="modal" data-target="#exampleModal">> Giriş</a></li>
-                            <li><a href="login.html">> Qeydiyyat</a></li>
-                            <li><a href="imtahanlar.html">> İmtahanlar</a></li>
-                            <li><a class="news_blok_gen" data-secte='news'>> Xəbərlər</a></li>
+                            <li><a href="index.html?&page=login">> Qeydiyyat</a></li>
+                            <li><a href="index.html?&page=imtahanlar">> İmtahanlar</a></li>
+                            <li><a class="news_blok_gen" href="index.html?&page=news" data-secte='news'>> Xəbərlər</a></li>
 
-                            <li><a class="news_blok_gen" data-secte='b?'>> Təhsil qanunları</a></li>
-                            <li><a class="news_blok_gen" data-secte='mm'>> Maraqlı Məlumatlar</a></li>
-                            <li><a href="about.html">> Haqqında</a></li>
+                            <li><a class="news_blok_gen" href="index.html?&page=news" data-secte='b?'>> Təhsil qanunları</a></li>
+                            <li><a class="news_blok_gen" href="index.html?&page=news" data-secte='mm'>> Maraqlı Məlumatlar</a></li>
+                            <li><a href="index.html?&page=about" >> Haqqında</a></li>
                         </ul>
                     </div>
                 </div>
@@ -778,18 +782,49 @@
             </div>
 
         </div>
-    </footer>
+    </footer> -->
     <!-- End Footer -->
+	<footer class="site-footer">
+		<div class = "container">
 
-    <div class="footer_bottom">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <p class="crp">© Copyrights 2021 design by SourcedAgile</p>
-                </div>
-            </div>
-        </div>
-    </div>
+			<div class="grid-container">
+				<div class="grid-item text-center" style="width: 80%;" >
+					
+					<img src ="images/qebulson-2.png" class = "logo-img">
+
+				</div>
+
+				<div class="grid-item inner-grid-container">
+					
+					<div class="grid-item"><a href="index.html">Əsas Səhifə</a></div>   
+					<div class="grid-item" data-toggle="modal" data-target="#exampleModal"><a href="#" >Giriş</a></div>   
+					<div class="grid-item"><a href="index.html?&page=login">Qeydiyyat</a></div>   
+					<div class="grid-item"><a href="index.html?&page=imtahanlar">İmtahanlar</a></div>   
+					<div class="grid-item"><a class="news_blok_gen" href="index.html?&page=news" data-secte='news'>Xəbərlər</a></div>   
+					<div class="grid-item"><a class="news_blok_gen" href="index.html?&page=news" data-secte='b?'>Təhsil qanunları</a></div>
+					<div class="grid-item"><a class="news_blok_gen" href="index.html?&page=news" data-secte='mm'>Maraqlı Məlumatlar</a></div>   
+					<div class="grid-item"><a href="index.html?&page=about" >Haqqında</a></div>   
+
+
+				</div>
+
+				<div class="grid-item">
+					<div class = "social-buttons">
+						<a href="https://www.instagram.com/qebul_az/"><i class="fab fa-instagram circle-icon"></i></a>
+						<a href="https://www.facebook.com/qebul.az.imtahan"><i class="fab fa-facebook circle-icon"></i></a>
+					<!-- 	<a href=""><i class="fab fa-linkedin-in circle-icon"></i></a>
+						<a href=""><i class="fab fa-twitter circle-icon"></i></a> -->
+					</div>
+				</div>   
+			</div>
+			<hr>
+
+			<p>Copyright © 2021 |  Made with <span style="color: red;">❤</span>  by  Sourced Agile </p>
+
+		</div>
+	</footer>
+
+ 
 
     <a href="#" id="scroll-to-top" class="hvr-radial-out"><i class="fa fa-angle-up"></i></a>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -834,7 +869,7 @@
                     <div class="modal-footer">
                    <div class="modeOn1">
                     <a  id="enter-forgot-menu" style="cursor: pointer;">Şifrəni unutdum</a>
-                    <button type="button" class="btn btn-secondary"><a href="login.html">Qeydiyyat</a></button>
+                    <button type="button" class="btn btn-secondary"><a href="index.html?&page=login">Qeydiyyat</a></button>
                     <button type="button" class="btn btn-primary" id="sign_in_btn">Daxil ol</button>
                    </div>
                    <div class="modeOn2" style="display: none;">
@@ -861,7 +896,7 @@
     <script>
 
         init();
-        init1();
+
         $(document).ajaxComplete(function(){
           
 		new Swiper('.testimonials-slider', {
