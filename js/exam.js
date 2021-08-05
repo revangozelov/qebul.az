@@ -958,8 +958,7 @@ $(document).ready(function () {
                 var fnm 
                   
                 fnm =fennNameBlock[0].kv["imtahanSection"+imSc]
-                 
-                console.log()
+              
                 $("#sty_fenn_short").append(genListFennName1(fnm , fkid + 'st', st));
                 $("#sty_list_block").append(genListFennBlock1(fkid + 'st', st, data.kv.question));
 
@@ -974,7 +973,7 @@ $(document).ready(function () {
                     var dzc1=data.kv["situasiyaCavab"+hast];
 
                   
-                  situasiyaBalChocieCore(fkid + '_'+als[index],sl1,dzc1,fkid,als[index]);
+                  situasiyaBalChocieCore(fkid + '_'+(index+1),sl1,dzc1,fkid,als[index]);
 
                 }
 
@@ -1066,10 +1065,10 @@ $(document).ready(function () {
     }
 
     function situasiyaBalChocieCore(fkslId,sl,cb,fkid,bl) {
-
+                 console.log(fkslId)
     
                 ela = localStorage.getItem(fkslId);
-
+                console.log(ela)
                  if(ela===null){
                     ela = "Cavab Qeyd Edilməyib"
                  }

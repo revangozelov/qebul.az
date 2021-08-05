@@ -413,6 +413,13 @@ function init(){
 			openBlockNe();
 		  });
 	}
+	if(pageLs === "singlePageNews"){
+
+		$('#main-div').html("");
+		var neId = getUrlParameter("singleData");
+		console.log(neId)
+		getNewsLargeBlockInside(neId);
+	}
 	if(pageLs === false){
 
 		addDataSlide();
@@ -485,7 +492,7 @@ function genEventListBlock(id,logo,header,strtm){
 		error: function (jqXHR, status) {
 			// error handler
 
-			alert('fail' + status.code);
+		
 		}
 	});
 }
@@ -522,15 +529,20 @@ function addDataSlide(data){// pass your data in method
 				}
 				
 				$('.page-loader').fadeOut('slow');
-		$('#js-main-slider').pogoSlider({
-			autoplay: true,
-			autoplayTimeout: 5000,
-			displayProgess: true,
-			preserveTargetSize: true,
-			targetWidth: 1000,
-			targetHeight: 300,
-			responsive: true
-		}).data('plugin_pogoSlider');
+				try {
+					$('#js-main-slider').pogoSlider({
+						autoplay: true,
+						autoplayTimeout: 5000,
+						displayProgess: true,
+						preserveTargetSize: true,
+						targetWidth: 1000,
+						targetHeight: 300,
+						responsive: true
+					}).data('plugin_pogoSlider');
+				} catch (error) {
+					
+				}
+		
 
 	
 		var transitionDemoOpts = {
@@ -544,7 +556,7 @@ function addDataSlide(data){// pass your data in method
              error: function (jqXHR, status) {
                  // error handler
             
-                 alert('fail' + status.code);
+                
              }
           });
 }
@@ -749,21 +761,25 @@ Fixed Menu
 		}
 	});
 
-	function genNewsBlokLarge(id, bdy, Date, imgN) {
-		return $('<div>')
-			.addClass('row news_block_large')
-			.attr('id', id)
-			.attr('data-aos', 'fade-up')
-			.attr('data-aos-delay', '300')
+	function genNewsBlokLarge(id, bdy, Date, imgN,head) {
+
+
+		return $("<section>")
+		            .append($("<header>")
+					         .append($("<h1>").text(head)))
+		         .addClass("container news_block_large") 
+				 .append($('<div>')
+			.addClass('row ')
+			.attr('id', id)			
 			.append($('<div>')
-				.addClass('col-lg-4 col-md-4 col-sm-12')
-				.append('<div class="full float-right_img"><img class="data_newsImg" src="' + UrlQb + 'api/get/zdfiles/qebulaz/' + imgN + '" alt="#"></div>'))
+				.addClass('col-lg-12 col-md-12 col-sm-12')
+				.append('<div class="full "><img class="data_newsImg" src="' + UrlQb + 'api/get/zdfiles/qebulaz/' + imgN + '" alt="#"></div>'))
 			.append($('<div>')
-				.addClass('data_newsTxt col-lg-8 col-md-8 col-sm-12')
+				.addClass('data_newsTxt col-lg-12 col-md-12 col-sm-12')
 
 				.append('<span>' + bdy + '</span>')
 				.append('<p>' + Date + '</p>')
-			)
+			))
 
 	}
 
@@ -771,10 +787,11 @@ Fixed Menu
 	$(document).on('click', '.data-gen-large', function () {
 
 		//window.open("news.html", "Xəbərlər");
-		var id = $(this).attr('id')
-		$('#newsLargeBlock').modal("toggle");
+		var id = $(this).attr('id');
+		//$('#newsLargeBlock').modal("toggle");
+	    window.location.href ="index.html?&page=singlePageNews&singleData="+id 
 		$('#getNewlargeBody').empty();
-		getNewsLargeBlockInside(id)
+		//getNewsLargeBlockInside(id)
 
 
 	})
@@ -811,8 +828,8 @@ Fixed Menu
 						var bodyNw = dat[index]['newsBody'];
 
 
-						$('#newsHeaderCnt').text(titleNw);
-						$('#getNewlargeBody').append(genNewsBlokLarge(idNw, bodyNw, inDateNw, imgNw));
+						
+						$('#main-div').html(genNewsBlokLarge(idNw, bodyNw, inDateNw, imgNw,titleNw));
 					}
 
 				}
@@ -822,7 +839,6 @@ Fixed Menu
 			error: function (jqXHR, status) {
 				// error handler
 
-				alert('fail' + status.code);
 			}
 		});
 
@@ -1010,7 +1026,7 @@ let userId = "";
 			error: function (jqXHR, status) {
 				// error handler
 
-				alert('fail' + status.code);
+			
 			}
 		});
 
@@ -1055,7 +1071,6 @@ let userId = "";
 			error: function (jqXHR, status) {
 				// error handler
 
-				alert('fail' + status.code);
 			}
 		});
 	}
@@ -1116,7 +1131,7 @@ let userId = "";
 			error: function (jqXHR, status) {
 				// error handler
 
-				alert('fail' + status.code);
+			
 			}
 		});
 	}
@@ -1182,7 +1197,7 @@ let userId = "";
 			error: function (jqXHR, status) {
 				// error handler
 
-				alert('fail' + status.code);
+				
 			}
 		});
 	}
@@ -1240,7 +1255,7 @@ let userId = "";
 			error: function (jqXHR, status) {
 				// error handler
 
-				alert('fail' + status.code);
+			
 			}
 		});
 	}
@@ -1415,7 +1430,7 @@ let userId = "";
 			error: function (jqXHR, status) {
 				// error handler
 
-				alert('fail' + status.code);
+				
 			}
 		});
 	}
@@ -1449,7 +1464,7 @@ let userId = "";
 		var numb = $('#number_input_qb').val();
 		var pass = $('#password_input_qb').val();
 		var repass = $('#repassword_input_qb').val();
-		var date = $('#date_select_qb').val();
+		var date = reDeTimeSplit($('#date_select_qb').val());
 
 
 		let objectUser = {
@@ -1495,20 +1510,23 @@ let userId = "";
 						error: function (jqXHR, status) {
 							// error handler
 
-							alert('fail' + status.code);
+						
 						}
 					});
 				} else {
-					alert('Təkrar Parol Düz Qeyd Edilməyib');
+					
+					alertBoxGenerate("Təkrar Parol Düz Qeyd Edilməyib", "warning", "Xəta");
 				}
 
 			} else {
-				alert('Parol Qısadır');
+			
+				alertBoxGenerate("Parol Qısadır", "warning", "Xəta");
 			}
 
 
 		} else {
-			alert('Zəhmət olmasa bütün xanaları doldurun!!!');
+			
+			alertBoxGenerate("Zəhmət olmasa bütün xanaları doldurun!", "warning", "Xəta");
 		}
 
 	}
@@ -1768,7 +1786,7 @@ let userId = "";
 			error: function (jqXHR, status) {
 				// error handler
 
-				alert('fail' + status.code);
+			
 			}
 		});
 
@@ -1826,7 +1844,7 @@ let userId = "";
 			error: function (jqXHR, status) {
 				// error handler
 
-				alert('fail' + status.code);
+			
 			}
 		});
 
@@ -1896,7 +1914,7 @@ let userId = "";
 			error: function (jqXHR, status) {
 				// error handler
 
-				alert('fail' + status.code);
+			
 			}
 		});
 
@@ -1940,7 +1958,7 @@ let userId = "";
 			error: function (jqXHR, status) {
 				// error handler
 
-				alert('fail' + status.code);
+			
 			}
 
 
@@ -1976,13 +1994,15 @@ let userId = "";
 			crossDomain: true,
 			dataType: "json",
 			success: function (data, status, jqXHR) {
-				alert('yadda saxlanldi')
+				
+				alertBoxGenerate("Məlumatlar yaddaşda saxlanıldı", "success", "Bildiriş")
+				
 			},
 
 			error: function (jqXHR, status) {
 				// error handler
 
-				alert('fail' + status.code);
+			
 			}
 		});
 
@@ -2048,7 +2068,7 @@ let userId = "";
 			error: function (jqXHR, status) {
 				// error handler
 
-				alert('fail' + status.code);
+			
 			}
 		});
 	}
@@ -2060,6 +2080,7 @@ let userId = "";
 
 		items.slice(perPage).hide();
 
+	   try {
 		$('.pagination-container').pagination({
 			items: numItems,
 			itemsOnPage: perPage,
@@ -2072,6 +2093,11 @@ let userId = "";
 			}
 		});
 		pagintionFunc1();
+	   } catch (error) {
+		   
+	   }
+	
+	
 	}
 
 	function pagintionFunc1() {
@@ -2187,12 +2213,12 @@ let userId = "";
 				error: function (jqXHR, status) {
 					// error handler
 
-					alert('fail' + status.code);
+				
 				}
 			});
 
 		} else {
-			alert('Zəhmət olmasa bütün xanaları doldurun!!!');
+			alertBoxGenerate('Zəhmət olmasa bütün xanaları doldurun!!!', 'warning', 'Xəta')
 		}
 
 	})
@@ -2351,7 +2377,7 @@ let userId = "";
 				error: function (jqXHR, status) {
 					// error handler
 
-					alert('fail' + status.code);
+				
 				}
 			});
 		}
@@ -2480,7 +2506,7 @@ let userId = "";
 			error: function (jqXHR, status) {
 				// error handler
 
-				alert('fail' + status.code);
+				
 			}
 		});
 	}
@@ -2510,7 +2536,7 @@ let userId = "";
 			error: function (jqXHR, status) {
 				// error handler
 
-				alert('fail' + status.code);
+				
 			}
 		});
 	}
