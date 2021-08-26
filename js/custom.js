@@ -765,15 +765,17 @@ Fixed Menu
 
 
 		return $("<section>")
-		            .append($("<header>")
-					         .append($("<h1>").text(head)))
+		            
 		         .addClass("container news_block_large") 
 				 .append($('<div>')
-			.addClass('row ')
+			.addClass(' ')
 			.attr('id', id)			
 			.append($('<div>')
 				.addClass('col-lg-12 col-md-12 col-sm-12')
 				.append('<div class="full "><img class="data_newsImg" src="' + UrlQb + 'api/get/zdfiles/qebulaz/' + imgN + '" alt="#"></div>'))
+				.append($("<header>").addClass("col-12")
+					         .append($("<h1>").attr("style","font-size:26px;color:#13317F").text(head))
+							 .append("<br>"))
 			.append($('<div>')
 				.addClass('data_newsTxt col-lg-12 col-md-12 col-sm-12')
 
