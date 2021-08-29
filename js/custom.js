@@ -2233,6 +2233,36 @@ let userId = "";
 
 	})
 
+	$(document).on("keypress", '#exampleInputPassword1', function (event) {
+		if (event.keyCode === 13) {
+			var userNm = $(this).parents('.modal-content').find('#exampleInputEmail1').val();
+			var userPass = $(this).val();
+			if(userNm||userPass){
+				getUserLogin(userNm, userPass);
+			}else{
+				alertBoxGenerate('Zəhmət olmasa bütün xanaları doldurun!!!', 'warning', 'Xəta')
+			}
+		
+			
+		}
+	
+
+	})
+	$(document).on("keypress", '#exampleInputEmail1', function (event) {
+		if (event.keyCode === 13) {
+			var userNm = $(this).val();
+			var userPass = $(this).parents('.modal-content').find('#exampleInputPassword1').val();
+			if(userNm||userPass){
+				getUserLogin(userNm, userPass);
+			}else{
+				alertBoxGenerate('Zəhmət olmasa bütün xanaları doldurun!!!', 'warning', 'Xəta')
+			}
+			
+		}
+		
+
+
+	})
 	$(document).on("click", '#sign_in_btn', function () {
 		var userNm = $(this).parents('.modal-content').find('#exampleInputEmail1').val();
 		var userPass = $(this).parents('.modal-content').find('#exampleInputPassword1').val();
